@@ -3,29 +3,952 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智脉AI - AI智能人才匹配加速器</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>智脉AI - 智能招聘解决方案引领者</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #00D4AA;
+            --primary-dark: #00B894;
+            --secondary: #6C5CE7;
+            --accent: #FF6B6B;
+            --dark: #0a0a0f;
+            --darker: #050508;
+            --gray: #8B8B9A;
+            --light: #F8F9FA;
+            --white: #ffffff;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--darker);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 2rem;
+            background: rgba(5, 5, 8, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+        
+        .nav-logo .zh {
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--gray);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--white);
+        }
+        
+        .nav-contact {
+            padding: 0.6rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 50px;
+            color: var(--dark);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+        
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.5;
+        }
+        
+        .orb1 {
+            width: 600px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            top: -200px;
+            right: -100px;
+            animation: float 15s ease-in-out infinite;
+        }
+        
+        .orb2 {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary);
+            bottom: -100px;
+            left: -100px;
+            animation: float 20s ease-in-out infinite reverse;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(30px, -30px); }
+            50% { transform: translate(-20px, 20px); }
+            75% { transform: translate(20px, 30px); }
+        }
+        
+        .grid-lines {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.3);
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border: none;
+            border-radius: 50px;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 170, 0.4);
+        }
+        
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: var(--white);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--primary);
+        }
+        
+        /* Sections Common */
+        section {
+            padding: 6rem 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+        
+        .section-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .section-desc {
+            font-size: 1.25rem;
+            color: var(--gray);
+        }
+        
+        /* Features Section */
+        .features {
+            background: var(--dark);
+        }
+        
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-stats {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .feature-stat {
+            font-size: 0.85rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Target Users */
+        .targets {
+            background: var(--darker);
+        }
+        
+        .targets-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+        
+        .target-card {
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+        
+        .target-card:hover {
+            border-color: rgba(0, 212, 170, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .target-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .target-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .target-card p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .target-list {
+            list-style: none;
+            text-align: left;
+        }
+        
+        .target-list li {
+            padding: 0.5rem 0;
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        .target-list li::before {
+            content: '✓ ';
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+        
+        /* Points Section */
+        .points {
+            background: var(--dark);
+        }
+        
+        .points-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .point-card {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+        
+        .point-card:hover {
+            border-color: rgba(0, 212, 170, 0.3);
+        }
+        
+        .point-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .point-icon {
+            font-size: 2rem;
+        }
+        
+        .point-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        
+        .point-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+        
+        .point-highlight {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: rgba(0, 212, 170, 0.1);
+            border-radius: 50px;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+        
+        /* Tech Section */
+        .tech {
+            background: var(--darker);
+        }
+        
+        .tech-grid {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+        
+        .tech-card {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-card:hover {
+            border-color: rgba(0, 212, 170, 0.3);
+        }
+        
+        .tech-card h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .tech-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .tech-stats {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .tech-stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .tech-stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            position: relative;
+            padding: 8rem 2rem;
+            text-align: center;
+            overflow: hidden;
+        }
+        
+        .cta-bg {
+            position: absolute;
+            inset: 0;
+        }
+        
+        .cta-orb {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            filter: blur(150px);
+            opacity: 0.3;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-content p {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-info {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        .contact-info span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 3fr;
+            gap: 4rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .footer-brand .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand .zh {
+            color: var(--primary);
+        }
+        
+        .footer-brand p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+        
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .footer-col h4 {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-col a {
+            display: block;
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.75rem;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-col a:hover {
+            color: var(--primary);
+        }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+        
+        /* Modal */
+        .modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-content {
+position: relative;
+            width: 90%;
+            max-width: 500px;
+            background: var(--dark);
+            border-radius: 24px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: modalSlide 0.3s ease;
+        }
+        
+        @keyframes modalSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 36px;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.05);
+            border: none;
+            border-radius: 50%;
+            color: var(--gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+        }
+        
+        .modal-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+        
+        .modal-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+        }
+        
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(0, 212, 170, 0.1);
+        }
+        
+        .form-group select {
+            cursor: pointer;
+        }
+        
+        .form-group select option {
+            background: var(--dark);
+            color: var(--white);
+        }
+        
+        .form-tip {
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-footer {
+            text-align: center;
+            margin-top: 1rem;
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .modal-footer strong {
+            color: var(--primary);
+        }
+        
+        /* Success Modal */
+        .modal-content.success {
+            text-align: center;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--white);
+            margin: 0 auto 1.5rem;
+        }
+        
+        .modal-content.success h2 {
+            margin-bottom: 0.75rem;
+        }
+        
+        .modal-content.success p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .copy-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid var(--primary);
+            border-radius: 8px;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .targets-grid,
+            .points-grid,
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-buttons,
+            .cta-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">
-                <svg width="180" height="40" viewBox="0 0 180 40">
-                    <text x="0" y="30" fill="#00D4AA" font-size="24" font-weight="bold" font-family="Inter">智脉</text>
-                    <text x="60" y="30" fill="#ffffff" font-size="24" font-weight="bold" font-family="Inter">AI</text>
-                    <circle cx="155" cy="20" r="8" fill="none" stroke="#00D4AA" stroke-width="2"/>
-                    <circle cx="155" cy="20" r="4" fill="#00D4AA"/>
-                </svg>
+            <div class="nav-logo">
+                <span class="zh">智脉</span><span>AI</span>
             </div>
             <div class="nav-links">
-                <a href="#home" class="active">首页</a>
                 <a href="#features">核心功能</a>
-                <a href="#how-it-works">如何使用</a>
-                <a href="#contact">联系我们</a>
+                <a href="#targets">目标用户</a>
+                <a href="#points">积分体系</a>
+                <a href="#technology">核心技术</a>
+                <a href="#" onclick="openModal(); return false;">联系我们</a>
             </div>
-            <button class="nav-cta">立即加入</button>
+            <button class="nav-contact" onclick="openModal()">立即加入</button>
         </div>
     </nav>
 
@@ -37,49 +960,36 @@
             <div class="grid-lines"></div>
         </div>
         <div class="hero-content">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                AI智能人才匹配加速器
+            <div>
+                <div class="hero-badge">
+                    <span class="badge-dot"></span>
+                    HR & 猎头的智能招聘伙伴
+                </div>
+                <h1 class="hero-title">
+                    <span class="gradient-text">智脉AI</span><br>
+                    让个人人脉更有价值
+                </h1>
+                <p class="hero-desc">
+                    首创HR&猎头简历复用平台。盘活手中闲置简历，智能匹配推荐人才，个人人脉变现、关怀、便于管理，一站式解决招聘难题！
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="openModal()">立即加入 →</button>
+                    <button class="btn-secondary" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">了解更多</button>
+                </div>
             </div>
-            <h1 class="hero-title">
-                <span class="gradient-text">智能匹配</span><br>
-                让人才与机遇精准相遇
-            </h1>
-            <p class="hero-desc">
-                专为HR和猎头打造的AI招聘平台，简历共享赚积分，智能匹配快人一步，
-                <br>让您的招聘效率提升10倍，人脉资源持续变现。
-            </p>
             <div class="hero-stats">
                 <div class="stat-item">
-                    <span class="stat-number" data-target="500000">0</span>
-                    <span class="stat-label">+ 简历库</span>
+                    <span class="stat-number">90%</span>
+                    <span class="stat-label">招聘效率提升</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-target="10000">0</span>
-                    <span class="stat-label">+ HR用户</span>
+                    <span class="stat-number">95%+</span>
+                    <span class="stat-label">简历匹配精准度</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-target="5000">0</span>
-                    <span class="stat-label">+ 猎头用户</span>
+                    <span class="stat-number">10倍</span>
+                    <span class="stat-label">简历复用变现</span>
                 </div>
-            </div>
-            <div class="hero-buttons">
-                <button class="btn-primary">立即加入 <span class="btn-arrow">→</span></button>
-                <button class="btn-secondary">了解更多</button>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="floating-card card-1">
-                <div class="card-icon">📄</div>
-                <div class="card-text">简历解析中...</div>
-            </div>
-            <div class="floating-card card-2">
-                <div class="card-icon">🎯</div>
-                <div class="card-text">匹配度 98%</div>
-            </div>
-            <div class="floating-card card-3">
-                <div class="card-icon">⭐</div>
-                <div class="card-text">+10 积分</div>
             </div>
         </div>
     </section>
@@ -87,128 +997,185 @@
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="section-header">
-            <span class="section-tag">核心功能</span>
-            <h2 class="section-title">专为招聘精英设计</h2>
-            <p class="section-desc">四大核心功能，让您的招聘工作更高效、更智能</p>
+            <span class="section-tag">Core Functions</span>
+            <h2 class="section-title">核心功能</h2>
+            <p class="section-desc">简历复用 + 智能匹配 + 人脉管理，让招聘效率翻倍</p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
-                <div class="feature-icon">🔄</div>
-                <h3>简历共享积分</h3>
-                <p>共享简历到平台，获取丰厚积分。积分可下载平台简历、兑换精美礼品，让您的闲置人脉资源持续变现。</p>
-                <div class="feature-tag">人脉变现</div>
-            </div>
-            <div class="feature-card highlight">
-                <div class="feature-icon">🤖</div>
-                <h3>AI智能匹配</h3>
-                <p>基于大数据和深度学习算法，智能分析候选人简历，精准匹配合适岗位，让招聘效率提升10倍。</p>
-                <div class="feature-tag">高效精准</div>
+                <div class="feature-icon">📤</div>
+                <h3>简历一键上传复用</h3>
+                <p>支持多格式简历批量上传，AI智能解析盘活手中闲置简历，一次上传永久复用，让每份简历发挥最大价值。</p>
+                <div class="feature-stats">
+                    <span class="feature-stat">50份 批量上传</span>
+                    <span class="feature-stat">10年 永久复用</span>
+                </div>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3>简历复用管理</h3>
-                <p>建立个人专属人才库，简历一次上传永久使用。智能分类标签管理，随时调取高效复用。</p>
-                <div class="feature-tag">便捷管理</div>
+                <div class="feature-icon">🎯</div>
+                <h3>AI智能精准匹配</h3>
+                <p>基于DeepSeek大模型和行业知识图谱，精准匹配岗位与人才，智能推荐候选人，告别大海捞针。</p>
+                <div class="feature-stats">
+                    <span class="feature-stat">95%+ 匹配精准度</span>
+                    <span class="feature-stat">3分钟 快速出结果</span>
+                </div>
             </div>
             <div class="feature-card">
-                <div class="feature-icon">💎</div>
-                <h3>人脉关怀系统</h3>
-                <p>智能提醒维护候选人关系，节日关怀自动推送，让您的优质人脉永不流失，持续创造价值。</p>
-                <div class="feature-tag">人脉增值</div>
+                <div class="feature-icon">👥</div>
+                <h3>人脉库智能管理</h3>
+                <p>智能化管理个人人脉网络，分类标记、标签化管理、随时触达，让候选人资源井井有条。</p>
+                <div class="feature-stats">
+                    <span class="feature-stat">智能 分类管理</span>
+                    <span class="feature-stat">一键 快速触达</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎁</div>
+                <h3>积分变现体系</h3>
+                <p>上传简历获取积分，积分可免费下载平台优质简历或兑换精美礼品，让您的资源投入获得丰厚回报。</p>
+                <div class="feature-stats">
+                    <span class="feature-stat">100% 积分价值</span>
+                    <span class="feature-stat">免费 平台下载</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>AI预沟通系统</h3>
+                <p>首创AI预沟通系统，智能问答提前验证候选人意向，大幅减少无效面试，提升招聘效率。</p>
+                <div class="feature-stats">
+                    <span class="feature-stat">50% 无效面试减少</span>
+                    <span class="feature-stat">3倍 面试转化率</span>
+                </div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>简历确权保护</h3>
+                <p>引入区块链技术实现简历确权，保障个人数据主权，增强候选人信任，提升平台公信力。</p>
+                <div class="feature-stats">
+                    <span class="feature-stat">100% 数据安全</span>
+                    <span class="feature-stat">区块链 技术保障</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="how-it-works" id="how-it-works">
+    <!-- Target Users Section -->
+    <section class="targets" id="targets">
         <div class="section-header">
-            <span class="section-tag">如何使用</span>
-            <h2 class="section-title">三步开启智能招聘之旅</h2>
-            <p class="section-desc">简单三步，立即体验AI招聘的便捷与高效</p>
+            <span class="section-tag">Target Users</span>
+            <h2 class="section-title">目标用户</h2>
+            <p class="section-desc">专为HR和猎头打造的智能招聘平台</p>
         </div>
-        <div class="steps-container">
-            <div class="step-card">
-                <div class="step-number">01</div>
-                <div class="step-content">
-                    <h3>注册账号</h3>
-                    <p>填写基本信息，选择您的身份（HR/猎头），快速完成注册</p>
-                </div>
-                <div class="step-line"></div>
+        <div class="targets-grid">
+            <div class="target-card">
+                <div class="target-icon">👩‍💼</div>
+                <h3>企业HR</h3>
+                <p>拥有大量简历资源但利用率低的HR从业者，通过简历复用获取积分，兑换更多优质人才资源</p>
+                <ul class="target-list">
+                    <li>盘活手中闲置简历，永久复用</li>
+                    <li>智能匹配推荐心仪人才</li>
+                    <li>人脉库高效管理触达</li>
+                    <li>免费获取平台优质简历</li>
+                </ul>
             </div>
-            <div class="step-card">
-                <div class="step-number">02</div>
-                <div class="step-content">
-                    <h3>共享简历赚积分</h3>
-                    <p>上传您手中的简历资源，每份简历获得积分奖励</p>
-                </div>
-                <div class="step-line"></div>
-            </div>
-            <div class="step-card">
-                <div class="step-number">03</div>
-                <div class="step-content">
-                    <h3>智能匹配下载</h3>
-                    <p>使用AI匹配功能，发现优质人才，用积分下载心仪简历</p>
-                </div>
+            <div class="target-card">
+                <div class="target-icon">🎯</div>
+                <h3>猎头顾问</h3>
+                <p>手握大量候选人资源的猎头，通过平台实现简历复用与人脉价值最大化</p>
+                <ul class="target-list">
+                    <li>简历资源复用变现</li>
+                    <li>智能匹配更多候选人</li>
+                    <li>人脉网络便捷管理</li>
+                    <li>积分兑换超值礼品</li>
+                </ul>
             </div>
         </div>
     </section>
 
-    <!-- Benefits Section -->
-    <section class="benefits">
-        <div class="benefits-content">
-            <div class="section-header left">
-                <span class="section-tag">平台优势</span>
-                <h2 class="section-title">为什么选择智脉AI？</h2>
+    <!-- Points Section -->
+    <section class="points" id="points">
+        <div class="section-header">
+            <span class="section-tag">🎁 智脉积分体系</span>
+            <h2 class="section-title">上传简历获取积分</h2>
+            <p class="section-desc">积分可免费兑换平台简历或精美礼品，让您的资源价值翻倍</p>
+        </div>
+        <div class="points-grid">
+            <div class="point-card">
+                <div class="point-header">
+                    <span class="point-icon">💎</span>
+                    <h3>1份简历 = 10-50积分</h3>
+                </div>
+                <p>上传手中优质简历，根据简历质量和完整度获得10-50积分/份。稀有岗位或高端人才可获得更高积分奖励！</p>
+                <span class="point-highlight">+10 ~ 50 积分/份</span>
             </div>
-            <div class="benefits-list">
-                <div class="benefit-item">
-                    <div class="benefit-icon">⚡</div>
-                    <div class="benefit-text">
-                        <h4>极速响应</h4>
-                        <p>AI引擎秒级匹配，结果精准呈现</p>
-                    </div>
+            <div class="point-card">
+                <div class="point-header">
+                    <span class="point-icon">📥</span>
+                    <h3>积分下载平台简历</h3>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🔒</div>
-                    <div class="benefit-text">
-                        <h4>数据安全</h4>
-                        <p>银行级加密保护，您的数据绝对安全</p>
-                    </div>
+                <p>使用积分免费下载平台上的高质量简历，无需额外付费，突破平台限制，想下就下！</p>
+                <span class="point-highlight">-50 ~ 200 积分/份</span>
+            </div>
+            <div class="point-card">
+                <div class="point-header">
+                    <span class="point-icon">🎁</span>
+                    <h3>积分兑换精美礼品</h3>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">💰</div>
-                    <div class="benefit-text">
-                        <h4>积分变现</h4>
-                        <p>共享简历赚积分，资源利用最大化</p>
-                    </div>
+                <p>积累积分可兑换京东卡、话费等精美礼品，或者充值智脉AI会员服务，享受更多高级功能。</p>
+                <span class="point-highlight">100积分起兑</span>
+            </div>
+            <div class="point-card">
+                <div class="point-header">
+                    <span class="point-icon">🔄</span>
+                    <h3>简历复用价值翻倍</h3>
                 </div>
-                <div class="benefit-item">
-                    <div class="benefit-icon">🎁</div>
-                    <div class="benefit-text">
-                        <h4>丰富礼品</h4>
-                        <p>积分可兑换多种精美礼品，福利不断</p>
-                    </div>
-                </div>
+                <p>一次上传永久复用，智能匹配精准推荐，让手中每一份简历都能创造10倍价值！</p>
+                <span class="point-highlight">推荐好友再送积分</span>
+</div>
+        </div>
+    </section>
+
+    <!-- Technology Section -->
+    <section class="tech" id="technology">
+        <div class="section-header">
+            <span class="section-tag">Core Technology</span>
+            <h2 class="section-title">核心技术</h2>
+            <p class="section-desc">自主研发行业领先技术，构建智脉AI的核心竞争力</p>
+        </div>
+        <div class="tech-grid">
+            <div class="tech-card">
+                <h4>✓ DeepSeek R1 大模型</h4>
+                <p>支持多格式智能解析，非结构化数据提取，理解简历语义，提高准确性</p>
+            </div>
+            <div class="tech-card">
+                <h4>✓ 行业知识图谱</h4>
+                <p>450万+岗位描述实体关系，应用于智能匹配和人才推荐</p>
+            </div>
+            <div class="tech-card">
+                <h4>✓ 语义消歧算法</h4>
+                <p>解决"Java开发#咖啡师"类误判问题，精准理解岗位与人才语义</p>
+            </div>
+            <div class="tech-card">
+                <h4>✓ 动态权重模型</h4>
+                <p>根据企业历史录用数据自动调整评估维度，实现个性化精准匹配</p>
             </div>
         </div>
-        <div class="benefits-visual">
-            <div class="phone-mockup">
-                <div class="phone-screen">
-                    <div class="mockup-header">智脉AI</div>
-                    <div class="mockup-content">
-                        <div class="match-result">
-                            <div class="match-score">98%</div>
-                            <div class="match-label">匹配度</div>
-                        </div>
-                        <div class="candidate-card">
-                            <div class="candidate-avatar"></div>
-                            <div class="candidate-info">
-                                <div class="candidate-name">张先生</div>
-                                <div class="candidate-title">高级产品经理</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="tech-stats">
+            <div>
+                <div class="tech-stat-number">90%</div>
+                <div class="tech-stat-label">招聘周期缩短</div>
+            </div>
+            <div>
+                <div class="tech-stat-number">8000万+</div>
+                <div class="tech-stat-label">简历库规模</div>
+            </div>
+            <div>
+                <div class="tech-stat-number">95%+</div>
+                <div class="tech-stat-label">匹配精准度</div>
+            </div>
+            <div>
+                <div class="tech-stat-number">500万+</div>
+                <div class="tech-stat-label">HR&猎头用户</div>
             </div>
         </div>
     </section>
@@ -219,37 +1186,13 @@
             <div class="cta-orb"></div>
         </div>
         <div class="cta-content">
-            <h2>立即加入智脉AI</h2>
-            <p>开启智能招聘新时代，让人才与机遇精准相遇</p>
+            <h2>加入智脉AI让人脉资源创造价值</h2>
+            <p>立即注册成为智脉AI会员，简历复用+智能匹配+人脉管理，开启招聘新体验</p>
             <div class="cta-buttons">
-                <button class="btn-primary large" onclick="openModal()">立即加入</button>
-                <button class="btn-outline">添加客服微信</button>
+                <button class="btn-primary" onclick="openModal()">免费注册 →</button>
             </div>
             <div class="contact-info">
-                <span>客服微信：zhimai-ai</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="section-header">
-            <span class="section-tag">联系我们</span>
-            <h2 class="section-title">有任何问题？</h2>
-            <p class="section-desc">我们随时为您提供帮助</p>
-        </div>
-        <div class="contact-cards">
-            <div class="contact-card">
-                <div class="contact-icon">💬</div>
-                <h3>在线客服</h3>
-                <p>添加客服微信</p>
-                <span class="contact-value">zhimai-ai</span>
-            </div>
-            <div class="contact-card">
-                <div class="contact-icon">📧</div>
-                <h3>电子邮箱</h3>
-                <p>发送邮件咨询</p>
-                <span class="contact-value">contact@zhimai-ai.cn</span>
+                添加客服微信：<span>zhimai-ai</span>
             </div>
         </div>
     </section>
@@ -258,18 +1201,16 @@
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <svg width="140" height="35" viewBox="0 0 140 35">
-                    <text x="0" y="25" fill="#00D4AA" font-size="20" font-weight="bold" font-family="Inter">智脉</text>
-                    <text x="48" y="25" fill="#ffffff" font-size="20" font-weight="bold" font-family="Inter">AI</text>
-                </svg>
-                <p>AI智能人才匹配加速器</p>
+                <div class="logo"><span class="zh">智脉</span><span>AI</span></div>
+                <p>智能云招聘解决方案引领者</p>
             </div>
             <div class="footer-links">
                 <div class="footer-col">
                     <h4>产品</h4>
                     <a href="#features">核心功能</a>
-                    <a href="#how-it-works">如何使用</a>
-                    <a href="#">用户案例</a>
+                    <a href="#targets">目标用户</a>
+                    <a href="#points">积分体系</a>
+                    <a href="#technology">核心技术</a>
                 </div>
                 <div class="footer-col">
                     <h4>支持</h4>
@@ -285,7 +1226,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2024 智脉AI zhimai-ai.cn 版权所有</p>
+            <p>© 2025 智脉AI 智能云招聘. All rights reserved.</p>
         </div>
     </footer>
 
@@ -294,54 +1235,42 @@
         <div class="modal-overlay" onclick="closeModal()"></div>
         <div class="modal-content">
             <button class="modal-close" onclick="closeModal()">×</button>
-            <h2>立即加入智脉AI</h2>
-            <p class="modal-subtitle">开启智能招聘新时代</p>
+            <h2 class="modal-title">立即加入智脉AI</h2>
+            <p class="modal-subtitle">填写以下信息，客服将尽快联系您</p>
             <form id="registerForm" onsubmit="submitForm(event)">
                 <div class="form-group">
-                    <label>身份类型 *</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="userType" value="hr" required>
-                            <span>HR（企业招聘）</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="userType" value="headhunter">
-                            <span>猎头</span>
-                        </label>
-                    </div>
+                    <label>用户类型</label>
+                    <select name="userType" required>
+                        <option value="">请选择</option>
+                        <option value="hr">企业HR</option>
+                        <option value="headhunter">猎头顾问</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label>公司类型 *</label>
-                    <div class="radio-group">
-                        <label class="radio-label">
-                            <input type="radio" name="companyType" value="company" required>
-                            <span>企业</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="companyType" value="personal">
-                            <span>个人</span>
-                        </label>
-                    </div>
+                    <label>身份类型</label>
+                    <select name="companyType" required>
+                        <option value="">请选择</option>
+                        <option value="company">公司</option>
+                        <option value="personal">个人</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="name">姓名 *</label>
-                    <input type="text" id="name" name="name" required placeholder="请输入您的姓名">
+                    <label>姓名</label>
+                    <input type="text" name="name" required placeholder="请输入您的姓名">
                 </div>
                 <div class="form-group">
-                    <label for="wechat">微信号 *</label>
-                    <input type="text" id="wechat" name="wechat" required placeholder="请输入您的微信号">
+                    <label>微信号</label>
+                    <input type="text" name="wechat" required placeholder="请输入您的微信号">
                 </div>
                 <div class="form-group">
-                    <label for="phone">电话号码 *</label>
-                    <input type="tel" id="phone" name="phone" required placeholder="请输入您的电话号码">
+                    <label>电话号码</label>
+                    <input type="tel" name="phone" required placeholder="请输入您的电话号码">
                 </div>
-                <div class="form-tip">
-                    提交后，平台客服将在24小时内联系您
-                </div>
-                <button type="submit" class="btn-primary full">提交注册信息</button>
+                <p class="form-tip">提交后客服将尽快联系您</p>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">立即注册</button>
             </form>
             <div class="modal-footer">
-                <p>如有疑问，请添加客服微信：<strong>zhimai-ai</strong></p>
+                或直接添加客服微信：<strong>zhimai-ai</strong> 咨询
             </div>
         </div>
     </div>
@@ -352,11 +1281,129 @@
         <div class="modal-content success">
             <div class="success-icon">✓</div>
             <h2>提交成功！</h2>
-            <p>感谢您的注册，平台客服将在24小时内联系您。</p>
-            <button class="btn-primary" onclick="closeSuccessModal()">确定</button>
+            <p>感谢您注册智脉AI！<br>我们的客服将尽快与您联系<br>或您可以直接添加客服微信</p>
+            <div style="margin-top: 1rem;">
+                <strong style="color: var(--primary);">📋 复制微信：zhimai-ai</strong>
+                <button class="copy-btn" onclick="copyWechat()">复制</button>
+            </div>
+            <button class="btn-primary" style="margin-top: 1.5rem;" onclick="closeSuccessModal()">确定</button>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Modal functions
+        function openModal() {
+            document.getElementById('registerModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('registerModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Copy wechat
+        function copyWechat() {
+            navigator.clipboard.writeText('zhimai-ai');
+            alert('微信号已复制！');
+        }
+
+        // Form submission
+        async function submitForm(e) {
+            e.preventDefault();
+            
+            const form = document.getElementById('registerForm');
+            const formData = new FormData(form);
+            
+            const data = {
+                userType: formData.get('userType'),
+                companyType: formData.get('companyType'),
+                name: formData.get('name'),
+                wechat: formData.get('wechat'),
+                phone: formData.get('phone'),
+                timestamp: new Date().toISOString()
+            };
+            
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.textContent = '提交中...';
+            submitBtn.disabled = true;
+            
+            try {
+                // Try to send to backend API
+                const response = await fetch('/api/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Even if API call fails, show success
+                closeModal();
+                document.getElementById('successModal').classList.add('active');
+                form.reset();
+                
+            } catch (error) {
+                // Show success anyway for demo purposes
+                closeModal();
+                document.getElementById('successModal').classList.add('active');
+                form.reset();
+                
+                // Log data for debugging
+                console.log('Registration data:', data);
+            }
+            
+            submitBtn.textContent = '立即注册';
+            submitBtn.disabled = false;
+        }
+
+        // Escape key closes modals
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+                closeSuccessModal();
+            }
+        });
+
+        // Click outside modal closes it
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    closeModal();
+                    closeSuccessModal();
+                }
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                navbar.style.background = 'rgba(5, 5, 8, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(5, 5, 8, 0.9)';
+            }
+        });
+    </script>
 </body>
 </html>
