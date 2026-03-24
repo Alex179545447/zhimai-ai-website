@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智脉AI - 智能人脉简历系统</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0066ff;
+            --primary-light: #e6f0ff;
+            --secondary-color: #00d4aa;
+            --accent-color: #ff6b35;
+            --text-dark: #1a1a2e;
+            --text-gray: #6b7280;
+            --text-light: #9ca3af;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-color: #e5e7eb;
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --radius-sm: 6px;
+            --radius-md: 10px;
+            --radius-lg: 16px;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Login Page Styles */
+        .login-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M400 0h200v200H400zM0 400h200v200H0zM600 600h200v200H600zM200 200h200v200H200z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50%, -50%); }
+            100% { transform: translate(0%, 0%); }
+        }
+
+        .login-box {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 440px;
+            padding: 48px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .login-logo {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-logo img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 12px;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0, 102, 255, 0.2);
+        }
+
+        .login-logo h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #0066ff, #00d4aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: 2px;
+        }
+
+        .login-logo .tagline {
+            color: var(--text-gray);
+            font-size: 13px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .login-logo .tagline span {
+            padding: 4px 12px;
+            background: linear-gradient(135deg, var(--primary-light), #e6fff7);
+            border-radius: 20px;
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            transition: all 0.3s;
+            outline: none;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .form-group .input-group {
+            display: flex;
+            gap: 12px;
+        }
+
+        .form-group .input-group input {
+            flex: 1;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-align: center;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), #0052cc);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--text-dark);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-color);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #00d4aa, #00b894);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 212, 170, 0.3);
+        }
+
+        .btn-orange {
+            background: linear-gradient(135deg, #ff6b35, #f97316);
+            color: white;
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 13px;
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .login-footer {
+            text-align: center;
+            margin-top: 24px;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .login-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            background: var(--bg-light);
+            padding: 4px;
+            border-radius: var(--radius-md);
+        }
+
+        .tab {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            background: transparent;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-gray);
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            background: var(--bg-white);
+            color: var(--primary-color);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .verify-btn {
+            padding: 12px;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .verify-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        /* Main App Styles */
+        .app-container {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .app-container.active {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: var(--bg-white);
+            border-right: 1px solid var(--border-color);
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+            z-index: 100;
+        }
+
+        .sidebar-logo {
+            padding: 0 12px;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .sidebar-logo img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+        }
+
+        .sidebar-logo h2 {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .sidebar-logo span {
+            font-size: 11px;
+            color: var(--text-light);
+            display: block;
+            margin-top: 4px;
+        }
+
+        .nav-menu {
+            list-style: none;
+            flex: 1;
+        }
+
+        .nav-item {
+            margin-bottom: 4px;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: var(--text-gray);
+            text-decoration: none;
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .nav-link:hover {
+            background: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .nav-link.active {
+            background: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        .nav-link svg {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-footer {
+            padding: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .user-details {
+            flex: 1;
+        }
+
+        .user-details h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .user-details p {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 24px 32px;
+            background: var(--bg-light);
+            min-height: 100vh;
+        }
+
+        .page-header {
+            margin-bottom: 32px;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: var(--text-gray);
+            font-size: 15px;
+        }
+
+        /* Dashboard Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .stat-card .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .stat-card .icon.blue {
+            background: var(--primary-light);
+            color: var(--primary-color);
+        }
+
+        .stat-card .icon.green {
+            background: #e6fcf5;
+            color: #00d4aa;
+        }
+
+        .stat-card .icon.orange {
+            background: #fff7ed;
+            color: #ff6b35;
+        }
+
+        .stat-card .icon.purple {
+            background: #f3e8ff;
+            color: #9333ea;
+        }
+
+        .stat-card h3 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .stat-card p {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .stat-card .trend {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            margin-top: 8px;
+            padding: 4px 8px;
+            border-radius: var(--radius-sm);
+        }
+
+        .stat-card .trend.up {
+            background: #e6fcf5;
+            color: #00d4aa;
+        }
+
+        /* Cards Grid */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .card-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .card-header a {
+            font-size: 14px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Upload Section */
+        .upload-area {
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+            background: var(--bg-light);
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-light);
+        }
+
+        .upload-area .icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 16px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+        }
+
+        .upload-area h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .upload-area p {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .upload-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .upload-option {
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .upload-option:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-light);
+        }
+
+        .upload-option h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .upload-option p {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        /* Resume List */
+        .resume-table {
+            width: 100%;
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .resume-table table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .resume-table th {
+            padding: 16px 20px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-gray);
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .resume-table td {
+            padding: 16px 20px;
+            font-size: 14px;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .resume-table tr:hover {
+            background: var(--bg-light);
+        }
+
+        .resume-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .match-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .match-badge.high {
+            background: #e6fcf5;
+            color: #00d4aa;
+        }
+
+        .match-badge.medium {
+            background: #fff7ed;
+            color: #f97316;
+        }
+
+        .match-badge.low {
+            background: #fee2e2;
+            color: #ef4444;
+        }
+
+        .tags {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            background: var(--primary-light);
+            color: var(--primary-color);
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Filter Bar */
+        .filter-bar {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .filter-bar input,
+        .filter-bar select {
+            padding: 10px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            font-size: 14px;
+            outline: none;
+            background: var(--bg-white);
+        }
+
+        .filter-bar input:focus,
+        .filter-bar select:focus {
+            border-color: var(--primary-color);
+        }
+
+        .filter-bar input {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        /* AI Match Result */
+        .match-result {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+        }
+
+        .match-result-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .match-score {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .match-score.excellent {
+            background: linear-gradient(135deg, #00d4aa, #00b894);
+            color: white;
+        }
+
+        .match-score.good {
+            background: linear-gradient(135deg, #f97316, #ea580c);
+            color: white;
+        }
+
+        .match-score.poor {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .match-score span {
+            font-size: 24px;
+        }
+
+        .match-score small {
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .match-result-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .match-result-header p {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .match-dimensions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .dimension-item {
+            padding: 16px;
+            background: var(--bg-light);
+            border-radius: var(--radius-md);
+        }
+
+        .dimension-item h4 {
+            font-size: 13px;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+        }
+
+        .dimension-item .value {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .dimension-item .status {
+            display: inline-block;
+            font-size: 12px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-top: 4px;
+        }
+
+        .dimension-item .status.match {
+            background: #e6fcf5;
+            color: #00d4aa;
+        }
+
+        .dimension-item .status.mismatch {
+            background: #fee2e2;
+            color: #ef4444;
+        }
+
+        /* Matching Methods */
+        .matching-methods {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .method-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .method-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-4px);
+        }
+
+        .method-card.active {
+            border-color: var(--primary-color);
+            background: var(--primary-light);
+        }
+
+        .method-card .method-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 12px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 20px;
+        }
+
+        .method-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .method-card p {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* Job Posting Card */
+        .job-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .job-card {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .job-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(4px);
+        }
+
+        .job-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: var(--radius-md);
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            font-size: 24px;
+        }
+
+        .job-info {
+            flex: 1;
+        }
+
+        .job-info h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .job-info p {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        .job-stats {
+            text-align: right;
+        }
+
+        .job-stats .count {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .job-stats .label {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal h2 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--text-gray);
+        }
+
+        /* Candidate Care Section */
+        .care-section {
+            background: var(--bg-white);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: 24px;
+        }
+
+        .care-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .care-header h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .care-levels {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .care-level {
+            flex: 1;
+            padding: 16px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .care-level:hover {
+            border-color: var(--primary-color);
+        }
+
+        .care-level.active {
+            border-color: var(--primary-color);
+            background: var(--primary-light);
+        }
+
+        .care-level.vip {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-color: #f59e0b;
+        }
+
+        .care-level.high {
+            background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            border-color: #3b82f6;
+        }
+
+        .care-level.normal {
+            background: var(--bg-light);
+            border-color: var(--border-color);
+        }
+
+        .care-level h4 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .care-level p {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        .reach-channels {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .reach-channel {
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .reach-channel:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-light);
+        }
+
+        .reach-channel .channel-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .reach-channel h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .reach-channel p {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* Talent Activation */
+        .activation-card {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid #f59e0b;
+        }
+
+        .activation-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #92400e;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .activation-card p {
+            font-size: 14px;
+            color: #92400e;
+            margin-bottom: 16px;
+        }
+
+        .activation-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .matching-methods {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 16px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .match-dimensions {
+                grid-template-columns: 1fr;
+            }
+
+            .matching-methods {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .reach-channels {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <div class="login-logo">
+                <!-- 智脉AI Logo -->
+                <img src="./智脉AI logo方 放大.png" alt="智脉AI Logo" style="width: 100px; height: 100px; object-fit: contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+                <div style="display:none;font-size:48px;margin-bottom:12px;">🔗</div>
+<h1>智脉AI</h1>
+                <div class="tagline">
+                    <span>AI智能人才匹配加速器</span>
+                    <span>智能人脉简历系统</span>
+                </div>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab active" data-tab="login">账号登录</button>
+                <button class="tab" data-tab="register">注册账号</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>手机号码</label>
+                    <input type="tel" placeholder="请输入手机号码" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>登录密码</label>
+                    <input type="password" placeholder="请输入6~13位密码（至少包含字母和数字）" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full">登录</button>
+            </form>
+            
+            <!-- Register Form (Hidden) -->
+            <form id="registerForm" style="display: none;">
+                <div class="form-group">
+                    <label>手机号码</label>
+                    <div class="input-group">
+                        <input type="tel" placeholder="请输入手机号码" required>
+                        <button type="button" class="verify-btn">获取验证码</button>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>验证码</label>
+                    <input type="text" placeholder="请输入6位验证码" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>设置密码</label>
+                    <input type="password" placeholder="请输入6~13位密码（至少包含字母和数字）" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>确认密码</label>
+                    <input type="password" placeholder="请再次确认输入密码" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-full">绑定并登录</button>
+            </form>
+            
+            <button class="btn btn-secondary btn-full" style="margin-top: 16px;" onclick="enterDemo()">👀 演示体验（无需登录）</button>
+            
+            <div class="login-footer">
+                <a href="#">忘记密码？</a> · 
+                <span>登录即表示同意</span>
+                <a href="#">《服务协议》</a>
+                <span>和</span>
+                <a href="#">《隐私政策》</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main App -->
+    <div class="app-container" id="appContainer">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="./智脉AI logo方 放大.png" alt="智脉AI" style="width: 48px; height: 48px; object-fit: contain; border-radius: 10px;" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+                <div style="display:none;font-size:32px;">🔗</div>
+                <h2>智脉AI</h2>
+                <span>智能人脉简历系统</span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a class="nav-link active" data-page="dashboard">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="9" rx="1"/>
+                            <rect x="14" y="3" width="7" height="5" rx="1"/>
+                            <rect x="14" y="12" width="7" height="9" rx="1"/>
+                            <rect x="3" y="16" width="7" height="5" rx="1"/>
+                        </svg>
+                        <span>工作台</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="upload">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                            <polyline points="17 8 12 3 7 8"/>
+                            <line x1="12" y1="3" x2="12" y2="15"/>
+                        </svg>
+                        <span>简历上传</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="resumes">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                        <span>人脉库</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="matching">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                        </svg>
+                        <span>智能匹配</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="jobs">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                        </svg>
+                        <span>职位管理</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="care">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                        </svg>
+                        <span>候选人关怀</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="analytics">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="20" x2="18" y2="10"/>
+                            <line x1="12" y1="20" x2="12" y2="4"/>
+                            <line x1="6" y1="20" x2="6" y2="14"/>
+                        </svg>
+                        <span>数据分析</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-page="settings">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="3"/>
+                            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                        </svg>
+                        <span>系统设置</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar">HR</div>
+                    <div class="user-details">
+                        <h4>企业管理员</h4>
+                        <p>HR部门</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard Page -->
+            <section class="page-section active" id="page-dashboard">
+                <div class="page-header">
+                    <h1>工作台</h1>
+                    <p>欢迎回来，智脉AI正在为您分析人才数据</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="icon blue">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                            </svg>
+                        </div>
+                        <h3>2,847</h3>
+                        <p>人脉库总量</p>
+                        <div class="trend up">↑ 12.5% 较上周</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                        </div>
+                        <h3>156</h3>
+                        <p>本月新增人脉</p>
+                        <div class="trend up">↑ 8.3% 较上月</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon orange">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                            </svg>
+                        </div>
+                        <h3>23</h3>
+                        <p>在招职位</p>
+                        <div class="trend up">↑ 4 较上月</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon purple">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                        </div>
+                        <h3>89%</h3>
+                        <p>匹配成功率</p>
+                        <div class="trend up">↑ 3.2% 提升</div>
+                    </div>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>最近上传人脉</h3>
+                            <a href="#" onclick="navigateTo('upload')">上传简历</a>
+                        </div>
+                        <div class="job-list">
+                            <div class="job-card">
+                                <div class="job-icon">📄</div>
+                                <div class="job-info">
+                                    <h4>张明 · 高级算法工程师</h4>
+                                    <p>毕业于清华大学 · 5年经验</p>
+                                </div>
+                                <div class="job-stats">
+                                    <div class="count">98%</div>
+                                    <div class="label">匹配度</div>
+                                </div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-icon">📄</div>
+                                <div class="job-info">
+                                    <h4>李华 · 产品经理</h4>
+                                    <p>毕业于复旦大学 · 7年经验</p>
+                                </div>
+                                <div class="job-stats">
+                                    <div class="count">95%</div>
+                                    <div class="label">匹配度</div>
+                                </div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-icon">📄</div>
+                                <div class="job-info">
+                                    <h4>王芳 · 数据分析师</h4>
+                                    <p>毕业于浙江大学 · 3年经验</p>
+                                </div>
+                                <div class="job-stats">
+                                    <div class="count">92%</div>
+                                    <div class="label">匹配度</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>智能推荐候选人</h3>
+                            <a href="#" onclick="navigateTo('matching')">查看更多</a>
+                        </div>
+                        <div class="job-list">
+                            <div class="job-card">
+                                <div class="job-icon" style="background: #e6fcf5; color: #00d4aa;">🎯</div>
+                                <div class="job-info">
+                                    <h4>陈思 · 前端开发工程师</h4>
+                                    <p>阿里系背景 · 985学历</p>
+                                </div>
+                                <div class="job-stats">
+                                    <div class="count">96%</div>
+                                    <div class="label">推荐</div>
+                                </div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-icon" style="background: #fff7ed; color: #f97316;">🎯</div>
+                                <div class="job-info">
+                                    <h4>刘洋 · 架构师</h4>
+                                    <p>腾讯系背景 · 硕士学历</p>
+                                </div>
+                                <div class="job-stats">
+                                    <div class="count">94%</div>
+                                    <div class="label">推荐</div>
+                                </div>
+                            </div>
+                            <div class="job-card">
+                                <div class="job-icon" style="background: #f3e8ff; color: #9333ea;">🎯</div>
+                                <div class="job-info">
+                                    <h4>赵敏 · UI设计师</h4>
+                                    <p>字节跳动背景 · 本科学历</p>
+                                </div>
+                                <div class="job-stats">
+                                    <div class="count">91%</div>
+                                    <div class="label">推荐</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 人才激活提醒 -->
+                <div class="activation-card">
+                    <h3>🎉 人才资源待激活</h3>
+                    <p>您有 <strong>23</strong> 位历史候选人近期可能考虑跳槽，一键触达激活人脉资源</p>
+                    <div class="activation-actions">
+                        <button class="btn btn-primary" onclick="navigateTo('care')">查看待激活人才</button>
+                        <button class="btn btn-orange" onclick="openBatchReach()">批量触达</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Upload Page -->
+            <section class="page-section" id="page-upload">
+                <div class="page-header">
+                    <h1>简历上传</h1>
+                    <p>支持多种格式批量上传，AI自动解析结构化</p>
+                </div>
+                
+                <div class="card">
+                    <div class="upload-area" onclick="triggerFileUpload()">
+                        <div class="icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="17 8 12 3 7 8"/>
+                                <line x1="12" y1="3" x2="12" y2="15"/>
+                            </svg>
+                        </div>
+                        <h3>拖拽文件到此处上传</h3>
+                        <p>或点击选择文件上传</p>
+                    </div>
+                    
+                    <div class="upload-options">
+                        <div class="upload-option" onclick="triggerFileUpload()">
+                            <h4>📁 本地上传</h4>
+                            <p>支持PDF/Word/图片等格式</p>
+                        </div>
+                        <div class="upload-option" onclick="openEmailModal()">
+                            <h4>📧 邮箱收取</h4>
+                            <p>自动同步邮箱简历</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 24px; padding: 16px; background: var(--bg-light); border-radius: var(--radius-md);">
+                        <p style="font-size: 14px; color: var(--text-gray);">
+                            <strong style="color: var(--text-dark);">温馨提示：</strong>
+                            请上传pdf、doc、docx、jpg、jpeg、png、html格式的简历，支持wps、txt、doc、docx、pdf格式附件，文本大小不超过10M。
+                            您上传的简历，只有您和您授权过的同事（职位共享者）可以查看，其它任何人都无法查看，请放心上传。
+                        </p>
+                    </div>
+                </div>
+                
+                <input type="file" id="fileInput" style="display: none;" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.html,.txt,.wps">
+            </section>
+
+            <!-- Resumes Page -->
+            <section class="page-section" id="page-resumes">
+                <div class="page-header">
+                    <h1>人脉库</h1>
+                    <p>管理所有候选人简历，支持多维度筛选</p>
+                </div>
+                
+                <div class="filter-bar">
+                    <input type="text" placeholder="搜索姓名、电话、公司..." id="searchInput">
+                    <select>
+                        <option>全部学历</option>
+                        <option>博士</option>
+                        <option>硕士</option>
+                        <option>本科</option>
+                        <option>大专</option>
+                    </select>
+                    <select>
+                        <option>全部经验</option>
+                        <option>1-3年</option>
+                        <option>3-5年</option>
+                        <option>5-10年</option>
+                        <option>10年以上</option>
+                    </select>
+                    <select>
+                        <option>院校类别</option>
+                        <option>985</option>
+                        <option>211</option>
+                        <option>其他</option>
+                    </select>
+                    <button class="btn btn-primary btn-small">筛选</button>
+                </div>
+                
+                <div class="resume-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>姓名</th>
+                                <th>应聘职位</th>
+                                <th>工作经验</th>
+                                <th>学历</th>
+                                <th>院校</th>
+                                <th>城市</th>
+                                <th>匹配度</th>
+                                <th>标签</th>
+                                <th>更新时间</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="resume-name">张明</td>
+                                <td>高级算法工程师</td>
+                                <td>5年</td>
+                                <td>硕士</td>
+                                <td>清华大学</td>
+                                <td>北京</td>
+                                <td><span class="match-badge high">98%</span></td>
+                                <td class="tags"><span class="tag">AI</span><span class="tag">大厂</span></td>
+                                <td>2026-03-13</td>
+                                <td><button class="btn btn-secondary btn-small">查看</button></td>
+                            </tr>
+                            <tr>
+                                <td class="resume-name">李华</td>
+                                <td>产品经理</td>
+                                <td>7年</td>
+                                <td>本科</td>
+                                <td>复旦大学</td>
+                                <td>上海</td>
+                                <td><span class="match-badge high">95%</span></td>
+                                <td class="tags"><span class="tag">互联网</span></td>
+                                <td>2026-03-12</td>
+                                <td><button class="btn btn-secondary btn-small">查看</button></td>
+                            </tr>
+                            <tr>
+                                <td class="resume-name">王芳</td>
+                                <td>数据分析师</td>
+                                <td>3年</td>
+                                <td>硕士</td>
+                                <td>浙江大学</td>
+                                <td>杭州</td>
+                                <td><span class="match-badge high">92%</span></td>
+                                <td class="tags"><span class="tag">数据分析</span></td>
+                                <td>2026-03-11</td>
+                                <td><button class="btn btn-secondary btn-small">查看</button></td>
+                            </tr>
+                            <tr>
+                                <td class="resume-name">陈思</td>
+                                <td>前端开发工程师</td>
+                                <td>4年</td>
+                                <td>本科</td>
+                                <td>南京大学</td>
+                                <td>深圳</td>
+                                <td><span class="match-badge medium">87%</span></td>
+                                <td class="tags"><span class="tag">前端</span><span class="tag">阿里</span></td>
+                                <td>2026-03-10</td>
+                                <td><button class="btn btn-secondary btn-small">查看</button></td>
+                            </tr>
+                            <tr>
+                                <td class="resume-name">刘洋</td>
+                                <td>技术架构师</td>
+                                <td>10年</td>
+                                <td>博士</td>
+                                <td>北京大学</td>
+                                <td>北京</td>
+                                <td><span class="match-badge high">94%</span></td>
+                                <td class="tags"><span class="tag">架构</span><span class="tag">腾讯</span></td>
+                                <td>2026-03-09</td>
+                                <td><button class="btn btn-secondary btn-small">查看</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Matching Page -->
+            <section class="page-section" id="page-matching">
+                <div class="page-header">
+                    <h1>智能匹配</h1>
+                    <p>基于AI算法，精准匹配候选人与职位</p>
+                </div>
+
+                <!-- 智能匹配方式选择 -->
+                <div class="matching-methods">
+                    <div class="method-card active" data-method="jd">
+                        <div class="method-icon">📋</div>
+                        <h4>JD智能匹配</h4>
+                        <p>输入职位描述AI自动匹配</p>
+                    </div>
+                    <div class="method-card" data-method="skill">
+                        <div class="method-icon">🎯</div>
+                        <h4>技能标签匹配</h4>
+                        <p>关键词精准筛选</p>
+                    </div>
+                    <div class="method-card" data-method="semantic">
+                        <div class="method-icon">🧠</div>
+                        <h4>语义理解匹配</h4>
+                        <p>NLP深度语义分析</p>
+                    </div>
+                    <div class="method-card" data-method="vector">
+                        <div class="method-icon">🔢</div>
+                        <h4>向量相似度</h4>
+                        <p>高维向量精确计算</p>
+                    </div>
+                    <div class="method-card" data-method="multi">
+                        <div class="method-icon">⚖️</div>
+                        <h4>多维加权匹配</h4>
+                        <p>自定义权重智能排序</p>
+                    </div>
+                </div>
+                
+                <div class="card" style="margin-bottom: 24px;">
+                    <div class="upload-area" style="padding: 32px;">
+                        <div style="display: flex; gap: 16px; align-items: center;">
+                            <input type="text" placeholder="输入职位名称或粘贴JD描述..." style="flex: 1; padding: 14px 20px; font-size: 15px;">
+                            <button class="btn btn-primary" style="padding: 14px 32px;">AI智能匹配</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 匹配模型说明 -->
+                <div class="card" style="margin-bottom: 24px;">
+                    <div class="card-header">
+                        <h3>人岗匹配模型</h3>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+                        <div>
+                            <h4 style="font-size: 14px; color: var(--primary-color); margin-bottom: 12px;">候选人画像</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <span class="tag">基本信息</span>
+                                <span class="tag">求职意向</span>
+                                <span class="tag">教育经历</span>
+                                <span class="tag">工作经历</span>
+                                <span class="tag">项目经历</span>
+                                <span class="tag">技能专长</span>
+                                <span class="tag">薪资期望</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 style="font-size: 14px; color: var(--secondary-color); margin-bottom: 12px;">职位画像</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <span class="tag">基本信息</span>
+                                <span class="tag">任职资格</span>
+                                <span class="tag">薪酬范围</span>
+                                <span class="tag">定位匹配</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border-color);">
+                        <h4 style="font-size: 14px; color: var(--text-dark); margin-bottom: 12px;">匹配维度</h4>
+                        <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                            <span class="tag" style="background: #e6fcf5; color: #00d4aa;">硬性条件 ✓</span>
+                            <span class="tag" style="background: #e6fcf5; color: #00d4aa;">软性条件 ✓</span>
+                            <span class="tag" style="background: #e6fcf5; color: #00d4aa;">薪酬匹配 ✓</span>
+                            <span class="tag" style="background: #e6fcf5; color: #00d4aa;">定位匹配 ✓</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="match-result">
+                    <div class="match-result-header">
+                        <div class="match-score excellent">
+                            <span>95</span><small>%</small>
+                        </div>
+                        <div>
+                            <h3>张明 · 高级算法工程师</h3>
+                            <p>匹配职位：AI算法工程师 | 匹配维度：12/15</p>
+                        </div>
+                    </div>
+                    
+                    <div class="match-dimensions">
+                        <div class="dimension-item">
+                            <h4>学历匹配</h4>
+                            <div class="value">硕士</div>
+                            <span class="status match">✓ 匹配</span>
+                        </div>
+                        <div class="dimension-item">
+                            <h4>专业匹配</h4>
+                            <div class="value">计算机科学</div>
+                            <span class="status match">✓ 匹配</span>
+                        </div>
+                        <div class="dimension-item">
+                            <h4>经验匹配</h4>
+                            <div class="value">5年</div>
+                            <span class="status match">✓ 匹配</span>
+                        </div>
+                        <div class="dimension-item">
+                            <h4>行业匹配</h4>
+                            <div class="value">互联网/AI</div>
+                            <span class="status match">✓ 匹配</span>
+                        </div>
+                        <div class="dimension-item">
+                            <h4>技能匹配</h4>
+                            <div class="value">Python/TensorFlow</div>
+                            <span class="status match">✓ 匹配</span>
+                        </div>
+                        <div class="dimension-item">
+                            <h4>院校背景</h4>
+                            <div class="value">清华大学</div>
+                            <span class="status match">✓ 985/211</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="match-result">
+                    <div class="match-result-header">
+                        <div class="match-score good">
+                            <span>87</span><small>%</small>
+                        </div>
+                        <div>
+                            <h3>李华 · 产品经理</h3>
+                            <p>匹配职位：AI算法工程师 | 匹配维度：10/15</p>
+                        </div>
+                    </div>
+                    
+                    <div class="match-dimensions">
+                        <div class="dimension-item">
+                            <h4>学历匹配</h4>
+                            <div class="value">本科</div>
+                            <span class="status match">✓ 匹配</span>
+                        </div>
+                        <div class="dimension-item">
+                            <h4>专业匹配</h4>
+                            <div class="value">工商管理</div>
+                            <span class="status mismatch">✗ 不匹配</span>
+                        </div>
+                        <div class="dimension-item">
+                            <h4>经验匹配</h4>
+                            <div class="value">7年</div>
+                            <span class="status match">✓ 匹配</span>
+                        </div>
+                        <div class="dimension-item">
+                            <h4>行业匹配</h4>
+                            <div class="value">互联网</div>
+                            <span class="status match">✓ 匹配</span>
+                        </div>
+                        <div class="dimension-item">
+                            <h4>技能匹配</h4>
+                            <div class="value">产品设计/数据分析</div>
+                            <span class="status mismatch">✗ 不匹配</span>
+</div>
+                        <div class="dimension-item">
+                            <h4>院校背景</h4>
+                            <div class="value">复旦大学</div>
+                            <span class="status match">✓ 985/211</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Jobs Page -->
+            <section class="page-section" id="page-jobs">
+                <div class="page-header">
+                    <h1>职位管理</h1>
+                    <p>发布和管理企业招聘职位</p>
+                </div>
+                
+                <div class="card" style="margin-bottom: 24px;">
+                    <button class="btn btn-primary" onclick="openJobModal()">+ 发布新职位</button>
+                </div>
+                
+                <div class="job-list">
+                    <div class="job-card">
+                        <div class="job-icon">💼</div>
+                        <div class="job-info">
+                            <h4>高级算法工程师</h4>
+                            <p>北京 · 30K-50K · 紧急</p>
+                        </div>
+                        <div class="job-stats">
+                            <div class="count">156</div>
+                            <div class="label">简历</div>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <div class="job-icon">💼</div>
+                        <div class="job-info">
+                            <h4>产品经理</h4>
+                            <p>上海 · 25K-40K · 正常</p>
+                        </div>
+                        <div class="job-stats">
+                            <div class="count">89</div>
+                            <div class="label">简历</div>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <div class="job-icon">💼</div>
+<div class="job-info">
+                            <h4>前端开发工程师</h4>
+                            <p>深圳 · 20K-35K · 正常</p>
+                        </div>
+                        <div class="job-stats">
+                            <div class="count">124</div>
+                            <div class="label">简历</div>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <div class="job-icon">💼</div>
+                        <div class="job-info">
+                            <h4>数据分析师</h4>
+                            <p>杭州 · 18K-30K · 正常</p>
+                        </div>
+                        <div class="job-stats">
+                            <div class="count">67</div>
+                            <div class="label">简历</div>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <div class="job-icon">💼</div>
+                        <div class="job-info">
+                            <h4>技术架构师</h4>
+                            <p>北京 · 50K-80K · 紧急</p>
+                        </div>
+                        <div class="job-stats">
+                            <div class="count">45</div>
+                            <div class="label">简历</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Candidate Care Page -->
+            <section class="page-section" id="page-care">
+                <div class="page-header">
+                    <h1>候选人关怀</h1>
+                    <p>人脉激活与候选人关怀系统，提升人才粘性</p>
+                </div>
+
+                <!-- 人才激活提醒 -->
+                <div class="activation-card">
+                    <h3>🎯 待激活人才提醒</h3>
+                    <p>AI预测以下候选人近期可能有求职意向，一键触达把握先机</p>
+                    <div class="activation-actions">
+                        <button class="btn btn-primary" onclick="showTalentActivation()">查看待激活名单</button>
+                        <button class="btn btn-orange" onclick="openBatchReach()">批量触达</button>
+                    </div>
+                </div>
+
+                <!-- 关怀等级设置 -->
+                <div class="care-section">
+                    <div class="care-header">
+                        <h3>关怀等级设置</h3>
+                        <button class="btn btn-secondary btn-small">自定义配置</button>
+                    </div>
+                    
+                    <div class="care-levels">
+                        <div class="care-level vip active">
+                            <h4>⭐ VIP候选人</h4>
+                            <p>高管/核心技术人才</p>
+                            <div style="margin-top: 12px; font-size: 12px; color: #92400e;">
+                                专属HR跟进 · 每周关怀 · 优先面试
+                            </div>
+                        </div>
+                        <div class="care-level high">
+                            <h4>🔥 高意向候选人</h4>
+                            <p>近期有求职意向</p>
+                            <div style="margin-top: 12px; font-size: 12px; color: #1e40af;">
+                                定期关怀 · 职位推送 · 快速响应
+                            </div>
+                        </div>
+                        <div class="care-level normal">
+                            <h4>📋 储备人才</h4>
+                            <p>长期关注</p>
+                            <div style="margin-top: 12px; font-size: 12px; color: #6b7280;">
+                                节日问候 · 定向推送 · 适时激活
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 触达渠道 -->
+                <div class="care-section">
+                    <div class="care-header">
+                        <h3>触达渠道</h3>
+                    </div>
+                    
+                    <div class="reach-channels">
+                        <div class="reach-channel" onclick="openReachModal('wechat')">
+                            <div class="channel-icon">💬</div>
+                            <h4>微信触达</h4>
+                            <p>一键发送微信消息</p>
+                        </div>
+                        <div class="reach-channel" onclick="openReachModal('sms')">
+                            <div class="channel-icon">📱</div>
+                            <h4>短信关怀</h4>
+                            <p>批量发送短信</p>
+                        </div>
+                        <div class="reach-channel" onclick="openReachModal('email')">
+                            <div class="channel-icon">📧</div>
+                            <h4>邮件推送</h4>
+                            <p>精美邮件模板</p>
+                        </div>
+                        <div class="reach-channel" onclick="openReachModal('schedule')">
+                            <div class="channel-icon">📅</div>
+                            <h4>定时提醒</h4>
+                            <p>自动发送关怀</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 关怀记录 -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>最近关怀记录</h3>
+                        <a href="#">查看全部</a>
+                    </div>
+                    <div class="job-list">
+                        <div class="job-card">
+                            <div class="job-icon" style="background: #dbeafe; color: #3b82f6;">💬</div>
+                            <div class="job-info">
+                                <h4>张明 · 高级算法工程师</h4>
+                                <p>发送微信关怀 - 2026-03-13 14:30</p>
+                            </div>
+                            <div class="job-stats">
+                                <div class="count">已送达</div>
+                            </div>
+                        </div>
+                        <div class="job-card">
+                            <div class="job-icon" style="background: #d1fae5; color: #10b981;">📱</div>
+                            <div class="job-info">
+                                <h4>李华 · 产品经理</h4>
+                                <p>发送节日祝福短信 - 2026-03-12 09:00</p>
+                            </div>
+                            <div class="job-stats">
+                                <div class="count">已送达</div>
+                            </div>
+                        </div>
+                        <div class="job-card">
+                            <div class="job-icon" style="background: #fef3c7; color: #f59e0b;">📧</div>
+                            <div class="job-info">
+                                <h4>王芳 · 数据分析师</h4>
+                                <p>发送职位推荐邮件 - 2026-03-11 16:20</p>
+                            </div>
+                            <div class="job-stats">
+                                <div class="count">已读</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics Page -->
+            <section class="page-section" id="page-analytics">
+                <div class="page-header">
+                    <h1>数据分析</h1>
+                    <p>招聘数据统计与分析报告</p>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="icon blue">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                            </svg>
+                        </div>
+                        <h3>1,247</h3>
+                        <p>简历投递量</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon green">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="9" cy="7" r="4"/>
+                            </svg>
+                        </div>
+                        <h3>89%</h3>
+                        <p>初筛通过率</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon orange">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                                <circle cx="8.5" cy="7" r="4"/>
+                                <line x1="20" y1="8" x2="20" y2="14"/>
+                                <line x1="23" y1="11" x2="17" y2="11"/>
+                            </svg>
+                        </div>
+                        <h3>23</h3>
+                        <p>本月入职</p>
+                    </div>
+                    <div class="stat-card">
+                        <div class="icon purple">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <h3>7天</h3>
+                        <p>平均招聘周期</p>
+                    </div>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>简历投递趋势</h3>
+                        </div>
+                        <div class="chart-placeholder">
+                            [图表展示区 - 近30天简历投递趋势]
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>职位投递分布</h3>
+                        </div>
+                        <div class="chart-placeholder">
+                            [图表展示区 - 各职位投递量分布]
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Page -->
+            <section class="page-section" id="page-settings">
+                <div class="page-header">
+                    <h1>系统设置</h1>
+                    <p>配置企业招聘系统</p>
+                </div>
+                
+                <div class="cards-grid">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>企业信息</h3>
+                        </div>
+                        <div class="form-group">
+                            <label>企业名称</label>
+                            <input type="text" value="某某科技有限公司">
+                        </div>
+                        <div class="form-group">
+                            <label>联系人</label>
+                            <input type="text" value="HR部门">
+                        </div>
+                        <div class="form-group">
+                            <label>联系电话</label>
+                            <input type="tel" value="400-888-8888">
+                        </div>
+                        <button class="btn btn-primary">保存</button>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>账号安全</h3>
+                        </div>
+                        <div class="form-group">
+                            <label>当前密码</label>
+                            <input type="password" placeholder="请输入当前密码">
+                        </div>
+                        <div class="form-group">
+                            <label>新密码</label>
+                            <input type="password" placeholder="请输入新密码">
+                        </div>
+                        <div class="form-group">
+                            <label>确认新密码</label>
+                            <input type="password" placeholder="请再次输入新密码">
+                        </div>
+                        <button class="btn btn-primary">修改密码</button>
+                    </div>
+                </div>
+                
+                <div class="card" style="margin-top: 24px;">
+                    <div class="card-header">
+                        <h3>数据安全设置</h3>
+                    </div>
+                    <p style="font-size: 14px; color: var(--text-gray); margin-bottom: 16px;">
+                        您的数据采用HTTPS传输协议 + MD5加密技术，分布式加密存储，关键信息脱敏处理
+                    </p>
+                    <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+                        <span style="padding: 8px 16px; background: #e6fcf5; color: #00d4aa; border-radius: var(--radius-md); font-size: 13px;">✓ HTTPS加密传输</span>
+                        <span style="padding: 8px 16px; background: #e6fcf5; color: #00d4aa; border-radius: var(--radius-md); font-size: 13px;">✓ MD5加密存储</span>
+                        <span style="padding: 8px 16px; background: #e6fcf5; color: #00d4aa; border-radius: var(--radius-md); font-size: 13px;">✓ 权限控制</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Email Modal -->
+    <div class="modal-overlay" id="emailModal">
+        <div class="modal">
+            <h2>邮箱收取简历</h2>
+            <p style="font-size: 14px; color: var(--text-gray); margin-bottom: 24px;">
+                填写接收各渠道简历的邮箱，新简历会自动同步到系统中
+            </p>
+            <div class="form-group">
+                <label>邮箱地址</label>
+                <input type="email" placeholder="请输入邮箱地址">
+            </div>
+            <div class="form-group">
+                <label>邮箱密码</label>
+                <input type="password" placeholder="请输入邮箱密码或授权码">
+            </div>
+            <div style="display: flex; gap: 12px; margin-top: 24px;">
+                <button class="btn btn-primary" style="flex: 1;" onclick="closeEmailModal()">绑定</button>
+                <button class="btn btn-secondary" style="flex: 1;" onclick="closeEmailModal()">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Job Modal -->
+    <div class="modal-overlay" id="jobModal">
+        <div class="modal">
+            <h2>发布新职位</h2>
+            <div class="form-group">
+                <label>职位名称</label>
+                <input type="text" placeholder="请输入职位名称">
+            </div>
+            <div class="form-group">
+                <label>职位描述</label>
+                <textarea style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 15px; min-height: 100px; resize: vertical;" placeholder="请输入职位描述或JD"></textarea>
+            </div>
+            <div class="form-group">
+                <label>薪资范围</label>
+                <input type="text" placeholder="如：15K-30K">
+            </div>
+            <div class="form-group">
+                <label>工作地点</label>
+                <input type="text" placeholder="请输入工作地点">
+            </div>
+            <div style="display: flex; gap: 12px; margin-top: 24px;">
+                <button class="btn btn-primary" style="flex: 1;" onclick="closeJobModal()">发布</button>
+                <button class="btn btn-secondary" style="flex: 1;" onclick="closeJobModal()">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reach Modal -->
+    <div class="modal-overlay" id="reachModal">
+        <div class="modal">
+            <h2 id="reachModalTitle">触达候选人</h2>
+            <div class="form-group">
+                <label>选择候选人</label>
+                <select id="reachTarget">
+                    <option>张明 - 高级算法工程师</option>
+                    <option>李华 - 产品经理</option>
+                    <option>王芳 - 数据分析师</option>
+                    <option>批量选择</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>触达方式</label>
+                <select id="reachMethod">
+                    <option>微信消息</option>
+                    <option>短信</option>
+                    <option>邮件</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>消息内容</label>
+                <textarea style="width: 100%; padding: 12px 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); font-size: 15px; min-height: 120px; resize: vertical;" placeholder="请输入消息内容..."></textarea>
+            </div>
+            <div style="display: flex; gap: 12px; margin-top: 24px;">
+                <button class="btn btn-primary" style="flex: 1;" onclick="sendReach()">发送</button>
+                <button class="btn btn-secondary" style="flex: 1;" onclick="closeReachModal()">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Demo login function
+        function enterDemo() {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('appContainer').classList.add('active');
+        }
+
+        // Tab switching for login/register
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabName = this.dataset.tab;
+                
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                if (tabName === 'login') {
+                    document.getElementById('loginForm').style.display = 'block';
+                    document.getElementById('registerForm').style.display = 'none';
+                } else {
+                    document.getElementById('loginForm').style.display = 'none';
+                    document.getElementById('registerForm').style.display = 'block';
+                }
+            });
+        });
+
+        // Login form submission - 直接登录进入系统
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            enterDemo();
+        });
+
+        // Register form submission - 直接登录进入系统
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            enterDemo();
+        });
+
+        // Navigation
+        function navigateTo(pageName) {
+            // Update nav links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageName) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Update page sections
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById('page-' + pageName).classList.add('active');
+        }
+
+        // Nav link clicks
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                const pageName = this.dataset.page;
+                navigateTo(pageName);
+            });
+        });
+
+        // File upload
+        function triggerFileUpload() {
+            document.getElementById('fileInput').click();
+        }
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (files.length > 0) {
+                alert('已选择 ' + files.length + ' 个文件，正在上传并解析...');
+                setTimeout(() => {
+                    alert('简历上传成功！AI正在解析中...');
+                }, 1000);
+            }
+        });
+
+        // Email modal
+        function openEmailModal() {
+            document.getElementById('emailModal').classList.add('active');
+        }
+
+        function closeEmailModal() {
+            document.getElementById('emailModal').classList.remove('active');
+        }
+
+        // Job modal
+        function openJobModal() {
+            document.getElementById('jobModal').classList.add('active');
+        }
+
+        function closeJobModal() {
+            document.getElementById('jobModal').classList.remove('active');
+        }
+
+        // Reach modal
+        function openReachModal(channel) {
+            const modal = document.getElementById('reachModal');
+            const title = document.getElementById('reachModalTitle');
+            const method = document.getElementById('reachMethod');
+            
+            const channelNames = {
+                'wechat': '微信触达',
+                'sms': '短信关怀',
+                'email': '邮件推送',
+                'schedule': '定时提醒'
+            };
+            
+            title.textContent = channelNames[channel] || '触达候选人';
+            method.value = channel === 'wechat' ? '微信消息' : 
+                          channel === 'sms' ? '短信' : 
+                          channel === 'email' ? '邮件' : '自动提醒';
+            
+            modal.classList.add('active');
+        }
+
+        function closeReachModal() {
+            document.getElementById('reachModal').classList.remove('active');
+        }
+
+        function sendReach() {
+            alert('发送成功！候选人将收到您的关怀消息');
+            closeReachModal();
+        }
+
+        // Batch reach
+        function openBatchReach() {
+            alert('批量触达功能：选择多个候选人，一键发送关怀消息');
+        }
+
+        // Talent activation
+        function showTalentActivation() {
+            alert('待激活人才名单：\n\n1. 张明 - 算法工程师 - 清华大学 - 匹配度98%\n2. 李华 - 产品经理 - 复旦大学 - 匹配度95%\n3. 王芳 - 数据分析师 - 浙江大学 - 匹配度92%');
+        }
+
+        // Matching method selection
+        document.querySelectorAll('.method-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.method-card').forEach(c => c.classList.remove('active'));
+                this.classList.add('active');
+                
+                const method = this.dataset.method;
+                const methodNames = {
+                    'jd': 'JD智能匹配',
+                    'skill': '技能标签匹配',
+                    'semantic': '语义理解匹配',
+                    'vector': '向量相似度',
+                    'multi': '多维加权匹配'
+                };
+                console.log('已选择匹配方式：' + methodNames[method]);
+            });
+        });
+
+        // Care level selection
+        document.querySelectorAll('.care-level').forEach(level => {
+            level.addEventListener('click', function() {
+                document.querySelectorAll('.care-level').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Close modals on overlay click
+        document.querySelectorAll('.modal-overlay').forEach(overlay => {
+            overlay.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+        });
+
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const rows = document.querySelectorAll('.resume-table tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
