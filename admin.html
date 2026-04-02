@@ -5,224 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>智脉AI - 注册信息管理后台</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        :root {
-            --primary: #00D4AA;
-            --primary-dark: #00B894;
-            --secondary: #6C5CE7;
-            --accent: #FF6B6B;
-            --dark: #0a0a0f;
-            --darker: #050508;
-            --gray: #8B8B9A;
-            --light: #F8F9FA;
-            --white: #ffffff;
-        }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: var(--darker);
-            color: var(--white);
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            color: var(--gray);
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-        
-        .back-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-            color: var(--white);
-        }
-        
-        .header h1 {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        
-        .refresh-btn {
-            padding: 0.75rem 1.5rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            border: none;
-            border-radius: 50px;
-            color: var(--dark);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .refresh-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3);
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-        
-        .stat-card {
-            padding: 1.5rem;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .stat-label {
-            color: var(--gray);
-            font-size: 0.95rem;
-            margin-top: 0.5rem;
-        }
-        
-        .table-container {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 16px;
-            overflow: hidden;
-        }
-        
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        
-        th, td {
-            padding: 1rem 1.5rem;
-            text-align: left;
-        }
-        
-        th {
-            background: rgba(255, 255, 255, 0.03);
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        td {
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            font-size: 0.95rem;
-        }
-        
-        tr:hover td {
-            background: rgba(255, 255, 255, 0.02);
-        }
-        
-        .type-badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: rgba(0, 212, 170, 0.1);
-            border-radius: 50px;
-            font-size: 0.8rem;
-            color: var(--primary);
-            font-weight: 600;
-        }
-        
-        .type-badge.hunter {
-            background: rgba(108, 92, 231, 0.1);
-            color: var(--secondary);
-        }
-        
-        .empty-state {
-            text-align: center;
-            padding: 4rem 2rem;
-            color: var(--gray);
-        }
-        
-        .empty-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-        
-        .empty-text {
-            font-size: 1.1rem;
-        }
-        
-        .delete-btn {
-            padding: 0.4rem 0.8rem;
-            background: rgba(255, 107, 107, 0.1);
-            border: 1px solid var(--accent);
-            border-radius: 6px;
-            color: var(--accent);
-            cursor: pointer;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-        
-        .delete-btn:hover {
-            background: var(--accent);
-            color: var(--white);
-        }
-        
-        @media (max-width: 992px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .table-container {
-                overflow-x: auto;
-            }
-            
-            table {
-                min-width: 800px;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root { --primary: #00D4AA; --primary-dark: #00B894; --secondary: #6C5CE7; --accent: #FF6B6B; --dark: #0a0a0f; --darker: #050508; --gray: #8B8B9A; --light: #F8F9FA; --white: #ffffff; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--darker); color: var(--white); line-height: 1.6; min-height: 100vh; }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .header-left { display: flex; align-items: center; gap: 1.5rem; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; color: var(--gray); font-size: 0.9rem; transition: all 0.3s ease; }
+        .back-link:hover { background: rgba(255, 255, 255, 0.1); color: var(--white); }
+        .header h1 { font-size: 1.5rem; font-weight: 700; }
+        .refresh-btn { padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 50px; color: var(--dark); font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem; }
+        .refresh-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3); }
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+        .stat-card { padding: 1.5rem; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; text-align: center; }
+        .stat-number { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-label { color: var(--gray); font-size: 0.95rem; margin-top: 0.5rem; }
+        .table-container { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 1rem 1.5rem; text-align: left; }
+        th { background: rgba(255, 255, 255, 0.03); font-weight: 600; font-size: 0.9rem; color: var(--gray); text-transform: uppercase; }
+        td { border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.95rem; }
+        tr:hover td { background: rgba(255, 255, 255, 0.02); }
+        .type-badge { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(0, 212, 170, 0.1); border-radius: 50px; font-size: 0.8rem; color: var(--primary); font-weight: 600; }
+        .empty-state { text-align: center; padding: 4rem 2rem; color: var(--gray); }
+        .empty-icon { font-size: 4rem; margin-bottom: 1rem; opacity: 0.5; }
+        .delete-btn { padding: 0.4rem 0.8rem; background: rgba(255, 107, 107, 0.1); border: 1px solid var(--accent); border-radius: 6px; color: var(--accent); cursor: pointer; font-size: 0.8rem; transition: all 0.3s ease; }
+        .delete-btn:hover { background: var(--accent); color: var(--white); }
+        .loading { text-align: center; padding: 2rem; color: var(--gray); }
+        @media (max-width: 992px) { .stats-grid { grid-template-columns: 1fr; } .table-container { overflow-x: auto; } table { min-width: 800px; } }
     </style>
 </head>
 <body>
@@ -232,108 +43,59 @@
                 <a href="index.html" class="back-link">← 返回官网</a>
                 <h1>智脉AI - 注册管理后台</h1>
             </div>
-            <button class="refresh-btn" onclick="loadData()">
-                🔄 刷新数据
-            </button>
+            <button class="refresh-btn" onclick="loadData()">🔄 刷新数据</button>
         </div>
-        
         <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-number" id="totalCount">0</div>
-                <div class="stat-label">总注册人数</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="hrCount">0</div>
-                <div class="stat-label">企业HR</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number" id="hunterCount">0</div>
-                <div class="stat-label">猎头顾问</div>
-            </div>
+            <div class="stat-card"><div class="stat-number" id="totalCount">0</div><div class="stat-label">总注册人数</div></div>
+            <div class="stat-card"><div class="stat-number" id="hrCount">0</div><div class="stat-label">企业HR</div></div>
+            <div class="stat-card"><div class="stat-number" id="hunterCount">0</div><div class="stat-label">猎头顾问</div></div>
         </div>
-        
         <div class="table-container">
             <table id="dataTable">
-                <thead>
-                    <tr>
-                        <th>序号</th>
-                        <th>用户类型</th>
-                        <th>身份类型</th>
-                        <th>姓名</th>
-                        <th>微信号</th>
-                        <th>电话号码</th>
-                        <th>提交时间</th>
-                        <th>操作</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                </tbody>
+                <thead><tr><th>序号</th><th>企业类型</th><th>公司名称</th><th>姓名</th><th>微信号</th><th>电话号码</th><th>提交时间</th><th>操作</th></tr></thead>
+                <tbody id="tableBody"></tbody>
             </table>
-            <div class="empty-state" id="emptyState">
-                <div class="empty-icon">📭</div>
-                <div class="empty-text">暂无注册信息</div>
-            </div>
+            <div class="empty-state" id="emptyState"><div class="empty-icon">📭</div><div class="empty-text">暂无注册信息</div></div>
         </div>
     </div>
-
     <script>
-        // Load data from API
+        const API_URL = 'api.php';
         async function loadData() {
             try {
-                const response = await fetch('/api/register');
+                const response = await fetch(API_URL);
                 const data = await response.json();
-                renderTable(data);
+                renderTable(data, true);
             } catch (error) {
-                console.log('API not available, using local storage');
+                console.log('获取服务器数据失败，使用本地数据');
                 const localData = JSON.parse(localStorage.getItem('zhimai_registrations') || '[]');
-                renderTable(localData);
+                renderTable(localData, false);
             }
         }
-        
-        function renderTable(data) {
+        function renderTable(data, isFromServer) {
             const tbody = document.getElementById('tableBody');
             const emptyState = document.getElementById('emptyState');
-            const totalCount = document.getElementById('totalCount');
-            const hrCount = document.getElementById('hrCount');
-            const hunterCount = document.getElementById('hunterCount');
-            
-            // Update stats
-            totalCount.textContent = data.length;
-            hrCount.textContent = data.filter(d => d.userType === 'hr').length;
-            hunterCount.textContent = data.filter(d => d.userType === 'headhunter').length;
-            
-            if (data.length === 0) {
-                tbody.innerHTML = '';
-                emptyState.style.display = 'block';
-                return;
-            }
-            
+            document.getElementById('totalCount').textContent = data.length;
+            document.getElementById('hrCount').textContent = data.filter(d => d.userType && d.userType !== 'headhunter').length;
+            document.getElementById('hunterCount').textContent = 0;
+            if (data.length === 0) { tbody.innerHTML = ''; emptyState.style.display = 'block'; return; }
             emptyState.style.display = 'none';
-            
-            tbody.innerHTML = data.map((item, index) => `
-                <tr>
-                    <td>${index + 1}</td>
-                    <td><span class="type-badge ${item.userType === 'headhunter' ? 'hunter' : ''}">${item.userType === 'hr' ? '企业HR' : '猎头顾问'}</span></td>
-                    <td>${item.companyType === 'company' ? '公司' : '个人'}</td>
-                    <td>${item.name}</td>
-                    <td>${item.wechat}</td>
-                    <td>${item.phone}</td>
-                    <td>${new Date(item.timestamp).toLocaleString('zh-CN')}</td>
-                    <td><button class="delete-btn" onclick="deleteItem(${index})">删除</button></td>
-                </tr>
-            `).join('');
+            const userTypeMap = { 'tech': '科技企业', 'group': '集团化企业', 'global': '跨国公司', 'other': '其他' };
+            tbody.innerHTML = data.map((item, index) => `<tr><td>${index + 1}</td><td>${userTypeMap[item.userType] || item.userType || '-'}</td><td>${item.company || '-'}</td><td>${item.name}</td><td>${item.wechat}</td><td>${item.phone}</td><td>${item.timestamp ? new Date(item.timestamp).toLocaleString('zh-CN') : '-'}</td><td><button class="delete-btn" onclick="deleteItem('${item.id}', ${isFromServer})">删除</button></td></tr>`).join('');
         }
-        
-        function deleteItem(index) {
+        async function deleteItem(id, isFromServer) {
             if (confirm('确定要删除这条记录吗？')) {
+                if (isFromServer) {
+                    try {
+                        await fetch(API_URL, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: id }) });
+                        loadData(); return;
+                    } catch (e) { console.log('服务器删除失败'); }
+                }
                 let data = JSON.parse(localStorage.getItem('zhimai_registrations') || '[]');
-                data.splice(index, 1);
+                data = data.filter(item => item.id != id);
                 localStorage.setItem('zhimai_registrations', JSON.stringify(data));
                 loadData();
             }
         }
-        
-        // Load on page load
         loadData();
     </script>
 </body>
