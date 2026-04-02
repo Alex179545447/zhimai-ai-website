@@ -6,96 +6,159 @@
     <title>智脉AI - 注册信息管理后台</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root { --primary: #00D4AA; --primary-dark: #00B894; --secondary: #6C5CE7; --accent: #FF6B6B; --dark: #0a0a0f; --darker: #050508; --gray: #8B8B9A; --light: #F8F9FA; --white: #ffffff; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--darker); color: var(--white); line-height: 1.6; min-height: 100vh; }
-        a { text-decoration: none; color: inherit; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
-        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-        .header-left { display: flex; align-items: center; gap: 1.5rem; }
-        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px; color: var(--gray); font-size: 0.9rem; transition: all 0.3s ease; }
-        .back-link:hover { background: rgba(255, 255, 255, 0.1); color: var(--white); }
-        .header h1 { font-size: 1.5rem; font-weight: 700; }
-        .refresh-btn { padding: 0.75rem 1.5rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); border: none; border-radius: 50px; color: var(--dark); font-weight: 600; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem; }
-        .refresh-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 212, 170, 0.3); }
-        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
-        .stat-card { padding: 1.5rem; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; text-align: center; }
-        .stat-number { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .stat-label { color: var(--gray); font-size: 0.95rem; margin-top: 0.5rem; }
-        .table-container { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 16px; overflow: hidden; }
+        body { font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif; background: #0a0e27; color: #fff; min-height: 100vh; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .back-link { color: #4d7cff; text-decoration: none; font-size: 14px; transition: color 0.3s; }
+        .back-link:hover { color: #6b93ff; }
+        h1 { font-size: 28px; font-weight: 600; background: linear-gradient(135deg, #4d7cff, #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .refresh-btn { background: linear-gradient(135deg, #4d7cff, #00d4ff); color: #fff; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 14px; font-weight: 500; transition: transform 0.3s, box-shadow 0.3s; }
+        .refresh-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(77, 124, 255, 0.4); }
+        .refresh-btn:active { transform: translateY(0); }
+        .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px; }
+        .stat-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 30px; text-align: center; transition: transform 0.3s, box-shadow 0.3s; }
+        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+        .stat-number { font-size: 48px; font-weight: 700; background: linear-gradient(135deg, #4d7cff, #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+        .stat-label { color: rgba(255,255,255,0.6); font-size: 14px; }
+        .table-container { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; overflow: hidden; }
         table { width: 100%; border-collapse: collapse; }
-        th, td { padding: 1rem 1.5rem; text-align: left; }
-        th { background: rgba(255, 255, 255, 0.03); font-weight: 600; font-size: 0.9rem; color: var(--gray); text-transform: uppercase; }
-        td { border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.95rem; }
-        tr:hover td { background: rgba(255, 255, 255, 0.02); }
-        .type-badge { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(0, 212, 170, 0.1); border-radius: 50px; font-size: 0.8rem; color: var(--primary); font-weight: 600; }
-        .empty-state { text-align: center; padding: 4rem 2rem; color: var(--gray); }
-        .empty-icon { font-size: 4rem; margin-bottom: 1rem; opacity: 0.5; }
-        .delete-btn { padding: 0.4rem 0.8rem; background: rgba(255, 107, 107, 0.1); border: 1px solid var(--accent); border-radius: 6px; color: var(--accent); cursor: pointer; font-size: 0.8rem; transition: all 0.3s ease; }
-        .delete-btn:hover { background: var(--accent); color: var(--white); }
-        .loading { text-align: center; padding: 2rem; color: var(--gray); }
-        @media (max-width: 992px) { .stats-grid { grid-template-columns: 1fr; } .table-container { overflow-x: auto; } table { min-width: 800px; } }
+        th { background: rgba(77, 124, 255, 0.15); padding: 16px 12px; text-align: left; font-weight: 500; font-size: 13px; color: rgba(255,255,255,0.7); }
+        td { padding: 16px 12px; border-top: 1px solid rgba(255,255,255,0.05); font-size: 14px; }
+        tr:hover td { background: rgba(255,255,255,0.02); }
+        .delete-btn { background: rgba(255,71,87,0.2); color: #ff4757; border: 1px solid rgba(255,71,87,0.3); padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 12px; transition: all 0.3s; }
+        .delete-btn:hover { background: rgba(255,71,87,0.3); }
+        .empty-state { text-align: center; padding: 80px 20px; color: rgba(255,255,255,0.5); }
+        .empty-icon { font-size: 64px; margin-bottom: 20px; }
+        .loading { text-align: center; padding: 60px; color: rgba(255,255,255,0.5); }
+        @media (max-width: 768px) {
+            .stats { grid-template-columns: 1fr; }
+            .table-container { overflow-x: auto; }
+            table { min-width: 800px; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <div class="header-left">
-                <a href="index.html" class="back-link">← 返回官网</a>
-                <h1>智脉AI - 注册管理后台</h1>
-            </div>
+            <a href="index.html" class="back-link">← 返回官网</a>
+            <h1>智脉AI - 注册管理后台</h1>
             <button class="refresh-btn" onclick="loadData()">🔄 刷新数据</button>
         </div>
-        <div class="stats-grid">
-            <div class="stat-card"><div class="stat-number" id="totalCount">0</div><div class="stat-label">总注册人数</div></div>
-            <div class="stat-card"><div class="stat-number" id="hrCount">0</div><div class="stat-label">企业HR</div></div>
-            <div class="stat-card"><div class="stat-number" id="hunterCount">0</div><div class="stat-label">猎头顾问</div></div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number" id="totalCount">0</div>
+                <div class="stat-label">总注册人数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="hrCount">0</div>
+                <div class="stat-label">企业HR</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="headhunterCount">0</div>
+                <div class="stat-label">猎头顾问</div>
+            </div>
         </div>
+        
         <div class="table-container">
-            <table id="dataTable">
-                <thead><tr><th>序号</th><th>企业类型</th><th>公司名称</th><th>姓名</th><th>微信号</th><th>电话号码</th><th>提交时间</th><th>操作</th></tr></thead>
-                <tbody id="tableBody"></tbody>
+            <table>
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>用户类型</th>
+                        <th>身份类型</th>
+                        <th>姓名</th>
+                        <th>微信号</th>
+                        <th>电话号码</th>
+                        <th>提交时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody id="dataBody">
+                    <tr><td colspan="8" class="loading">加载中...</td></tr>
+                </tbody>
             </table>
-            <div class="empty-state" id="emptyState"><div class="empty-icon">📭</div><div class="empty-text">暂无注册信息</div></div>
         </div>
     </div>
+
     <script>
         const API_URL = 'api.php';
+        
         async function loadData() {
+            const tbody = document.getElementById('dataBody');
+            tbody.innerHTML = '<tr><td colspan="8" class="loading">加载中...</td></tr>';
+            
             try {
-                const response = await fetch(API_URL);
+                const response = await fetch(API_URL + '?t=' + Date.now());
                 const data = await response.json();
-                renderTable(data, true);
-            } catch (error) {
-                console.log('获取服务器数据失败，使用本地数据');
-                const localData = JSON.parse(localStorage.getItem('zhimai_registrations') || '[]');
-                renderTable(localData, false);
-            }
-        }
-        function renderTable(data, isFromServer) {
-            const tbody = document.getElementById('tableBody');
-            const emptyState = document.getElementById('emptyState');
-            document.getElementById('totalCount').textContent = data.length;
-            document.getElementById('hrCount').textContent = data.filter(d => d.userType && d.userType !== 'headhunter').length;
-            document.getElementById('hunterCount').textContent = 0;
-            if (data.length === 0) { tbody.innerHTML = ''; emptyState.style.display = 'block'; return; }
-            emptyState.style.display = 'none';
-            const userTypeMap = { 'tech': '科技企业', 'group': '集团化企业', 'global': '跨国公司', 'other': '其他' };
-            tbody.innerHTML = data.map((item, index) => `<tr><td>${index + 1}</td><td>${userTypeMap[item.userType] || item.userType || '-'}</td><td>${item.company || '-'}</td><td>${item.name}</td><td>${item.wechat}</td><td>${item.phone}</td><td>${item.timestamp ? new Date(item.timestamp).toLocaleString('zh-CN') : '-'}</td><td><button class="delete-btn" onclick="deleteItem('${item.id}', ${isFromServer})">删除</button></td></tr>`).join('');
-        }
-        async function deleteItem(id, isFromServer) {
-            if (confirm('确定要删除这条记录吗？')) {
-                if (isFromServer) {
-                    try {
-                        await fetch(API_URL, { method: 'DELETE', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: id }) });
-                        loadData(); return;
-                    } catch (e) { console.log('服务器删除失败'); }
+                
+                let totalCount = 0;
+                let hrCount = 0;
+                let headhunterCount = 0;
+                
+                if (data.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><div class="empty-icon">📭</div>暂无注册信息</td></tr>';
+                } else {
+                    let html = '';
+                    data.forEach((item, index) => {
+                        totalCount++;
+if (item.identityType === '企业HR') hrCount++;
+                        if (item.identityType === '猎头顾问') headhunterCount++;
+                        
+                        html += '<tr>';
+                        html += '<td>' + (index + 1) + '</td>';
+                        html += '<td>' + (item.userType || '-') + '</td>';
+                        html += '<td>' + (item.identityType || '-') + '</td>';
+                        html += '<td>' + escapeHtml(item.name) + '</td>';
+                        html += '<td>' + escapeHtml(item.wechat) + '</td>';
+                        html += '<td>' + escapeHtml(item.phone) + '</td>';
+                        html += '<td>' + (item.timestamp || '-') + '</td>';
+                        html += '<td><button class="delete-btn" onclick="deleteRecord(' + item.id + ')">删除</button></td>';
+                        html += '</tr>';
+                    });
+                    tbody.innerHTML = html;
                 }
-                let data = JSON.parse(localStorage.getItem('zhimai_registrations') || '[]');
-                data = data.filter(item => item.id != id);
-                localStorage.setItem('zhimai_registrations', JSON.stringify(data));
-                loadData();
+                
+                document.getElementById('totalCount').textContent = totalCount;
+                document.getElementById('hrCount').textContent = hrCount;
+                document.getElementById('headhunterCount').textContent = headhunterCount;
+                
+            } catch (error) {
+                console.error('加载数据失败:', error);
+                tbody.innerHTML = '<tr><td colspan="8" class="empty-state"><div class="empty-icon">❌</div>加载失败，请检查网络连接</td></tr>';
             }
         }
+        
+        async function deleteRecord(id) {
+            if (!confirm('确定要删除这条记录吗？')) return;
+            
+            try {
+                const response = await fetch(API_URL, {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ id: id })
+                });
+                
+                const result = await response.json();
+                if (result.success) {
+                    alert('删除成功');
+                    loadData();
+                } else {
+                    alert('删除失败: ' + result.message);
+                }
+            } catch (error) {
+                alert('删除失败，请检查网络连接');
+            }
+        }
+        
+        function escapeHtml(text) {
+            if (!text) return '-';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+        
+        // 页面加载时自动获取数据
         loadData();
     </script>
 </body>
