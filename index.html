@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智脉AI · 智能招聘管理系统</title>
-    <meta name="description" content="智脉AI用大模型重新定义招聘流程——从简历入库到面试决策，全链路AI驱动，让每一次人才判断都精准、高效、可追溯。">
-    <meta property="og:title" content="智脉AI · 智能招聘管理系统">
-    <meta property="og:description" content="AI驱动的智能招聘，8秒完成一份简历分析，69.5%高匹配率">
+    <title>智脉AI · AI驱动的人才智能平台</title>
+    <meta name="description" content="智脉AI旗下三大产品——智脉AI企业智能招聘、职脉AI简享云简历、知脉AI知己知彼，AI驱动的人才智能全链路。">
+    <meta property="og:title" content="智脉AI · AI驱动的人才智能平台">
+    <meta property="og:description" content="三大AI产品矩阵：智能招聘·简历利器·职业潜能，让每一次人才决策都精准高效">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zhimai-ai.cn">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -496,6 +496,10 @@
             #resumecloud > div > div:nth-child(2) { grid-template-columns: 1fr !important; gap: 32px !important; }
             #resumecloud h3 { font-size: 17px !important; }
             #resumecloud p { padding-left: 0 !important; font-size: 14px !important; }
+            #products > div:nth-child(2) { grid-template-columns: 1fr !important; }
+            #zhimai-job > div > div:nth-child(2) { grid-template-columns: 1fr !important; }
+            #zhimai-job h3 { font-size: 17px !important; }
+            #zhimai-job p { padding-left: 0 !important; font-size: 14px !important; }
         }
 
         /* Animations */
@@ -518,11 +522,10 @@
     <nav id="nav">
         <div class="nav-logo">智脉AI</div>
         <div class="nav-links">
+            <a href="#products">产品矩阵</a>
             <a href="#features">核心能力</a>
             <a href="#data">实战数据</a>
             <a href="#comparison">对比</a>
-            <a href="#architecture">架构</a>
-            <a href="#resumecloud">简享云简历</a>
             <a href="https://hr.zhimai-ai.cn" class="btn-primary" target="_blank">进入系统</a>
         </div>
     </nav>
@@ -531,17 +534,17 @@
     <section class="hero">
         <div class="hero-badge">
             <span class="dot"></span>
-            v2.4 全新上线 · 多轮面试系统
+            三大产品矩阵 · AI驱动人才全链路
         </div>
         <h1>
-            招聘，从人工筛选<br>到<span class="gradient-text">AI决策</span>
+            人才智能，<br>从<span class="gradient-text">AI决策</span>开始
         </h1>
         <p>
-            智脉AI用大模型重新定义招聘流程——从简历入库到面试决策，全链路AI驱动。全新多轮面试记录，让每一次人才判断都精准、高效、可追溯。
+            智脉AI旗下三大产品——智能招聘、简历利器、职业潜能，覆盖人才获取、管理、评估全场景，让每一次人才决策都精准、高效、可追溯。
         </p>
         <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
             <a href="javascript:showContact()" class="btn-primary" style="padding:14px 32px;font-size:16px;">预约演示</a>
-            <a href="#features" class="btn-secondary" style="padding:14px 32px;font-size:16px;">了解更多</a>
+            <a href="#products" class="btn-secondary" style="padding:14px 32px;font-size:16px;">了解产品</a>
         </div>
         <div class="hero-stats">
             <div class="hero-stat">
@@ -559,6 +562,71 @@
             <div class="hero-stat">
                 <div class="number">21</div>
                 <div class="label">标准岗位覆盖</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品矩阵 -->
+    <section id="products" style="padding:100px 40px;">
+        <div class="section-header fade-in">
+            <div class="section-tag">Product Matrix</div>
+            <h2>三大产品，一个生态</h2>
+            <p>从招聘到简历管理到职业评估，AI贯穿人才全生命周期</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1200px;margin:0 auto;">
+            <!-- 智脉AI -->
+            <div class="fade-in" style="background:var(--bg-secondary);border:1px solid rgba(108,92,231,0.15);border-radius:20px;padding:40px 32px;position:relative;overflow:hidden;transition:all 0.3s;">
+                <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#6c5ce7,#a29bfe);"></div>
+                <div style="width:56px;height:56px;border-radius:16px;background:rgba(108,92,231,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">🎯</div>
+                <h3 style="font-size:24px;font-weight:800;margin-bottom:4px;">智脉AI</h3>
+                <div style="font-size:13px;color:var(--accent-purple);font-weight:600;margin-bottom:16px;">企业智能招聘管理系统</div>
+                <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
+                    重新定义招聘流程——从简历入库到面试决策，全链路AI驱动。全新多轮面试记录，让每一次人才判断都精准、高效、可追溯。
+                </p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
+                    <span style="padding:4px 10px;background:rgba(108,92,231,0.08);border-radius:6px;font-size:12px;color:var(--accent-purple);font-weight:500;">AI简历分析</span>
+                    <span style="padding:4px 10px;background:rgba(108,92,231,0.08);border-radius:6px;font-size:12px;color:var(--accent-purple);font-weight:500;">多轮面试</span>
+                    <span style="padding:4px 10px;background:rgba(108,92,231,0.08);border-radius:6px;font-size:12px;color:var(--accent-purple);font-weight:500;">面试官协同</span>
+                    <span style="padding:4px 10px;background:rgba(108,92,231,0.08);border-radius:6px;font-size:12px;color:var(--accent-purple);font-weight:500;">邮件自动入库</span>
+                </div>
+                <a href="https://hr.zhimai-ai.cn" target="_blank" class="btn-primary" style="width:100%;text-align:center;padding:12px 0;">进入智脉AI →</a>
+            </div>
+
+            <!-- 职脉AI -->
+            <div class="fade-in" style="background:var(--bg-secondary);border:1px solid rgba(0,206,201,0.15);border-radius:20px;padding:40px 32px;position:relative;overflow:hidden;transition:all 0.3s;">
+                <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#00cec9,#55efc4);"></div>
+                <div style="width:56px;height:56px;border-radius:16px;background:rgba(0,206,201,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">📁</div>
+                <h3 style="font-size:24px;font-weight:800;margin-bottom:4px;">职脉AI</h3>
+                <div style="font-size:13px;color:var(--accent-teal);font-weight:600;margin-bottom:16px;">简享云简历</div>
+                <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
+                    专为HR和猎头打造的AI简历利器库，你的简历资产，只属于你。私密安全，AI解析，一键入库，让简历管理从未如此轻松。
+                </p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
+                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:var(--accent-teal);font-weight:500;">私有加密</span>
+                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:var(--accent-teal);font-weight:500;">AI解析20+字段</span>
+                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:var(--accent-teal);font-weight:500;">智能检索</span>
+                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:var(--accent-teal);font-weight:500;">标签管理</span>
+                </div>
+                <a href="http://47.110.151.230:8080/login-db" target="_blank" class="btn-primary" style="width:100%;text-align:center;padding:12px 0;background:linear-gradient(135deg,#00cec9,#55efc4);">进入职脉AI →</a>
+            </div>
+
+            <!-- 知脉AI -->
+            <div class="fade-in" style="background:var(--bg-secondary);border:1px solid rgba(253,121,168,0.15);border-radius:20px;padding:40px 32px;position:relative;overflow:hidden;transition:all 0.3s;">
+                <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#fd79a8,#e84393);"></div>
+                <div style="width:56px;height:56px;border-radius:16px;background:rgba(253,121,168,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">🔍</div>
+                <h3 style="font-size:24px;font-weight:800;margin-bottom:4px;">知脉AI</h3>
+                <div style="font-size:13px;color:var(--accent-pink);font-weight:600;margin-bottom:16px;">知己知彼</div>
+                <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
+                    发现你的职业潜能，全方位解析简历，智能评估优劣势，精准匹配岗位，让每一次求职都更有底气，知己知彼才能百战百胜。
+                </p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
+                    <span style="padding:4px 10px;background:rgba(253,121,168,0.08);border-radius:6px;font-size:12px;color:var(--accent-pink);font-weight:500;">TRIMG五维评估</span>
+                    <span style="padding:4px 10px;background:rgba(253,121,168,0.08);border-radius:6px;font-size:12px;color:var(--accent-pink);font-weight:500;">岗位匹配</span>
+                    <span style="padding:4px 10px;background:rgba(253,121,168,0.08);border-radius:6px;font-size:12px;color:var(--accent-pink);font-weight:500;">优劣势分析</span>
+                    <span style="padding:4px 10px;background:rgba(253,121,168,0.08);border-radius:6px;font-size:12px;color:var(--accent-pink);font-weight:500;">职业建议</span>
+                </div>
+                <a href="http://47.110.151.230:8080/job-ai/" target="_blank" class="btn-primary" style="width:100%;text-align:center;padding:12px 0;background:linear-gradient(135deg,#fd79a8,#e84393);">进入知脉AI →</a>
             </div>
         </div>
     </section>
@@ -792,14 +860,14 @@
 
     <!-- CTA -->
     
-    <!-- 简享云简历 - 独立产品介绍 -->
+    <!-- 职脉AI - 简享云简历 -->
     <section id="resumecloud" style="background:var(--bg-tertiary);padding:100px 40px;">
         <div style="max-width:1100px;margin:0 auto;">
             <div class="section-header fade-in" style="text-align:center;margin-bottom:60px;">
-                <div class="section-tag">独立产品</div>
-                <h2 style="margin-top:16px;">简享云简历</h2>
+                <div class="section-tag" style="background:rgba(0,206,201,0.1);color:var(--accent-teal);">独立产品</div>
+                <h2 style="margin-top:16px;">职脉AI · 简享云简历</h2>
                 <p style="color:var(--text-secondary);max-width:600px;margin:12px auto 0;font-size:17px;line-height:1.7;">
-                    智脉AI旗下独立产品，专为HR和猎头打造的<strong style="color:var(--text-primary)">AI简历利器库</strong>。<br>
+                    专为HR和猎头打造的<strong style="color:var(--text-primary)">AI简历利器库</strong>。<br>
                     你的简历资产，只属于你。
                 </p>
             </div>
@@ -861,15 +929,90 @@
             </div>
 
             <div style="text-align:center;margin-top:48px;" class="fade-in">
-                <a href="javascript:showContact()" class="btn-primary" style="padding:14px 36px;font-size:16px;">申请内测资格</a>
-                <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">简享云简历将独立发布，敬请期待</p>
+                <a href="http://47.110.151.230:8080/login-db" target="_blank" class="btn-primary" style="padding:14px 36px;font-size:16px;background:linear-gradient(135deg,#00cec9,#55efc4);">进入职脉AI</a>
+                <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">职脉AI · 简享云简历，独立发布中</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- 知脉AI - 知己知彼 -->
+    <section id="zhimai-job" style="padding:100px 40px;">
+        <div style="max-width:1100px;margin:0 auto;">
+            <div class="section-header fade-in" style="text-align:center;margin-bottom:60px;">
+                <div class="section-tag" style="background:rgba(253,121,168,0.1);color:var(--accent-pink);">独立产品</div>
+                <h2 style="margin-top:16px;">知脉AI · 知己知彼</h2>
+                <p style="color:var(--text-secondary);max-width:600px;margin:12px auto 0;font-size:17px;line-height:1.7;">
+                    发现你的职业潜能，全方位解析简历，智能评估优劣势，精准匹配岗位。<br>
+                    <strong style="color:var(--text-primary)">知己知彼，百战百胜。</strong>
+                </p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
+                <div class="fade-in">
+                    <div style="margin-bottom:32px;">
+                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                            <span style="font-size:28px;">📊</span>
+                            <h3 style="font-size:20px;font-weight:700;margin:0;">TRIMG五维指数体系</h3>
+                        </div>
+                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
+                            T·Trust 信任度 / R·Reading 可读性 / I·Information 信息度<br>
+                            M·Match 匹配度 / G·Get 获取度<br>
+                            五维度全方位量化简历质量，让每一份简历都有据可依。
+                        </p>
+                    </div>
+                    <div style="margin-bottom:32px;">
+                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                            <span style="font-size:28px;">🎯</span>
+                            <h3 style="font-size:20px;font-weight:700;margin:0;">智能岗位匹配</h3>
+                        </div>
+                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
+                            上传简历→选择岗位→AI精准匹配，覆盖30+标准岗位。<br>
+                            技能对比、差距分析、提升建议，一目了然。
+                        </p>
+                    </div>
+                    <div style="margin-bottom:32px;">
+                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+                            <span style="font-size:28px;">💡</span>
+                            <h3 style="font-size:20px;font-weight:700;margin:0;">个性化职业建议</h3>
+                        </div>
+                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
+                            基于简历深度解析，给出针对性优化建议和职业发展方向。<br>
+                            让每一次求职都更有底气。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in" style="display:flex;flex-direction:column;gap:16px;">
+                    <div style="background:var(--bg-secondary);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #fd79a8;">
+                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">📋 简历深度解析</div>
+                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">AI提取20+字段，工作经历/教育背景/技能标签全结构化</div>
+                    </div>
+                    <div style="background:var(--bg-secondary);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #e84393;">
+                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">🔍 优劣势分析</div>
+                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">智能识别简历亮点与不足，给出可操作的改进建议</div>
+                    </div>
+                    <div style="background:var(--bg-secondary);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #6c5ce7;">
+                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">🤝 岗位精准匹配</div>
+                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">匹配度可视化，技能差距分析，助力精准投递</div>
+                    </div>
+                    <div style="background:var(--bg-secondary);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #00cec9;">
+                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">📥 一键收录人才库</div>
+                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">匹配结果直接收录至职脉AI人才库，招聘评估无缝衔接</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align:center;margin-top:48px;" class="fade-in">
+                <a href="http://47.110.151.230:8080/job-ai/" target="_blank" class="btn-primary" style="padding:14px 36px;font-size:16px;background:linear-gradient(135deg,#fd79a8,#e84393);">进入知脉AI</a>
+                <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">知脉AI · 知己知彼，发现你的职业潜能</p>
             </div>
         </div>
     </section>
 
 <section class="cta">
-        <h2 class="fade-in">让AI替你筛简历<br>你只做<span class="gradient-text">最终决策</span></h2>
-        <p class="fade-in">智脉AI —— 不是工具，是你的AI招聘合伙人</p>
+        <h2 class="fade-in">AI驱动人才全链路<br>从<span class="gradient-text">智能决策</span>开始</h2>
+        <p class="fade-in">智脉AI · 职脉AI · 知脉AI —— 三大产品，一个生态</p>
         <div class="cta-buttons fade-in">
             <a href="javascript:showContact()" class="btn-primary" style="padding:16px 40px;font-size:17px;">预约演示</a>
             <a href="javascript:showContact()" class="btn-secondary" style="padding:16px 40px;font-size:17px;">免费试用</a>
@@ -877,7 +1020,7 @@
     </section>
 
     <footer>
-        <p>© 2026 智脉AI · 智能招聘管理系统 &nbsp;|&nbsp; <a href="https://hr.zhimai-ai.cn">hr.zhimai-ai.cn</a></p>
+        <p>© 2026 智脉AI · 职脉AI · 知脉AI &nbsp;|&nbsp; <a href="https://hr.zhimai-ai.cn">hr.zhimai-ai.cn</a></p>
     </footer>
 
     <script>
