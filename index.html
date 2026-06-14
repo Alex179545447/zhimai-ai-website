@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>职觉云图 · AI驱动的人才智能平台</title>
-    <meta name="description" content="职觉云图旗下三大产品——智脉AI企业智能招聘、职觉AI职觉云图、知脉AI知己知彼，AI驱动的人才智能全链路。">
-    <meta property="og:title" content="职觉云图 · AI驱动的人才智能平台">
-    <meta property="og:description" content="三大AI产品矩阵：智能招聘·人才云图·职业潜能，让每一次人才决策都精准高效">
+    <title>直觉AI —— 你的私人超级招聘大脑</title>
+    <meta name="description" content="直觉AI，让每一份沉睡的简历苏醒，一键生成行业人才地图。专为精英猎头与独立HR打造的云端智能工作台。">
+    <meta property="og:title" content="直觉AI —— 你的私人超级招聘大脑">
+    <meta property="og:description" content="AI驱动的人才智能平台——简历资产化引擎·极速智能寻访·竞对与行业图谱">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://zhimai-ai.cn">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         :root {
             --bg-primary: #f8fafc;
             --bg-secondary: #ffffff;
@@ -34,453 +33,99 @@
             --gradient-2: linear-gradient(135deg, #00cec9, #6c5ce7);
             --gradient-3: linear-gradient(135deg, #fd79a8, #6c5ce7);
         }
-
         html { scroll-behavior: smooth; }
-        
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* Animated background */
-        .bg-grid {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-image: 
-                linear-gradient(rgba(108,92,231,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(108,92,231,0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            z-index: 0;
-            pointer-events: none;
-        }
-
-        .bg-glow {
-            position: fixed;
-            width: 600px; height: 600px;
-            border-radius: 50%;
-            filter: blur(150px);
-            opacity: 0.15;
-            pointer-events: none;
-            z-index: 0;
-        }
-        .bg-glow-1 { top: -200px; right: -100px; background: var(--accent); }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
+        .bg-grid { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(108,92,231,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(108,92,231,0.03) 1px, transparent 1px); background-size: 60px 60px; z-index: 0; pointer-events: none; }
+        .bg-glow { position: fixed; width: 600px; height: 600px; border-radius: 50%; filter: blur(150px); opacity: 0.15; pointer-events: none; z-index: 0; }
+        .bg-glow-1 { top: -200px; right: -100px; background: #6c5ce7; }
         .bg-glow-2 { bottom: -200px; left: -100px; background: #00cec9; }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            padding: 16px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(20px);
-            background: rgba(255,255,255,0.8);
-            border-bottom: 1px solid rgba(108,92,231,0.1);
-            transition: all 0.3s;
-        }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 40px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(20px); background: rgba(255,255,255,0.8); border-bottom: 1px solid rgba(108,92,231,0.1); transition: all 0.3s; }
         nav.scrolled { background: rgba(255,255,255,0.95); }
-        .nav-logo {
-            font-size: 22px;
-            font-weight: 800;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-        }
+        .nav-logo { font-size: 22px; font-weight: 800; background: var(--gradient-1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; }
         .nav-links { display: flex; gap: 32px; align-items: center; }
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
+        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
         .nav-links a:hover { color: var(--text-primary); }
-        .btn-primary {
-            padding: 10px 24px;
-            background: var(--gradient-1);
-            border: none;
-            border-radius: 8px;
-            color: white;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--accent-glow);
-        }
-        .btn-secondary {
-            padding: 10px 24px;
-            background: transparent;
-            border: 1px solid rgba(108,92,231,0.4);
-            border-radius: 8px;
-            color: var(--accent-light);
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            background: rgba(108,92,231,0.1);
-        }
-
-        /* Hero */
-        .hero {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 120px 40px 80px;
-        }
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 16px;
-            background: rgba(108,92,231,0.1);
-            border: 1px solid rgba(108,92,231,0.2);
-            border-radius: 100px;
-            font-size: 13px;
-            color: var(--accent-light);
-            margin-bottom: 32px;
-        }
-        .hero-badge .dot {
-            width: 6px; height: 6px;
-            background: #00cec9;
-            border-radius: 50%;
-            animation: pulse 2s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-        .hero h1 {
-            font-size: clamp(36px, 6vw, 72px);
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -2px;
-            margin-bottom: 24px;
-        }
-        .hero h1 .gradient-text {
-            background: var(--gradient-1) !important;
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            color: transparent !important;
-        }
-        h2 .gradient-text, h1 .gradient-text, .cta .gradient-text {
-            background: var(--gradient-1) !important;
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            color: transparent !important;
-        }
-        .hero p {
-            font-size: clamp(16px, 2vw, 20px);
-            color: var(--text-secondary);
-            max-width: 640px;
-            margin-bottom: 40px;
-            line-height: 1.7;
-        }
-        .hero-stats {
-            display: flex;
-            gap: 48px;
-            margin-top: 48px;
-            padding-top: 48px;
-            border-top: 1px solid rgba(0,0,0,0.08);
-        }
-        .hero-stat .number {
-            font-size: 36px;
-            font-weight: 800;
-            background: var(--gradient-2) !important;
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-        }
-        .hero-stat .label {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        /* Sections */
-        section {
-            position: relative;
-            z-index: 1;
-            padding: 100px 40px;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 64px;
-        }
-        .section-tag {
-            display: inline-block;
-            padding: 4px 12px;
-            background: rgba(108,92,231,0.1);
-            border-radius: 4px;
-            font-size: 12px;
-            font-weight: 600;
-            color: var(--accent-light);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-        .section-header h2 {
-            font-size: clamp(28px, 4vw, 44px);
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-        }
-        .section-header p {
-            font-size: 17px;
-            color: var(--text-secondary);
-            max-width: 560px;
-            margin: 0 auto;
-        }
-
-        /* Feature Cards */
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(108,92,231,0.1);
-            border-radius: 16px;
-            padding: 36px;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: var(--gradient-1);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .feature-card:hover {
-            border-color: rgba(108,92,231,0.3);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
+        .btn-primary { padding: 10px 24px; background: var(--gradient-1); border: none; border-radius: 8px; color: white; font-size: 14px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; display: inline-block; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(108,92,231,0.3); }
+        .btn-secondary { padding: 10px 24px; background: transparent; border: 1px solid rgba(108,92,231,0.4); border-radius: 8px; color: #6c5ce7; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
+        .btn-secondary:hover { border-color: #6c5ce7; background: rgba(108,92,231,0.1); }
+        .hero { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 40px 80px; }
+        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: rgba(108,92,231,0.1); border: 1px solid rgba(108,92,231,0.2); border-radius: 100px; font-size: 13px; color: #6c5ce7; margin-bottom: 32px; }
+        .hero-badge .dot { width: 6px; height: 6px; background: #00cec9; border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+        .hero h1 { font-size: clamp(36px, 6vw, 72px); font-weight: 900; line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; }
+        .hero h1 .gradient-text, h2 .gradient-text, .cta .gradient-text { background: var(--gradient-1) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; }
+        .hero p { font-size: clamp(16px, 2vw, 20px); color: var(--text-secondary); max-width: 640px; margin-bottom: 40px; line-height: 1.7; }
+        .hero-stats { display: flex; gap: 48px; margin-top: 48px; padding-top: 48px; border-top: 1px solid rgba(0,0,0,0.08); }
+        .hero-stat .number { font-size: 36px; font-weight: 800; background: var(--gradient-2) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; }
+        .hero-stat .label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+        section { position: relative; z-index: 1; padding: 100px 40px; }
+        .section-header { text-align: center; margin-bottom: 64px; }
+        .section-tag { display: inline-block; padding: 4px 12px; background: rgba(108,92,231,0.1); border-radius: 4px; font-size: 12px; font-weight: 600; color: #6c5ce7; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
+        .section-header h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+        .section-header p { font-size: 17px; color: var(--text-secondary); max-width: 560px; margin: 0 auto; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; max-width: 1200px; margin: 0 auto; }
+        .feature-card { background: var(--bg-secondary); border: 1px solid rgba(108,92,231,0.1); border-radius: 16px; padding: 36px; transition: all 0.3s; position: relative; overflow: hidden; }
+        .feature-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--gradient-1); opacity: 0; transition: opacity 0.3s; }
+        .feature-card:hover { border-color: rgba(108,92,231,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
         .feature-card:hover::before { opacity: 1; }
-        .feature-icon {
-            width: 48px; height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
+        .feature-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 20px; }
         .feature-icon.purple { background: rgba(108,92,231,0.15); }
         .feature-icon.cyan { background: rgba(0,206,201,0.15); }
         .feature-icon.pink { background: rgba(253,121,168,0.15); }
         .feature-icon.orange { background: rgba(255,165,0,0.15); }
         .feature-icon.green { background: rgba(0,206,201,0.15); }
         .feature-icon.blue { background: rgba(116,185,255,0.15); }
-        .feature-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-        }
-        .feature-card p {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-        .feature-card ul {
-            list-style: none;
-            margin-top: 16px;
-        }
-        .feature-card ul li {
-            font-size: 13px;
-            color: var(--text-secondary);
-            padding: 4px 0;
-            padding-left: 20px;
-            position: relative;
-        }
-        .feature-card ul li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        /* Data Section */
-        .data-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .data-card {
-            background: var(--bg-card);
-            border: 1px solid rgba(108,92,231,0.1);
-            border-radius: 12px;
-            padding: 28px;
-            text-align: center;
-        }
-        .data-card .number {
-            font-size: 40px;
-            font-weight: 900;
-            background: var(--gradient-2) !important;
-            -webkit-background-clip: text !important;
-            background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-        }
-        .data-card .unit {
-            font-size: 16px;
-            font-weight: 600;
-        }
-        .data-card .label {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 8px;
-        }
-
-        /* Comparison Table */
-        .comparison {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .comparison-table th,
-        .comparison-table td {
-            padding: 16px 24px;
-            text-align: left;
-            font-size: 14px;
-        }
-        .comparison-table thead th {
-            background: var(--bg-card);
-            font-weight: 700;
-            font-size: 15px;
-        }
-        .comparison-table thead th:first-child { color: var(--text-muted); }
-        .comparison-table thead th:nth-child(2) { color: var(--text-muted); }
-        .comparison-table thead th:last-child { color: var(--accent-light); }
-        .comparison-table tbody tr {
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-        }
-        .comparison-table tbody td:first-child {
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-        .comparison-table tbody td:nth-child(2) {
-            color: var(--text-muted);
-        }
-        .comparison-table tbody td:last-child {
-            color: var(--text-primary);
-            font-weight: 500;
-        }
-        .comparison-table tbody tr:last-child { border-bottom: none; }
-
-        /* Architecture */
-        .arch-box {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--bg-card);
-            border: 1px solid rgba(108,92,231,0.15);
-            border-radius: 16px;
-            padding: 40px;
-            font-family: 'Courier New', monospace;
-        }
-        .arch-layer {
-            border: 1px solid rgba(108,92,231,0.2);
-            border-radius: 8px;
-            padding: 16px 20px;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-        .arch-layer:last-child { margin-bottom: 0; }
-        .arch-layer .title {
-            font-size: 13px;
-            font-weight: 700;
-            color: var(--accent-light);
-            margin-bottom: 6px;
-            font-family: 'Inter', sans-serif;
-        }
-        .arch-layer .desc {
-            font-size: 12px;
-            color: var(--text-muted);
-            font-family: 'Inter', sans-serif;
-        }
-        .arch-layer.top { border-color: rgba(253,121,168,0.3); }
-        .arch-layer.top .title { color: #fd79a8; }
-        .arch-layer.mid { border-color: rgba(108,92,231,0.3); }
-        .arch-layer.mid .title { color: var(--accent-light); }
-        .arch-layer.bot { border-color: rgba(0,206,201,0.3); }
-        .arch-layer.bot .title { color: #00cec9; }
-
-        /* CTA */
-        .cta {
-            text-align: center;
-            padding: 120px 40px;
-        }
-        .cta h2 {
-            font-size: clamp(28px, 4vw, 48px);
-            font-weight: 900;
-            letter-spacing: -1px;
-            margin-bottom: 16px;
-        }
-        .cta p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-        }
-        .cta-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* Footer */
-        footer {
-            position: relative;
-            z-index: 1;
-            padding: 40px;
-            text-align: center;
-            border-top: 1px solid rgba(0,0,0,0.08);
-        }
-        footer p {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-        footer a {
-            color: var(--accent-light);
-            text-decoration: none;
-        }
-
-        /* Mobile */
+        .feature-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+        .feature-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+        .feature-card ul { list-style: none; margin-top: 16px; }
+        .feature-card ul li { font-size: 13px; color: var(--text-secondary); padding: 4px 0; padding-left: 20px; position: relative; }
+        .feature-card ul li::before { content: '→'; position: absolute; left: 0; color: #6c5ce7; }
+        .pain-card { background: var(--bg-secondary); border: 1px solid rgba(108,92,231,0.1); border-radius: 16px; padding: 36px; text-align: left; transition: all 0.3s; }
+        .pain-card:hover { border-color: rgba(108,92,231,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+        .pain-card .pain-q { font-size: 20px; font-weight: 800; margin-bottom: 12px; color: var(--text-primary); }
+        .pain-card .pain-a { font-size: 14px; color: var(--text-secondary); line-height: 1.8; }
+        .scenario-box { max-width: 900px; margin: 0 auto; background: var(--bg-secondary); border: 1px solid rgba(108,92,231,0.15); border-radius: 20px; padding: 48px; position: relative; }
+        .scenario-step { display: flex; gap: 20px; margin-bottom: 28px; align-items: flex-start; }
+        .scenario-step:last-child { margin-bottom: 0; }
+        .step-num { width: 36px; height: 36px; border-radius: 50%; background: var(--gradient-1); color: white; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0; }
+        .step-content h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .step-content p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
+        .trust-card { background: var(--bg-secondary); border: 1px solid rgba(108,92,231,0.1); border-radius: 16px; padding: 32px; text-align: center; }
+        .trust-card .trust-icon { font-size: 36px; margin-bottom: 16px; }
+        .trust-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .trust-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+        .vp-table { max-width: 900px; margin: 0 auto; width: 100%; border-collapse: collapse; border-radius: 12px; overflow: hidden; }
+        .vp-table th, .vp-table td { padding: 16px 24px; text-align: left; font-size: 14px; }
+        .vp-table thead th { background: rgba(108,92,231,0.08); font-weight: 700; font-size: 15px; color: var(--text-primary); }
+        .vp-table tbody tr { border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .vp-table tbody td { color: var(--text-secondary); vertical-align: top; }
+        .vp-table tbody td:first-child { font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+        .cta { text-align: center; padding: 120px 40px; position: relative; z-index: 1; }
+        .cta h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; }
+        .cta p { font-size: 18px; color: var(--text-secondary); margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; }
+        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        footer { position: relative; z-index: 1; padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); }
+        footer p { font-size: 13px; color: var(--text-muted); }
+        footer a { color: #6c5ce7; text-decoration: none; }
+        .ai-demo { max-width: 700px; margin: 40px auto 0; background: #1a1a2e; border-radius: 16px; overflow: hidden; border: 1px solid rgba(108,92,231,0.3); }
+        .ai-demo-header { padding: 12px 20px; background: rgba(108,92,231,0.15); display: flex; align-items: center; gap: 8px; font-size: 13px; color: rgba(255,255,255,0.7); }
+        .ai-demo-header .dot-r { width: 8px; height: 8px; border-radius: 50%; background: #ef4444; }
+        .ai-demo-header .dot-y { width: 8px; height: 8px; border-radius: 50%; background: #f59e0b; }
+        .ai-demo-header .dot-g { width: 8px; height: 8px; border-radius: 50%; background: #10b981; }
+        .ai-demo-body { padding: 24px; }
+        .ai-msg { margin-bottom: 16px; }
+        .ai-msg-user { display: flex; gap: 12px; align-items: flex-start; }
+        .ai-msg-ai { display: flex; gap: 12px; align-items: flex-start; }
+        .ai-avatar { width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+        .ai-avatar-user { background: rgba(108,92,231,0.3); }
+        .ai-avatar-ai { background: rgba(0,206,201,0.3); }
+        .ai-bubble { font-size: 13px; line-height: 1.7; max-width: 520px; }
+        .ai-bubble-user { color: rgba(255,255,255,0.9); }
+        .ai-bubble-ai { color: rgba(255,255,255,0.85); }
+        .ai-bubble-ai .highlight { color: #00cec9; font-weight: 600; }
+        .ai-bubble-ai .warn { color: #ffa502; font-weight: 600; }
         @media (max-width: 768px) {
             nav { padding: 12px 20px; }
             .nav-links { display: none; }
@@ -488,30 +133,12 @@
             .hero-stats { flex-direction: column; gap: 24px; align-items: center; }
             section { padding: 60px 20px; }
             .features-grid { grid-template-columns: 1fr; }
-            .data-grid { grid-template-columns: repeat(2, 1fr); }
-            .comparison-table { font-size: 12px; }
-            .comparison-table th, .comparison-table td { padding: 10px 12px; }
-            #resumecloud .section-header h2 { font-size: 24px; }
-            #resumecloud .section-header p { font-size: 15px; }
-            #resumecloud > div > div:nth-child(2) { grid-template-columns: 1fr !important; gap: 32px !important; }
-            #resumecloud h3 { font-size: 17px !important; }
-            #resumecloud p { padding-left: 0 !important; font-size: 14px !important; }
-            #products > div:nth-child(2) { grid-template-columns: 1fr !important; }
-            #zhimai-job > div > div:nth-child(2) { grid-template-columns: 1fr !important; }
-            #zhimai-job h3 { font-size: 17px !important; }
-            #zhimai-job p { padding-left: 0 !important; font-size: 14px !important; }
+            .trust-grid { grid-template-columns: 1fr; }
+            .scenario-box { padding: 28px; }
+            .vp-table th, .vp-table td { padding: 10px 12px; font-size: 12px; }
         }
-
-        /* Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s, transform 0.6s;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
@@ -520,729 +147,360 @@
     <div class="bg-glow bg-glow-2"></div>
 
     <nav id="nav">
-        <div class="nav-logo">职觉云图</div>
+        <div class="nav-logo">直觉AI</div>
         <div class="nav-links">
-            <a href="#products">产品矩阵</a>
+            <a href="#pain">痛点直击</a>
             <a href="#features">核心能力</a>
-            <a href="#data">实战数据</a>
-            <a href="#comparison">对比</a>
-            <a href="http://hr.zhimai-ai.cn" class="btn-primary" target="_blank">进入系统</a>
+            <a href="#scenario">场景演示</a>
+            <a href="#trust">安全与信任</a>
+            <a href="http://hr.zhimai-ai.cn" class="btn-primary" target="_blank">立即体验</a>
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- ===== Hero ===== -->
     <section class="hero">
         <div class="hero-badge">
             <span class="dot"></span>
-            三大产品矩阵 · AI Native驱动人才全链路
+            AI Native · 专为精英猎头与独立HR打造
         </div>
         <h1>
-            人才智能，<br>从<span class="gradient-text">AI决策</span>开始
+            直觉AI ——<br>你的<span class="gradient-text">私人超级招聘大脑</span>
         </h1>
         <p>
-            职觉云图 (ZhiJue CloudMap) 旗下三大产品——智能招聘、简历云图、职业潜能，AI Native全链路驱动，覆盖人才获取、管理、评估全场景，让招聘迈入全新时代。
+            让每一份沉睡的简历苏醒，一键生成行业人才地图。专为精英猎头与独立HR打造的云端智能工作台。
         </p>
         <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
-            <a href="javascript:showContact()" class="btn-primary" style="padding:14px 32px;font-size:16px;">预约演示</a>
-            <a href="#products" class="btn-secondary" style="padding:14px 32px;font-size:16px;">了解产品</a>
+            <a href="http://47.110.151.230:8080/login-db" class="btn-primary" style="padding:14px 32px;font-size:16px;" target="_blank">立即免费体验</a>
+            <a href="#pain" class="btn-secondary" style="padding:14px 32px;font-size:16px;">上传第一份简历</a>
         </div>
         <div class="hero-stats">
             <div class="hero-stat">
                 <div class="number" data-count="8" data-suffix="s" data-decimal="0">0s</div>
-                <div class="label">单份简历AI分析</div>
+                <div class="label">单份简历AI解析</div>
             </div>
             <div class="hero-stat">
-                <div class="number" data-count="69.5" data-suffix="%" data-decimal="1">0%</div>
-                <div class="label">高匹配率 (≥80分)</div>
+                <div class="number" data-count="1000" data-suffix="+" data-decimal="0">0+</div>
+                <div class="label">简历智能管理</div>
             </div>
             <div class="hero-stat">
-                <div class="number" data-count="3950" data-suffix="+" data-decimal="0">0+</div>
-                <div class="label">简历处理总量</div>
-            </div>
-            <div class="hero-stat">
-                <div class="number" data-count="210" data-suffix="" data-decimal="0">0</div>
+                <div class="number" data-count="21" data-suffix="个" data-decimal="0">0个</div>
                 <div class="label">标准岗位覆盖</div>
+            </div>
+            <div class="hero-stat">
+                <div class="number" data-count="3" data-suffix="大产品" data-decimal="0">0大产品</div>
+                <div class="label">AI产品矩阵</div>
             </div>
         </div>
     </section>
 
-    <!-- 产品矩阵 -->
-    <section id="products" style="padding:100px 40px;">
+    <!-- ===== 痛点直击 ===== -->
+    <section id="pain" style="background:var(--bg-tertiary);">
+        <div class="section-header fade-in">
+            <div class="section-tag">Pain Points</div>
+            <h2>为什么你需要<span class="gradient-text">直觉AI</span>？</h2>
+            <p>三个反问，击中你最焦虑的招聘场景</p>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;max-width:1200px;margin:0 auto;">
+            <div class="pain-card fade-in">
+                <div style="font-size:40px;margin-bottom:16px;">📁</div>
+                <div class="pain-q">简历越存越多，找人却越来越难？</div>
+                <div class="pain-a">手里几千份PDF/Word简历躺在硬盘里吃灰？换个工作环境就丢失了人脉？<strong style="color:#6c5ce7">直觉AI</strong>帮你把本地文件变成云端searchable的智能人才库。</div>
+            </div>
+            <div class="pain-card fade-in">
+                <div style="font-size:40px;margin-bottom:16px;">🗺️</div>
+                <div class="pain-q">做Mapping太慢，还在手动拼凑架构图？</div>
+                <div class="pain-a">想了解竞对公司的组织架构，还要靠一个个打电话去猜？<strong style="color:#6c5ce7">AI自动</strong>从简历碎片中还原组织关系，秒级生成行业图谱。</div>
+            </div>
+            <div class="pain-card fade-in">
+                <div style="font-size:40px;margin-bottom:16px;">👀</div>
+                <div class="pain-q">JD匹配太累，眼睛都要看瞎了？</div>
+                <div class="pain-a">每天面对海量不匹配的简历？把JD丢给AI，它比你更懂什么样的候选人是<strong style="color:#6c5ce7">"完美匹配"</strong>，并自动打分排序。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 核心功能 ===== -->
+    <section id="features">
+        <div class="section-header fade-in">
+            <div class="section-tag">Core Features</div>
+            <h2>三大核心引擎，<span class="gradient-text">重新定义招聘</span></h2>
+            <p>对应你的三大痛点，用更具科技感和价值感的方式解决</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card fade-in">
+                <div class="feature-icon purple">🧠</div>
+                <h3>简历资产化引擎 <span style="font-size:11px;padding:2px 8px;background:rgba(108,92,231,0.15);color:#6c5ce7;border-radius:10px;margin-left:6px">Resume Asset Engine</span></h3>
+                <p>你的简历库就是你的核心资产，让它真正为你工作。</p>
+                <ul>
+                    <li><strong>多格式秒级解析</strong>：支持PDF、Word、图片甚至微信截图，一键上传，结构化提取关键信息</li>
+                    <li><strong>私有云安全存储</strong>：银行级加密存储，只有你能访问，跳槽带得走，随时搜得到</li>
+                    <li><strong>智能标签体系</strong>：自动打上"擅长技术栈"、"离职倾向"、"薪资范围"等隐性标签，搜索不再只靠关键词</li>
+                    <li><strong>邮箱自动入库</strong>：BOSS直聘、脉脉简历邮件自动识别拉取，零人工介入</li>
+                </ul>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon cyan">🎯</div>
+                <h3>极速智能寻访 <span style="font-size:11px;padding:2px 8px;background:rgba(0,206,201,0.15);color:#00cec9;border-radius:10px;margin-left:6px">Smart Sourcing</span></h3>
+                <p>不是关键词匹配，是真正理解你的意图。</p>
+                <ul>
+                    <li><strong>语义搜索</strong>：输入"找一个做过高并发电商系统的Java专家"，而不是死板的"Java+5年"</li>
+                    <li><strong>JD逆向匹配</strong>：上传职位描述，AI自动在你的库里全员扫描，按匹配度从高到低推荐</li>
+                    <li><strong>推荐理由透明</strong>：告诉你为什么匹配——"该候选人曾在竞品公司负责同类项目"</li>
+                    <li><strong>0-100分精准量化</strong>：每个分数段有明确锚点，告别"感觉还行"</li>
+                </ul>
+            </div>
+            <div class="feature-card fade-in">
+                <div class="feature-icon pink">🗺️</div>
+                <h3>竞对与行业图谱 <span style="font-size:11px;padding:2px 8px;background:rgba(253,121,168,0.15);color:#fd79a8;border-radius:10px;margin-left:6px">Market Intelligence</span></h3>
+                <p>看清行业人才全景，决策更有底气。</p>
+                <ul>
+                    <li><strong>组织关系自动还原</strong>：基于简历中的汇报关系、项目经历，AI自动推导并绘制目标公司部门架构图</li>
+                    <li><strong>人才流动热力图</strong>：分析行业内人才的流向趋势，哪家在裁员、哪家在扩张一目了然</li>
+                    <li><strong>薪酬透视</strong>：基于真实简历数据，生成特定岗位的市场薪酬分位值，谈薪更有底气</li>
+                    <li><strong>标签可点击下钻</strong>：地区、职类、行业、技能……每个数字都可点击跳转到具体简历</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- AI助手演示 -->
+        <div class="ai-demo fade-in" style="margin-top:48px;">
+            <div class="ai-demo-header">
+                <span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span>
+                <span style="margin-left:8px;">直觉AI · 智能助手</span>
+            </div>
+            <div class="ai-demo-body">
+                <div class="ai-msg ai-msg-user">
+                    <div class="ai-avatar ai-avatar-user">👤</div>
+                    <div class="ai-bubble ai-bubble-user">帮我分析一下这份简历的稳定性风险。</div>
+                </div>
+                <div class="ai-msg ai-msg-ai" style="margin-top:16px;">
+                    <div class="ai-avatar ai-avatar-ai">🤖</div>
+                    <div class="ai-bubble ai-bubble-ai">
+                        该候选人在过去5年内换了<span class="warn">4份工作</span>，平均每份时长<span class="warn">1.2年</span>，且多为跨行业跳槽，<span class="warn">稳定性风险较高</span>。<br><br>
+                        💡 建议：面试时重点询问<span class="highlight">离职原因及职业规划</span>，关注其跳槽动机是主动寻求挑战还是被动逃避。<br><br>
+                        📊 同岗位候选人平均在职时长：<span class="highlight">2.8年</span>，该候选人低于行业均值57%。
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 场景演示 ===== -->
+    <section id="scenario" style="background:var(--bg-tertiary);">
+        <div class="section-header fade-in">
+            <div class="section-tag">Workflow</div>
+            <h2>接到紧急Case？<span class="gradient-text">5步搞定</span></h2>
+            <p>展示一个具体的"爽点"流程，让你有画面感</p>
+        </div>
+        <div class="scenario-box fade-in">
+            <div style="font-size:13px;color:var(--text-muted);margin-bottom:24px;text-align:center;">场景：接到一个紧急的高端职位Case</div>
+            <div class="scenario-step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>📥 上传</h4>
+                    <p>将手头积累的500份相关领域简历拖入直觉AI，支持PDF/Word/图片批量上传。</p>
+                </div>
+            </div>
+            <div class="scenario-step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>🧠 解析</h4>
+                    <p>喝口水的功夫，AI已完成所有简历的结构化和标签化，20+字段精准提取。</p>
+                </div>
+            </div>
+            <div class="scenario-step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>💬 提问</h4>
+                    <p>在对话框输入："帮我找出这500人里，最近半年有看机会，且目前薪资在30k-40k之间的产品经理。"</p>
+                </div>
+            </div>
+            <div class="scenario-step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h4>📋 结果</h4>
+                    <p>系统立刻列出Top 5候选人，并附带一份简短的《候选人优势分析报告》。</p>
+                </div>
+            </div>
+            <div class="scenario-step">
+                <div class="step-num">5</div>
+                <div class="step-content">
+                    <h4>🔍 洞察</h4>
+                    <p>点击"查看竞对分析"，发现这几个人都来自同一家公司的同一个事业部——推测该部门可能有动荡，机会窗口已打开。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== 三大产品矩阵 ===== -->
+    <section id="products">
         <div class="section-header fade-in">
             <div class="section-tag">Product Matrix</div>
             <h2>三大产品，一个生态</h2>
             <p>从招聘到简历管理到职业评估，AI贯穿人才全生命周期</p>
         </div>
-
         <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:1200px;margin:0 auto;">
-            <!-- 智脉AI -->
             <div class="fade-in" style="background:var(--bg-secondary);border:1px solid rgba(108,92,231,0.15);border-radius:20px;padding:40px 32px;position:relative;overflow:hidden;transition:all 0.3s;">
                 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#6c5ce7,#a29bfe);"></div>
                 <div style="width:56px;height:56px;border-radius:16px;background:rgba(108,92,231,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">🎯</div>
                 <h3 style="font-size:24px;font-weight:800;margin-bottom:4px;">智脉AI</h3>
-                <div style="font-size:13px;color:var(--accent-purple);font-weight:600;margin-bottom:16px;">企业智能招聘管理系统</div>
-                <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
-                    重新定义招聘流程——从简历入库到面试决策，全链路AI驱动。全新多轮面试记录，让每一次人才判断都精准、高效、可追溯。
-                </p>
+                <div style="font-size:13px;color:#6c5ce7;font-weight:600;margin-bottom:16px;">企业智能招聘管理系统</div>
+                <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">全链路AI驱动——从简历入库到面试决策，多轮面试记录、面试官协同、邮件自动入库，让每一次人才判断都精准高效。</p>
                 <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
-                    <span style="padding:4px 10px;background:rgba(108,92,231,0.08);border-radius:6px;font-size:12px;color:var(--accent-purple);font-weight:500;">AI简历分析</span>
-                    <span style="padding:4px 10px;background:rgba(108,92,231,0.08);border-radius:6px;font-size:12px;color:var(--accent-purple);font-weight:500;">多轮面试</span>
-                    <span style="padding:4px 10px;background:rgba(108,92,231,0.08);border-radius:6px;font-size:12px;color:var(--accent-purple);font-weight:500;">面试官协同</span>
-                    <span style="padding:4px 10px;background:rgba(108,92,231,0.08);border-radius:6px;font-size:12px;color:var(--accent-purple);font-weight:500;">邮件自动入库</span>
+                    <span style="padding:4px 10px;background:rgba(108,92,231,0.08);border-radius:6px;font-size:12px;color:#6c5ce7;font-weight:500;">AI简历分析</span>
+                    <span style="padding:4px 10px;background:rgba(108,92,231,0.08);border-radius:6px;font-size:12px;color:#6c5ce7;font-weight:500;">多轮面试</span>
+                    <span style="padding:4px 10px;background:rgba(108,92,231,0.08);border-radius:6px;font-size:12px;color:#6c5ce7;font-weight:500;">面试官协同</span>
+                    <span style="padding:4px 10px;background:rgba(108,92,231,0.08);border-radius:6px;font-size:12px;color:#6c5ce7;font-weight:500;">邮件自动入库</span>
                 </div>
                 <a href="http://hr.zhimai-ai.cn" target="_blank" class="btn-primary" style="width:100%;text-align:center;padding:12px 0;">进入智脉AI →</a>
             </div>
-
-            <!-- 职觉AI -->
             <div class="fade-in" style="background:var(--bg-secondary);border:1px solid rgba(0,206,201,0.15);border-radius:20px;padding:40px 32px;position:relative;overflow:hidden;transition:all 0.3s;">
                 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#00cec9,#55efc4);"></div>
                 <div style="width:56px;height:56px;border-radius:16px;background:rgba(0,206,201,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">📁</div>
                 <h3 style="font-size:24px;font-weight:800;margin-bottom:4px;">职觉AI</h3>
-                <div style="font-size:13px;color:var(--accent-teal);font-weight:600;margin-bottom:16px;">职觉云图</div>
-                <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
-                    专为HR和猎头打造的AI人才云图平台。人才Mapping驾驶舱、AI人岗匹配、模板AI生成、多维智能检索，你的人才数据尽在掌控。
-                </p>
+                <div style="font-size:13px;color:#00cec9;font-weight:600;margin-bottom:16px;">AI人才云图平台</div>
+                <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">专为HR和猎头打造——人才Mapping驾驶舱、AI人岗匹配、模板AI生成、多维智能检索，你的人才数据尽在掌控。</p>
                 <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
-                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:var(--accent-teal);font-weight:500;">私有加密</span>
-                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:var(--accent-teal);font-weight:500;">AI智能检索</span>
-                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:var(--accent-teal);font-weight:500;">人才Mapping</span>
-                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:var(--accent-teal);font-weight:500;">模板AI生成</span>
-                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:var(--accent-teal);font-weight:500;">标签管理</span>
+                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:#00cec9;font-weight:500;">私有加密</span>
+                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:#00cec9;font-weight:500;">AI智能检索</span>
+                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:#00cec9;font-weight:500;">人才Mapping</span>
+                    <span style="padding:4px 10px;background:rgba(0,206,201,0.08);border-radius:6px;font-size:12px;color:#00cec9;font-weight:500;">邮件拉取</span>
                 </div>
                 <a href="http://47.110.151.230:8080/login-db" target="_blank" class="btn-primary" style="width:100%;text-align:center;padding:12px 0;background:linear-gradient(135deg,#00cec9,#55efc4);">进入职觉AI →</a>
             </div>
-
-            <!-- 知脉AI -->
             <div class="fade-in" style="background:var(--bg-secondary);border:1px solid rgba(253,121,168,0.15);border-radius:20px;padding:40px 32px;position:relative;overflow:hidden;transition:all 0.3s;">
                 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#fd79a8,#e84393);"></div>
                 <div style="width:56px;height:56px;border-radius:16px;background:rgba(253,121,168,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">🔍</div>
                 <h3 style="font-size:24px;font-weight:800;margin-bottom:4px;">知脉AI</h3>
-                <div style="font-size:13px;color:var(--accent-pink);font-weight:600;margin-bottom:16px;">知己知彼</div>
-                <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
-                    发现你的职业潜能，全方位解析简历，智能评估优劣势，精准匹配岗位，让每一次求职都更有底气，知己知彼才能百战百胜。
-                </p>
+                <div style="font-size:13px;color:#fd79a8;font-weight:600;margin-bottom:16px;">知己知彼·职业潜能</div>
+                <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">发现职业潜能——全方位解析简历，智能评估优劣势，精准匹配岗位，让每一次求职都更有底气。</p>
                 <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;">
-                    <span style="padding:4px 10px;background:rgba(253,121,168,0.08);border-radius:6px;font-size:12px;color:var(--accent-pink);font-weight:500;">TRIMG五维评估</span>
-                    <span style="padding:4px 10px;background:rgba(253,121,168,0.08);border-radius:6px;font-size:12px;color:var(--accent-pink);font-weight:500;">岗位匹配</span>
-                    <span style="padding:4px 10px;background:rgba(253,121,168,0.08);border-radius:6px;font-size:12px;color:var(--accent-pink);font-weight:500;">优劣势分析</span>
-                    <span style="padding:4px 10px;background:rgba(253,121,168,0.08);border-radius:6px;font-size:12px;color:var(--accent-pink);font-weight:500;">职业建议</span>
+                    <span style="padding:4px 10px;background:rgba(253,121,168,0.08);border-radius:6px;font-size:12px;color:#fd79a8;font-weight:500;">TRIMG五维评估</span>
+                    <span style="padding:4px 10px;background:rgba(253,121,168,0.08);border-radius:6px;font-size:12px;color:#fd79a8;font-weight:500;">岗位匹配</span>
+                    <span style="padding:4px 10px;background:rgba(253,121,168,0.08);border-radius:6px;font-size:12px;color:#fd79a8;font-weight:500;">优劣势分析</span>
+                    <span style="padding:4px 10px;background:rgba(253,121,168,0.08);border-radius:6px;font-size:12px;color:#fd79a8;font-weight:500;">职业建议</span>
                 </div>
                 <a href="http://47.110.151.230:8080/job-ai/" target="_blank" class="btn-primary" style="width:100%;text-align:center;padding:12px 0;background:linear-gradient(135deg,#fd79a8,#e84393);">进入知脉AI →</a>
             </div>
         </div>
     </section>
 
-    <!-- Features -->
-    <section id="features">
+    <!-- ===== 价值主张 ===== -->
+    <section id="value">
         <div class="section-header fade-in">
-            <div class="section-tag">AI Native</div>
-            <h2>十二大核心能力</h2>
-            <p>AI Native全链路驱动，让招聘迈入全新时代</p>
+            <div class="section-tag">Value Proposition</div>
+            <h2>不同人群，<span class="gradient-text">同一个直觉AI</span></h2>
+            <p>无论你是谁，直觉AI都能为你创造独特价值</p>
         </div>
-
-        <div class="features-grid">
-            <div class="feature-card fade-in">
-                <div class="feature-icon purple">🧠</div>
-                <h3>AI简历智能分析</h3>
-                <p>不是关键词匹配，是真正的理解。基于大语言模型深度解析简历内容，像资深猎头一样读懂每一份简历。</p>
-                <ul>
-                    <li>0-100分精准量化评分，每个分数段有明确锚点</li>
-                    <li>21个标准岗位精准归一化匹配</li>
-                    <li>自动识别方向偏差、经验不足等风险</li>
-                    <li>候选人画像一键结构化输出</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon cyan">📬</div>
-                <h3>邮箱自动入库</h3>
-                <p>简历从邮箱到系统，零人工介入。BOSS直聘、猎聘等平台简历邮件自动识别、自动解析。</p>
-                <ul>
-                    <li>一键同步，增量获取，不浪费算力</li>
-                    <li>智能过滤非简历邮件（安全报告/通知）</li>
-                    <li>扫描件自动识别标记，跳过无效分析</li>
-                    <li>支持PDF/Word，docx自动转HTML预览</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon pink">👥</div>
-                <h3>面试官协同系统</h3>
-                <p>每位面试官专属入口，只看自己负责岗位的简历，一键操作，反馈秒级同步。</p>
-                <ul>
-                    <li>初试/复试分流，通过自动流转</li>
-                    <li>铃铛聚合通知，操作实时同步HR端</li>
-                    <li>微信浏览器完美适配</li>
-                    <li>面试日历按月可视化</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon orange">📊</div>
-                <h3>招聘驾驶舱</h3>
-                <p>实时数据看板，从简历入库到入职全流程可视化，招聘漏斗一目了然。</p>
-                <ul>
-                    <li>推荐→初试→复试→OFFER→入职转化率</li>
-                    <li>按面试官查看操作记录</li>
-                    <li>21个岗位独立统计</li>
-                    <li>最近动态实时滚动</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon green">📌</div>
-                <h3>多轮面试记录 <span style="font-size:11px;padding:2px 8px;background:rgba(108,92,231,0.15);color:#6c5ce7;border-radius:10px;margin-left:6px">NEW</span></h3>
-                <p>面试反馈从单条升级为完整链路，每轮面试独立记录，HR和面试官操作自动归档。</p>
-                <ul>
-                    <li>初试→复试→OFFER全链路可追溯</li>
-                    <li>每轮记录面试官、结果、时间</li>
-                    <li>OFFER弹窗填写薪资/入职日期</li>
-                    <li>7种状态标签全覆盖，一眼区分阶段</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon blue">☁️</div>
-                <h3>职觉云图 <span style="font-size:11px;padding:2px 8px;background:rgba(108,92,231,0.15);color:#6c5ce7;border-radius:10px;margin-left:6px">NEW</span></h3>
-                <p>职觉云图旗下核心产品，HR和猎头的AI简历智能平台。私密云存储+AI解析+人才Mapping+模板AI生成，你的人才数据驾驶舱。</p>
-                <ul>
-                    <li>私有库加密存储，数据仅你可见</li>
-                    <li>AI智能解析20+字段，8秒提取关键信息</li>
-                    <li>多格式支持：PDF/Word/图片一键入库</li>
-                    <li>企业级数据隔离，银行级隐私保护</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon" style="background:rgba(108,92,231,0.15)">🔗</div>
-                <h3>猎头协作平台</h3>
-                <p>猎头独立入口，简历自动归因。每位猎头专属邀请码，提交的简历自动标记来源。</p>
-                <ul>
-                    <li>猎头通过邀请码登录，只看自己提交的</li>
-                    <li>每份简历标记猎头来源，录用可追溯</li>
-                    <li>猎头实时查看简历处理进度</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon" style="background:rgba(0,206,201,0.15)">🏗️</div>
-                <h3>多租户架构</h3>
-                <p>一套系统服务多家企业，数据完全隔离。A公司的简历，B公司连影子都看不到。</p>
-                <ul>
-                    <li>独立数据库、独立邮箱配置</li>
-                    <li>独立岗位体系、独立用户体系</li>
-                    <li>API层强制校验，越权访问零可能</li>
-                    <li>按需AI调度，零算力浪费</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon" style="background:rgba(253,121,168,0.15)">🔬</div>
-                <h3>知脉AI深度解读 <span style="font-size:11px;padding:2px 8px;background:rgba(253,121,168,0.15);color:#fd79a8;border-radius:10px;margin-left:6px">AI Native</span></h3>
-                <p>不只是评分，是真正的"读懂"。大模型像资深猎头一样深度解读简历，洞察候选人职业轨迹与成长潜力。</p>
-                <ul>
-                    <li>TRIMG五维胜任力模型，科学量化人才画像</li>
-                    <li>职业轨迹分析，预测成长天花板</li>
-                    <li>竞争力优劣势对比，精准定位人才价值</li>
-                    <li>简历优化建议，帮助候选人提升竞争力</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon" style="background:rgba(108,92,231,0.15)">🧩</div>
-                <h3>上下文智能解析 <span style="font-size:11px;padding:2px 8px;background:rgba(108,92,231,0.15);color:#6c5ce7;border-radius:10px;margin-left:6px">AI Native</span></h3>
-                <p>理解上下文，而非提取关键词。AI结合岗位需求、行业背景、公司阶段，给出真正有价值的分析判断。</p>
-                <ul>
-                    <li>岗位上下文感知，同一简历不同岗位不同评分</li>
-                    <li>行业背景理解，AI识别跨行业可迁移能力</li>
-                    <li>公司阶段匹配，初创期vs成熟期人才需求差异</li>
-                    <li>上下文推理，从经历推断隐性能力</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon" style="background:rgba(0,206,201,0.15)">⚡</div>
-                <h3>AI Native智能助手 <span style="font-size:11px;padding:2px 8px;background:rgba(0,206,201,0.15);color:#00cec9;border-radius:10px;margin-left:6px">AI Native</span></h3>
-                <p>AI不是工具，是同事。内嵌智能助手随时响应，从数据洞察到决策建议，让HR拥有AI副驾。</p>
-                <ul>
-                    <li>自然语言交互，提问即获取洞察</li>
-                    <li>今日简报/最佳人选/漏斗分析一键触达</li>
-                    <li>候选人上下文自动注入，AI理解当前场景</li>
-                    <li>面试问题生成，面试官即问即答</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon" style="background:rgba(255,165,0,0.15)">🔄</div>
-                <h3>AI自进化引擎 <span style="font-size:11px;padding:2px 8px;background:rgba(255,165,0,0.15);color:#ffa502;border-radius:10px;margin-left:6px">AI Native</span></h3>
-                <p>系统越用越聪明。基于面试官反馈持续校准评分模型，AI评分与人工判断的一致性持续提升。</p>
-                <ul>
-                    <li>面试官反馈自动回流，评分模型持续迭代</li>
-                    <li>岗位匹配规则自优化，减少误判率</li>
-                    <li>垃圾数据智能识别，算力零浪费</li>
-                    <li>多租户独立进化，每家企业AI模型独立优化</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Data -->
-    <section id="data">
-        <div class="section-header fade-in">
-            <div class="section-tag">Live Data</div>
-            <h2>实战数据，不是PPT数字</h2>
-            <p>来自真实客户的招聘数据，每一项都经过验证</p>
-        </div>
-
-        <div class="data-grid fade-in">
-            <div class="data-card">
-                <div class="number" data-count="3950" data-suffix="份" data-decimal="0">0<span class="unit">份</span></div>
-                <div class="label">简历处理总量</div>
-            </div>
-            <div class="data-card">
-                <div class="number" data-count="94" data-suffix="%" data-decimal="0">0<span class="unit">%</span></div>
-                <div class="label">AI全量分析率</div>
-            </div>
-            <div class="data-card">
-                <div class="number" data-count="69.5" data-suffix="%" data-decimal="1">0<span class="unit">%</span></div>
-                <div class="label">高匹配率 (≥80分)</div>
-            </div>
-            <div class="data-card">
-                <div class="number" data-count="8" data-suffix="秒" data-decimal="0">0<span class="unit">秒</span></div>
-                <div class="label">单份AI分析耗时</div>
-            </div>
-            <div class="data-card">
-                <div class="number" data-count="210" data-suffix="个" data-decimal="0">0<span class="unit">个</span></div>
-                <div class="label">标准岗位覆盖</div>
-            </div>
-            <div class="data-card">
-                <div class="number" data-count="2550" data-suffix="份" data-decimal="0">0<span class="unit">份</span></div>
-                <div class="label">面试官反馈覆盖</div>
-            </div>
-            <div class="data-card">
-                <div class="number" data-count="60" data-suffix="人" data-decimal="0">0<span class="unit">人</span></div>
-                <div class="label">面试官协同</div>
-            </div>
-            <div class="data-card">
-                <div class="number" data-count="3" data-suffix="步" data-decimal="0">0<span class="unit">步</span></div>
-                <div class="label">推荐→面试→入职</div>
-            </div>
-        </div>
-    </section>
-    <!-- Trust -->
-    <section style="padding:80px 40px;background:var(--bg-tertiary);">
-        <div class="section-header fade-in">
-            <div class="section-tag">Trusted By</div>
-            <h2>他们都在用职觉云图</h2>
-            <p>从AI创业公司到传统企业，人才智能决策正在成为标配</p>
-        </div>
-        <div style="display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap;max-width:800px;margin:0 auto 48px;">
-            <div style="padding:12px 28px;border-radius:12px;background:var(--bg-secondary);border:1px solid var(--card-border);font-size:16px;font-weight:700;color:var(--text-primary);letter-spacing:1px;">卓世科技</div>
-            <div style="padding:12px 28px;border-radius:12px;background:var(--bg-secondary);border:1px solid var(--card-border);font-size:16px;font-weight:700;color:var(--text-primary);letter-spacing:1px;">智脉AI</div>
-            <div style="padding:12px 28px;border-radius:12px;background:rgba(108,92,231,0.08);border:1px dashed rgba(108,92,231,0.3);font-size:14px;font-weight:600;color:var(--accent-purple);letter-spacing:1px;">你的公司？</div>
-        </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:40px auto 0;">
-            <div class="fade-in" style="background:var(--bg-secondary);border-radius:16px;padding:28px;border:1px solid var(--card-border);">
-                <div style="font-size:36px;margin-bottom:12px;">🎯</div>
-                <div style="font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);">AI公司 · CTO招聘</div>
-                <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;">"8秒完成简历分析，AI评分与人工判断高度一致，招聘效率提升3倍"</div>
-            </div>
-            <div class="fade-in" style="background:var(--bg-secondary);border-radius:16px;padding:28px;border:1px solid var(--card-border);">
-                <div style="font-size:36px;margin-bottom:12px;">🤖</div>
-                <div style="font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);">具身智能 · 多岗位</div>
-                <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;">"21个标准岗位自动匹配，面试官协同零延迟，从投递到面试1天搞定"</div>
-            </div>
-            <div class="fade-in" style="background:var(--bg-secondary);border-radius:16px;padding:28px;border:1px solid var(--card-border);">
-                <div style="font-size:36px;margin-bottom:12px;">📊</div>
-                <div style="font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);">猎头机构 · 简历管理</div>
-                <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;">"简历库共享+积分体系，人才资产不再沉睡，每份简历都被充分利用"</div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- Comparison -->
-    <section id="comparison">
-        <div class="section-header fade-in">
-            <div class="section-tag">VS</div>
-            <h2>传统招聘 vs 职觉云图</h2>
-            <p>不是渐进式改进，是范式级跃迁</p>
-        </div>
-
-        <div class="comparison fade-in">
-            <table class="comparison-table">
+        <div class="fade-in" style="max-width:900px;margin:0 auto;">
+            <table class="vp-table">
                 <thead>
                     <tr>
-                        <th>场景</th>
-                        <th>传统招聘</th>
-                        <th>智脉AI</th>
+                        <th>目标人群</th>
+                        <th>核心诉求</th>
+                        <th>直觉AI的价值</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>简历筛选</td>
-                        <td>HR手动下载、逐份阅读</td>
-                        <td>邮箱自动入库，AI 8秒出分析</td>
+                        <td>🎯 独立猎头 / RPO</td>
+                        <td>交付速度、简历利用率</td>
+                        <td>把过去的积累变现，减少重复劳动，比别人更快推荐候选人</td>
                     </tr>
                     <tr>
-                        <td>候选人评估</td>
-                        <td>凭感觉判断匹配度</td>
-                        <td>0-100分量化评分，有锚点有依据</td>
+                        <td>🏢 企业HR / HRBP</td>
+                        <td>人才Mapping、被动求职者挖掘</td>
+                        <td>建立企业私有人才池，不依赖招聘网站，低成本触达被动求职者</td>
                     </tr>
                     <tr>
-                        <td>面试官反馈</td>
-                        <td>靠微信催，口头反馈</td>
-                        <td>专属入口一键操作，实时同步</td>
-                    </tr>
-                    <tr>
-                        <td>进度统计</td>
-                        <td>Excel手动统计</td>
-                        <td>驾驶舱实时漏斗，岗位维度下钻</td>
-                    </tr>
-                    <tr>
-                        <td>猎头管理</td>
-                        <td>简历无法归因</td>
-                        <td>邀请码自动标记，进度实时可查</td>
-                    </tr>
-                    <tr>
-                        <td>多客户服务</td>
-                        <td>一套系统只能一家用</td>
-                        <td>多租户架构，数据物理隔离</td>
+                        <td>👔 招聘经理 / Boss</td>
+                        <td>决策辅助、市场洞察</td>
+                        <td>清晰看到市场上到底有多少人可用，竞争对手都在怎么布局</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </section>
 
-    <!-- Architecture -->
-    <section id="architecture">
+    <!-- ===== 信任背书 ===== -->
+    <section id="trust" style="background:var(--bg-tertiary);">
         <div class="section-header fade-in">
-            <div class="section-tag">Architecture</div>
-            <h2>产品架构</h2>
-            <p>分层设计，AI引擎贯穿全流程</p>
+            <div class="section-tag">Security & Trust</div>
+            <h2>安全与信任</h2>
+            <p>你的简历数据，比你自己更在意</p>
         </div>
-
-        <div class="arch-box fade-in">
-            <div class="arch-layer top">
-                <div class="title">交互层 · 五端协同</div>
-                <div class="desc">HR管理端 · 面试官端 · 猎头端 · 管理后台</div>
+        <div class="trust-grid">
+            <div class="trust-card fade-in">
+                <div class="trust-icon">🔒</div>
+                <h4>数据隐私至上</h4>
+                <p>我们承诺绝不使用您的私有简历数据训练公共模型。您的数据仅属于您自己，银行级加密存储。</p>
             </div>
-            <div class="arch-layer mid">
-                <div class="title">AI 引擎层 · 大模型驱动</div>
-                <div class="desc">简历深度分析 · 智能评分 · 岗位匹配 · 风险评估 · 候选人画像 · 上下文解析 · AI Native助手 · 自进化引擎</div>
+            <div class="trust-card fade-in">
+                <div class="trust-icon">📱</div>
+                <h4>多端同步</h4>
+                <p>电脑端深度工作，手机端随时随地查看候选人详情、接收AI推送的匹配提醒。</p>
             </div>
-            <div class="arch-layer bot">
-                <div class="title">数据与集成层 · 安全可靠</div>
-                <div class="desc">邮箱自动拉取 · PDF智能解析 · 多租户数据隔离 · 积分体系 · 按需AI调度</div>
+            <div class="trust-card fade-in">
+                <div class="trust-icon">📤</div>
+                <h4>导出自由</h4>
+                <p>支持一键导出整理好的候选人报表（Excel/PDF），方便向客户或上级汇报。</p>
             </div>
         </div>
-    </section>
-
-    <!-- CTA -->
-    
-    <!-- 职觉AI - 职觉云图 -->
-    <section id="resumecloud" style="background:var(--bg-tertiary);padding:100px 40px;">
-        <div style="max-width:1100px;margin:0 auto;">
-            <div class="section-header fade-in" style="text-align:center;margin-bottom:60px;">
-                <div class="section-tag" style="background:rgba(0,206,201,0.1);color:var(--accent-teal);">独立产品</div>
-                <h2 style="margin-top:16px;">职觉AI · 职觉云图</h2>
-                <p style="color:var(--text-secondary);max-width:600px;margin:12px auto 0;font-size:17px;line-height:1.7;">
-                    专为HR和猎头打造的<strong style="color:var(--text-primary)">AI人才云图平台</strong>。<br>
-                    人才数据，尽在掌控。
-                </p>
-            </div>
-
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
-                <!-- 左侧：核心卖点 -->
-                <div class="fade-in">
-                    <div style="margin-bottom:32px;">
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <span style="font-size:28px;">🔒</span>
-                            <h3 style="font-size:20px;font-weight:700;margin:0;">私密至上，数据主权归你</h3>
-                        </div>
-                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
-                            私有库简历加密存储，未经授权任何人无法查看。<br>
-                            企业级多租户数据隔离，你的简历库就是你的保险箱。
-                        </p>
-                    </div>
-                    <div style="margin-bottom:32px;">
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <span style="font-size:28px;">🤖</span>
-                            <h3 style="font-size:20px;font-weight:700;margin:0;">AI解析，8秒提取20+字段</h3>
-                        </div>
-                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
-                            PDF/Word/图片一键入库，AI自动提取姓名、学历、工作经历等20+关键字段。<br>
-                            告别手动录入，让每一份简历都结构化可检索。
-                        </p>
-                    </div>
-                    <div style="margin-bottom:32px;">
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <span style="font-size:28px;">🛡️</span>
-                            <h3 style="font-size:20px;font-weight:700;margin:0;">安全合规，银行级保护</h3>
-                        </div>
-                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
-                            传输加密 + 存储加密 + 访问鉴权三重保障。<br>
-                            操作日志全程可追溯，符合个人信息保护法要求。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 右侧：功能卡片 -->
-                <div class="fade-in" style="display:flex;flex-direction:column;gap:16px;">
-                    <div style="background:var(--card);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #6c5ce7;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">📁 私有库</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">你的专属简历保险箱，上传即加密，仅你可见可管理</div>
-                    </div>
-                    <div style="background:var(--card);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #00cec9;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">🔍 AI智能检索</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">按岗位、学历、经验、技能多维度筛选，秒级定位目标候选人</div>
-                    </div>
-                    <div style="background:var(--card);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #fd79a8;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">🌐 人才Mapping</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">公司分布、学历结构、技能画像、组织架构脑图，人才数据驾驶舱</div>
-                    </div>
-                    <div style="background:var(--card);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #ffa502;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">📋 模板AI生成</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">经典简约/科技现代/高端猎头三种模板，一键生成专业简历报告</div>
-                    </div>
-                    <div style="background:var(--card);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #10b981;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">🎯 AI人岗匹配</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">人匹配岗/岗匹配人双向智能推荐，精准定位最佳人选</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align:center;margin-top:48px;" class="fade-in">
-                <a href="http://47.110.151.230:8080/login-db" target="_blank" class="btn-primary" style="padding:14px 36px;font-size:16px;background:linear-gradient(135deg,#00cec9,#55efc4);">进入职觉AI</a>
-                <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">职觉AI · 职觉云图，独立发布中</p>
-            </div>
+        <div style="display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap;max-width:600px;margin:48px auto 0;">
+            <div style="padding:12px 28px;border-radius:12px;background:var(--bg-secondary);border:1px solid var(--card-border);font-size:16px;font-weight:700;color:var(--text-primary);letter-spacing:1px;">卓世科技</div>
+            <div style="padding:12px 28px;border-radius:12px;background:rgba(108,92,231,0.08);border:1px dashed rgba(108,92,231,0.3);font-size:14px;font-weight:600;color:#6c5ce7;letter-spacing:1px;">你的公司？</div>
         </div>
     </section>
 
-
-    <!-- 知脉AI - 知己知彼 -->
-    <section id="zhimai-job" style="padding:100px 40px;">
-        <div style="max-width:1100px;margin:0 auto;">
-            <div class="section-header fade-in" style="text-align:center;margin-bottom:60px;">
-                <div class="section-tag" style="background:rgba(253,121,168,0.1);color:var(--accent-pink);">独立产品</div>
-                <h2 style="margin-top:16px;">知脉AI · 知己知彼</h2>
-                <p style="color:var(--text-secondary);max-width:600px;margin:12px auto 0;font-size:17px;line-height:1.7;">
-                    发现你的职业潜能，全方位解析简历，智能评估优劣势，精准匹配岗位。<br>
-                    <strong style="color:var(--text-primary)">知己知彼，百战百胜。</strong>
-                </p>
-            </div>
-
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
-                <div class="fade-in">
-                    <div style="margin-bottom:32px;">
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <span style="font-size:28px;">📊</span>
-                            <h3 style="font-size:20px;font-weight:700;margin:0;">TRIMG五维指数体系</h3>
-                        </div>
-                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
-                            T·Trust 信任度 / R·Reading 可读性 / I·Information 信息度<br>
-                            M·Match 匹配度 / G·Get 获取度<br>
-                            五维度全方位量化简历质量，让每一份简历都有据可依。
-                        </p>
-                    </div>
-                    <div style="margin-bottom:32px;">
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <span style="font-size:28px;">🎯</span>
-                            <h3 style="font-size:20px;font-weight:700;margin:0;">智能岗位匹配</h3>
-                        </div>
-                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
-                            上传简历→选择岗位→AI精准匹配，覆盖30+标准岗位。<br>
-                            技能对比、差距分析、提升建议，一目了然。
-                        </p>
-                    </div>
-                    <div style="margin-bottom:32px;">
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <span style="font-size:28px;">💡</span>
-                            <h3 style="font-size:20px;font-weight:700;margin:0;">个性化职业建议</h3>
-                        </div>
-                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
-                            基于简历深度解析，给出针对性优化建议和职业发展方向。<br>
-                            让每一次求职都更有底气。
-                        </p>
-                    </div>
-                </div>
-
-                <div class="fade-in" style="display:flex;flex-direction:column;gap:16px;">
-                    <div style="background:var(--bg-secondary);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #fd79a8;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">📋 简历深度解析</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">AI提取20+字段，工作经历/教育背景/技能标签全结构化</div>
-                    </div>
-                    <div style="background:var(--bg-secondary);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #e84393;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">🔍 优劣势分析</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">智能识别简历亮点与不足，给出可操作的改进建议</div>
-                    </div>
-                    <div style="background:var(--bg-secondary);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #6c5ce7;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">🤝 岗位精准匹配</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">匹配度可视化，技能差距分析，助力精准投递</div>
-                    </div>
-                    <div style="background:var(--bg-secondary);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #00cec9;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">📥 一键收录人才库</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">匹配结果直接收录至职觉AI人才库，招聘评估无缝衔接</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align:center;margin-top:48px;" class="fade-in">
-                <a href="http://47.110.151.230:8080/job-ai/" target="_blank" class="btn-primary" style="padding:14px 36px;font-size:16px;background:linear-gradient(135deg,#fd79a8,#e84393);">进入知脉AI</a>
-                <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">知脉AI · 知己知彼，发现你的职业潜能</p>
-            </div>
+    <!-- ===== 底部CTA ===== -->
+    <div class="cta">
+        <h2>别让talent在你的<span class="gradient-text">硬盘里沉睡</span></h2>
+        <p>加入精英招聘官的行列，用AI重塑你的招聘工作流。</p>
+        <div class="cta-buttons">
+            <a href="http://47.110.151.230:8080/login-db" class="btn-primary" style="padding:16px 40px;font-size:18px;" target="_blank">开启我的智能招聘之旅</a>
+            <a href="http://hr.zhimai-ai.cn" class="btn-secondary" style="padding:16px 40px;font-size:18px;" target="_blank">进入智脉AI</a>
         </div>
-    </section>
-
-<section class="cta">
-        <h2 class="fade-in">AI驱动人才全链路<br>从<span class="gradient-text">智能决策</span>开始</h2>
-        <p class="fade-in">智脉AI · 职觉AI · 知脉AI —— 三大产品，一个生态</p>
-        <div class="cta-buttons fade-in">
-            <a href="javascript:showContact()" class="btn-primary" style="padding:16px 40px;font-size:17px;">预约演示</a>
-            <a href="javascript:showContact()" class="btn-secondary" style="padding:16px 40px;font-size:17px;">免费试用</a>
-        </div>
-    </section>
+    </div>
 
     <footer>
-        <p>© 2026 职觉云图 (ZhiJue CloudMap) &nbsp;|&nbsp; <a href="https://zhimai-ai.cn">zhimai-ai.cn</a></p>
+        <p>© 2026 直觉AI · 智脉AI · 职觉AI · 知脉AI — <a href="https://zhimai-ai.cn">zhimai-ai.cn</a></p>
     </footer>
 
     <script>
         // Scroll animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+                if (entry.isIntersecting) entry.target.classList.add('visible');
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-
-        // Nav scroll effect
+        // Nav scroll
         window.addEventListener('scroll', () => {
             document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
         });
-
-        // Counter animation with live fluctuation
-        function animateCounters() {
-            document.querySelectorAll('[data-count]').forEach(el => {
-                const target = parseFloat(el.getAttribute('data-count'));
-                const suffix = el.getAttribute('data-suffix') || '';
-                const decimal = parseInt(el.getAttribute('data-decimal') || '0');
-                const unit = el.querySelector('.unit');
-                const unitText = unit ? unit.textContent : '';
-                const duration = 2000;
-                const start = performance.now();
-                
-                function update(now) {
-                    const elapsed = now - start;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 3);
-                    const current = target * eased;
-                    
-                    if (unit) {
-                        el.textContent = '';
-                        const numSpan = document.createTextNode(current.toFixed(decimal));
-                        const unitSpan = document.createElement('span');
-                        unitSpan.className = 'unit';
-                        unitSpan.textContent = unitText;
-                        el.appendChild(numSpan);
-                        el.appendChild(unitSpan);
-                    } else {
-                        el.textContent = current.toFixed(decimal) + suffix;
-                    }
-                    
-                    if (progress < 1) {
-                        requestAnimationFrame(update);
-                    }
-                }
-                requestAnimationFrame(update);
-            });
-        }
-
-        // Live data fluctuation - makes numbers feel alive
-        function liveFluctuation() {
-            document.querySelectorAll('.data-card .number[data-count]').forEach(el => {
-                const base = parseFloat(el.getAttribute('data-count'));
-                const suffix = el.getAttribute('data-suffix') || '';
-                const decimal = parseInt(el.getAttribute('data-decimal') || '0');
-                const unit = el.querySelector('.unit');
-                const unitText = unit ? unit.textContent : '';
-                
-                // Small random fluctuation ±0.5-2%
-                const fluctuation = base * (Math.random() * 0.02 - 0.01);
-                const current = base + fluctuation;
-                
-                if (unit) {
-                    el.textContent = '';
-                    const numSpan = document.createTextNode(current.toFixed(decimal));
-                    const unitSpan = document.createElement('span');
-                    unitSpan.className = 'unit';
-                    unitSpan.textContent = unitText;
-                    el.appendChild(numSpan);
-                    el.appendChild(unitSpan);
-                } else {
-                    el.textContent = current.toFixed(decimal) + suffix;
-                }
-            });
-        }
-
-        // Start counter animation when data section is visible
-        const dataObserver = new IntersectionObserver((entries) => {
+        // Counter animation
+        const countObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCounters();
-                    // Start live fluctuation after initial animation
-                    setTimeout(() => {
-                        setInterval(liveFluctuation, 3000);
-                    }, 2500);
-                    dataObserver.unobserve(entry.target);
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                if (el.dataset.counted) return;
+                el.dataset.counted = '1';
+                const target = parseFloat(el.dataset.count);
+                const suffix = el.dataset.suffix || '';
+                const decimal = parseInt(el.dataset.decimal) || 0;
+                const duration = 1500;
+                const start = performance.now();
+                function tick(now) {
+                    const p = Math.min((now - start) / duration, 1);
+                    const eased = 1 - Math.pow(1 - p, 3);
+                    const val = (target * eased).toFixed(decimal);
+                    el.textContent = decimal ? val + suffix : Math.round(val) + suffix;
+                    if (p < 1) requestAnimationFrame(tick);
                 }
+                requestAnimationFrame(tick);
             });
-        }, { threshold: 0.2 });
-
-        const dataSection = document.getElementById('data');
-        if (dataSection) dataObserver.observe(dataSection);
-
-        // Also animate hero stats on load
-        setTimeout(animateCounters, 500);
+        }, { threshold: 0.5 });
+        document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
     </script>
-
-<style>
-.contact-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;justify-content:center;align-items:center;backdrop-filter:blur(4px)}
-.contact-overlay.show{display:flex}
-.contact-card{background:#fff;border-radius:20px;padding:40px 48px;text-align:center;max-width:380px;width:90%;box-shadow:0 25px 60px rgba(0,0,0,.3);animation:contactIn .3s ease}
-@keyframes contactIn{from{opacity:0;transform:scale(.9) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.contact-card h3{font-size:22px;font-weight:700;color:#1a1a2e;margin:0 0 8px}
-.contact-card p{font-size:14px;color:#666;margin:0 0 24px}
-.contact-item{display:flex;align-items:center;gap:14px;padding:16px 20px;background:#f7f8fc;border-radius:12px;margin-bottom:12px;text-align:left}
-.contact-item .icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.contact-item .icon.wx{background:#07c160;color:#fff}
-.contact-item .info{flex:1}
-.contact-item .info .label{font-size:12px;color:#999;margin-bottom:2px}
-.contact-item .info .value{font-size:16px;font-weight:600;color:#1a1a2e;letter-spacing:.5px}
-.contact-close{margin-top:20px;padding:10px 32px;border:none;border-radius:10px;background:linear-gradient(135deg,#6366f1,#8b5cf6);color:#fff;font-size:15px;font-weight:600;cursor:pointer;transition:all .2s}
-.contact-close:hover{transform:translateY(-1px);box-shadow:0 4px 15px rgba(99,102,241,.4)}
-</style>
-<div class="contact-overlay" id="contactOverlay" onclick="if(event.target===this)this.classList.remove('show')">
-  <div class="contact-card">
-    <h3>📞 联系我们</h3>
-    <p>扫码或搜索微信，即刻开启智能招聘</p>
-    <div class="contact-item">
-      <div class="icon wx">💬</div>
-      <div class="info">
-        <div class="label">微信号</div>
-        <div class="value">179545447</div>
-      </div>
-    </div>
-    <button class="contact-close" onclick="document.getElementById('contactOverlay').classList.remove('show')">知道了</button>
-  </div>
-</div>
-<script>
-function showContact(){document.getElementById('contactOverlay').classList.add('show')}
-</script>
-
 </body>
 </html>
