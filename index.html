@@ -1,498 +1,458 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智脉AI · 职觉AI · 知脉AI — AI驱动的人才智能平台</title>
-    <meta name="description" content="三大AI产品矩阵：智脉AI企业招聘管理、职觉AI智能简历云图、知脉AI职业潜能评估。AI贯穿人才全生命周期。">
-    <meta property="og:title" content="智脉AI · 职觉AI · 知脉AI — AI驱动的人才智能平台">
-    <meta property="og:description" content="三大AI产品矩阵，从招聘管理到简历资产化到职业评估，让AI重塑你的人才工作流。">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://zhimai-ai.cn">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg-primary: #f8fafc;
-            --bg-secondary: #ffffff;
-            --bg-tertiary: #f1f5f9;
-            --text-primary: #0f172a;
-            --text-secondary: #475569;
-            --text-muted: #64748b;
-            --purple: #6c5ce7;
-            --teal: #00cec9;
-            --pink: #fd79a8;
-            --border: rgba(0,0,0,0.08);
-            --shadow: 0 4px 20px rgba(0,0,0,0.06);
-        }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
-        .bg-grid { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(108,92,231,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(108,92,231,0.03) 1px, transparent 1px); background-size: 60px 60px; z-index: 0; pointer-events: none; }
-        .bg-glow { position: fixed; width: 600px; height: 600px; border-radius: 50%; filter: blur(150px); opacity: 0.12; pointer-events: none; z-index: 0; }
-        .bg-glow-1 { top: -200px; right: -100px; background: #6c5ce7; }
-        .bg-glow-2 { bottom: -200px; left: -100px; background: #00cec9; }
-        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 14px 40px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(20px); background: rgba(255,255,255,0.85); border-bottom: 1px solid rgba(108,92,231,0.1); transition: all 0.3s; }
-        nav.scrolled { background: rgba(255,255,255,0.95); box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
-        .nav-logo { font-size: 20px; font-weight: 800; background: linear-gradient(135deg, #6c5ce7, #00cec9); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px; }
-        .nav-links { display: flex; gap: 28px; align-items: center; }
-        .nav-links a { color: var(--text-secondary); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--text-primary); }
-        .btn-primary { padding: 10px 24px; background: linear-gradient(135deg, #6c5ce7, #a29bfe); border: none; border-radius: 8px; color: white; font-size: 14px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; text-decoration: none; display: inline-block; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(108,92,231,0.3); }
-        .btn-secondary { padding: 10px 24px; background: transparent; border: 1px solid rgba(108,92,231,0.4); border-radius: 8px; color: #6c5ce7; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
-        .btn-secondary:hover { border-color: #6c5ce7; background: rgba(108,92,231,0.08); }
-        section { position: relative; z-index: 1; padding: 100px 40px; }
-        .section-header { text-align: center; margin-bottom: 56px; }
-        .section-tag { display: inline-block; padding: 4px 12px; background: rgba(108,92,231,0.1); border-radius: 4px; font-size: 12px; font-weight: 600; color: #6c5ce7; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 16px; }
-        .section-tag.teal { background: rgba(0,206,201,0.1); color: #00cec9; }
-        .section-tag.pink { background: rgba(253,121,168,0.1); color: #fd79a8; }
-        .section-header h2 { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
-        .section-header p { font-size: 17px; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
-        .gradient-text { background: linear-gradient(135deg, #6c5ce7, #a29bfe) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; }
-        .gradient-text-teal { background: linear-gradient(135deg, #00cec9, #55efc4) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; }
-        .gradient-text-pink { background: linear-gradient(135deg, #fd79a8, #e84393) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智脉AI — 让AI成为你的超级招聘大脑</title>
+<meta name="description" content="三大AI产品矩阵：智脉AI企业招聘管理、职觉AI智能简历云图、知脉AI职业潜能评估。AI贯穿人才全生命周期。">
+<meta property="og:title" content="智脉AI — 让AI成为你的超级招聘大脑">
+<meta property="og:description" content="三大AI产品矩阵，从招聘管理到简历资产化到职业评估，让AI重塑你的人才工作流。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zhimai-ai.cn">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#070713;--bg2:#0d0d22;--bg3:#12122e;
+  --text:#e8e8f0;--text2:#9090b0;--text3:#606080;
+  --pri:#7c5cff;--cyan:#00d4ff;--pink:#ff5c8a;--green:#00e896;
+  --border:rgba(255,255,255,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden}
+#bgCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.bg-glow{position:fixed;border-radius:50%;filter:blur(120px);opacity:0.15;pointer-events:none;z-index:0}
+.glow-1{top:-200px;left:10%;width:500px;height:500px;background:var(--pri)}
+.glow-2{top:30%;right:-100px;width:400px;height:400px;background:var(--cyan)}
+.glow-3{bottom:-100px;left:30%;width:450px;height:450px;background:var(--pink)}
 
-        /* Hero */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 120px 40px 80px; }
-        .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: rgba(108,92,231,0.1); border: 1px solid rgba(108,92,231,0.2); border-radius: 100px; font-size: 13px; color: #6c5ce7; margin-bottom: 32px; }
-        .hero-badge .dot { width: 6px; height: 6px; background: #00cec9; border-radius: 50%; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        .hero h1 { font-size: clamp(36px, 6vw, 68px); font-weight: 900; line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; }
-        .hero p { font-size: clamp(16px, 2vw, 20px); color: var(--text-secondary); max-width: 640px; margin-bottom: 40px; line-height: 1.7; }
-        .hero-stats { display: flex; gap: 48px; margin-top: 48px; padding-top: 48px; border-top: 1px solid rgba(0,0,0,0.08); }
-        .hero-stat .number { font-size: 36px; font-weight: 800; background: linear-gradient(135deg, #00cec9, #6c5ce7) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; }
-        .hero-stat .label { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+/* Nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 40px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:rgba(7,7,19,0.7);border-bottom:1px solid var(--border);transition:all .3s}
+nav.scrolled{background:rgba(7,7,19,0.92);box-shadow:0 4px 30px rgba(0,0,0,0.3)}
+.nav-logo{font-size:22px;font-weight:800;display:flex;align-items:center;gap:8px}
+.nav-logo .logo-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--pri),var(--cyan));display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-logo .logo-text{background:linear-gradient(135deg,#a78bfa,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{color:var(--text2);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.btn{padding:10px 24px;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s}
+.btn-pri{background:linear-gradient(135deg,var(--pri),#a78bfa);color:#fff}
+.btn-pri:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(124,92,255,0.4)}
+.btn-cyan{background:linear-gradient(135deg,var(--cyan),#0ea5e9);color:#fff}
+.btn-cyan:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,255,0.4)}
+.btn-pink{background:linear-gradient(135deg,var(--pink),#e84393);color:#fff}
+.btn-pink:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,92,138,0.4)}
+.btn-ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-ghost:hover{border-color:var(--pri);background:rgba(124,92,255,0.1)}
 
-        /* Product section */
-        .product-section { padding: 100px 40px; }
-        .product-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1200px; margin: 0 auto; align-items: center; }
-        .product-hero-text h2 { font-size: clamp(32px, 4vw, 48px); font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; }
-        .product-hero-text .subtitle { font-size: 15px; font-weight: 600; margin-bottom: 20px; }
-        .product-hero-text p { font-size: 16px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 28px; }
-        .product-hero-visual { background: var(--bg-secondary); border-radius: 20px; padding: 40px; border: 1px solid rgba(0,0,0,0.06); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+section{position:relative;z-index:1;padding:100px 40px}
+.section-header{text-align:center;margin-bottom:60px}
+.tag{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px}
+.tag-pri{background:rgba(124,92,255,0.15);color:#a78bfa;border:1px solid rgba(124,92,255,0.3)}
+.tag-cyan{background:rgba(0,212,255,0.15);color:var(--cyan);border:1px solid rgba(0,212,255,0.3)}
+.tag-pink{background:rgba(255,92,138,0.15);color:var(--pink);border:1px solid rgba(255,92,138,0.3)}
+.section-header h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-1px;margin-bottom:16px}
+.section-header p{font-size:17px;color:var(--text2);max-width:600px;margin:0 auto}
+.grad-text{background:linear-gradient(135deg,#a78bfa,#00d4ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.grad-cyan{background:linear-gradient(135deg,#00d4ff,#00e896);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.grad-pink{background:linear-gradient(135deg,#ff5c8a,#e84393);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 
-        /* KPI grid */
-        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 48px auto 0; }
-        .kpi-card { background: var(--bg-secondary); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 28px 24px; text-align: center; transition: all 0.3s; }
-        .kpi-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
-        .kpi-card .kpi-icon { font-size: 28px; margin-bottom: 12px; }
-        .kpi-card .kpi-value { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
-        .kpi-card .kpi-label { font-size: 13px; color: var(--text-secondary); }
-        .kpi-card .kpi-desc { font-size: 11px; color: var(--text-muted); margin-top: 6px; }
+/* Hero */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 40px 80px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;background:rgba(124,92,255,0.1);border:1px solid rgba(124,92,255,0.3);border-radius:100px;font-size:13px;color:#a78bfa;margin-bottom:32px}
+.hero-badge .dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,232,150,0.4)}50%{opacity:.6;box-shadow:0 0 0 8px rgba(0,232,150,0)}}
+.hero h1{font-size:clamp(40px,7vw,72px);font-weight:900;line-height:1.1;letter-spacing:-2px;margin-bottom:24px}
+.hero h1 .brain{position:relative;display:inline-block}
+.hero h1 .brain::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--pri),var(--cyan),var(--pink));border-radius:2px;animation:flow 3s linear infinite}
+@keyframes flow{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.hero p{font-size:clamp(16px,2vw,20px);color:var(--text2);max-width:680px;margin-bottom:40px;line-height:1.7}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.hero-stats{display:flex;gap:56px;margin-top:56px;padding-top:48px;border-top:1px solid var(--border)}
+.hero-stat .num{font-size:40px;font-weight:800;background:linear-gradient(135deg,#00d4ff,#7c5cff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-stat .lbl{font-size:13px;color:var(--text3);margin-top:4px}
 
-        /* Feature list */
-        .feature-list { max-width: 1200px; margin: 48px auto 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; }
-        .feature-item { background: var(--bg-secondary); border: 1px solid rgba(0,0,0,0.06); border-radius: 14px; padding: 28px; transition: all 0.3s; }
-        .feature-item:hover { border-color: rgba(108,92,231,0.2); transform: translateY(-2px); }
-        .feature-item h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-        .feature-item p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+/* AI Brain Visual */
+.brain-visual{position:relative;width:100%;max-width:600px;height:200px;margin:0 auto 40px}
+.brain-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border-radius:50%;border:1px solid rgba(124,92,255,0.2)}
+.brain-ring.r1{width:180px;height:180px;animation:spin 20s linear infinite}
+.brain-ring.r2{width:280px;height:280px;border-color:rgba(0,212,255,0.15);animation:spin 30s linear infinite reverse}
+.brain-ring.r3{width:380px;height:380px;border-color:rgba(255,92,138,0.1);animation:spin 40s linear infinite}
+@keyframes spin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+.brain-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(124,92,255,0.4),rgba(124,92,255,0.05));display:flex;align-items:center;justify-content:center;font-size:36px;animation:breathe 3s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1}50%{transform:translate(-50%,-50%) scale(1.15);opacity:0.8}}
+.brain-node{position:absolute;width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+.brain-line{position:absolute;height:1px;background:linear-gradient(90deg,transparent,rgba(124,92,255,0.3),transparent);transform-origin:left center}
 
-        /* Trust */
-        .trust-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; max-width: 1000px; margin: 0 auto; }
-        .trust-card { background: var(--bg-secondary); border: 1px solid rgba(0,0,0,0.06); border-radius: 16px; padding: 32px; text-align: center; }
-        .trust-card .trust-icon { font-size: 36px; margin-bottom: 16px; }
-        .trust-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
-        .trust-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+/* Product */
+.product{padding:100px 40px}
+.product-hero{display:grid;grid-template-columns:1fr 1fr;gap:60px;max-width:1200px;margin:0 auto;align-items:center}
+.product-hero-text h2{font-size:clamp(32px,4vw,48px);font-weight:900;margin-bottom:16px}
+.product-hero-text .sub{font-size:15px;font-weight:600;margin-bottom:20px}
+.product-hero-text p{font-size:16px;color:var(--text2);line-height:1.8;margin-bottom:28px}
+.product-visual{background:var(--bg2);border-radius:20px;padding:36px;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.flow-item{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:10px;margin-bottom:10px;transition:all .3s}
+.flow-item:hover{transform:translateX(4px)}
+.flow-item .ico{font-size:22px;flex-shrink:0}
+.flow-item .t{font-weight:600;font-size:14px}
+.flow-item .d{font-size:12px;color:var(--text3)}
 
-        /* CTA */
-        .cta { text-align: center; padding: 120px 40px; position: relative; z-index: 1; }
-        .cta h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; }
-        .cta p { font-size: 18px; color: var(--text-secondary); margin-bottom: 40px; max-width: 560px; margin-left: auto; margin-right: auto; }
-        .cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;max-width:1200px;margin:48px auto 0}
+.kpi-card{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px;text-align:center;transition:all .3s;position:relative;overflow:hidden}
+.kpi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--pri),transparent);opacity:0;transition:opacity .3s}
+.kpi-card:hover{transform:translateY(-4px);border-color:rgba(124,92,255,0.3);box-shadow:0 12px 40px rgba(0,0,0,0.2)}
+.kpi-card:hover::before{opacity:1}
+.kpi-card .ico{font-size:28px;margin-bottom:10px}
+.kpi-card .val{font-size:26px;font-weight:800;margin-bottom:4px}
+.kpi-card .lbl{font-size:13px;color:var(--text2)}
+.kpi-card .desc{font-size:11px;color:var(--text3);margin-top:6px}
 
-        footer { position: relative; z-index: 1; padding: 40px; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); }
-        footer p { font-size: 13px; color: var(--text-muted); }
-        footer a { color: #6c5ce7; text-decoration: none; }
+.feature-list{max-width:1200px;margin:48px auto 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:20px}
+.feature-item{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:28px;transition:all .3s}
+.feature-item:hover{border-color:rgba(124,92,255,0.3);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.2)}
+.feature-item h4{font-size:16px;font-weight:700;margin-bottom:8px}
+.feature-item p{font-size:13px;color:var(--text2);line-height:1.7}
 
-        /* Dividers */
-        .product-divider { max-width: 1200px; margin: 0 auto; height: 1px; background: linear-gradient(90deg, transparent, rgba(108,92,231,0.2), transparent); }
+/* Trust */
+.trust-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:1000px;margin:0 auto}
+.trust-card{background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:32px;text-align:center}
+.trust-card .ico{font-size:36px;margin-bottom:16px}
+.trust-card h4{font-size:16px;font-weight:700;margin-bottom:8px}
+.trust-card p{font-size:13px;color:var(--text2);line-height:1.7}
 
-        @media (max-width: 768px) {
-            nav { padding: 12px 20px; }
-            .nav-links { display: none; }
-            .hero { padding: 100px 20px 60px; }
-            .hero-stats { flex-direction: column; gap: 24px; align-items: center; }
-            section, .product-section { padding: 60px 20px; }
-            .product-hero { grid-template-columns: 1fr; gap: 32px; }
-            .feature-list, .kpi-grid { grid-template-columns: 1fr; }
-            .trust-grid { grid-template-columns: 1fr; }
-        }
-        .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-    </style>
+/* CTA */
+.cta{text-align:center;padding:120px 40px;position:relative;z-index:1}
+.cta h2{font-size:clamp(28px,4vw,48px);font-weight:900;margin-bottom:16px}
+.cta p{font-size:18px;color:var(--text2);margin-bottom:40px;max-width:560px;margin-left:auto;margin-right:auto}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+footer{position:relative;z-index:1;padding:40px;text-align:center;border-top:1px solid var(--border)}
+footer p{font-size:13px;color:var(--text3)}
+footer a{color:#a78bfa;text-decoration:none}
+
+.divider{max-width:1200px;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+
+/* AI Flow Section */
+.ai-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;max-width:1100px;margin:40px auto 0}
+.flow-step{background:var(--bg2);border:1px solid var(--border);border-radius:14px;padding:24px 16px;text-align:center;position:relative;transition:all .3s}
+.flow-step:hover{transform:translateY(-6px);border-color:rgba(124,92,255,0.3)}
+.flow-step .step-num{position:absolute;top:-10px;left:50%;transform:translateX(-50%);width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--pri),var(--cyan));color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.flow-step .step-ico{font-size:32px;margin-bottom:10px}
+.flow-step .step-t{font-size:13px;font-weight:700;margin-bottom:4px}
+.flow-step .step-d{font-size:11px;color:var(--text3)}
+.flow-arrow{text-align:center;font-size:20px;color:var(--text3);display:flex;align-items:center;justify-content:center}
+
+@media(max-width:768px){
+  nav{padding:12px 20px}
+  .nav-links{display:none}
+  .hero{padding:100px 20px 60px}
+  .hero-stats{flex-direction:column;gap:24px;align-items:center}
+  section,.product{padding:60px 20px}
+  .product-hero{grid-template-columns:1fr;gap:32px}
+  .feature-list,.kpi-grid{grid-template-columns:1fr}
+  .trust-grid{grid-template-columns:1fr}
+  .ai-flow{grid-template-columns:1fr}
+  .brain-ring.r3{display:none}
+}
+.fade-in{opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
 </head>
 <body>
-    <div class="bg-grid"></div>
-    <div class="bg-glow bg-glow-1"></div>
-    <div class="bg-glow bg-glow-2"></div>
+<canvas id="bgCanvas"></canvas>
+<div class="bg-glow glow-1"></div>
+<div class="bg-glow glow-2"></div>
+<div class="bg-glow glow-3"></div>
 
-    <nav id="nav">
-        <div class="nav-logo">智脉AI</div>
-        <div class="nav-links">
-            <a href="#zhimai">智脉AI</a>
-            <a href="#zhijue">职觉AI</a>
-            <a href="#zhimai-career">知脉AI</a>
-            <a href="#trust">安全与信任</a>
-            <a href="http://hr.zhimai-ai.cn" class="btn-primary" target="_blank">立即体验</a>
-        </div>
-    </nav>
+<nav id="nav">
+  <div class="nav-logo"><span class="logo-icon">🧠</span><span class="logo-text">智脉AI</span></div>
+  <div class="nav-links">
+    <a href="#zhimai">智脉AI</a>
+    <a href="#zhijue">职觉AI</a>
+    <a href="#zhimai-career">知脉AI</a>
+    <a href="#trust">安全与信任</a>
+    <a href="http://hr.zhimai-ai.cn" class="btn btn-pri" target="_blank">立即体验</a>
+  </div>
+</nav>
 
-    <!-- ===== Hero ===== -->
-    <section class="hero">
-        <div class="hero-badge">
-            <span class="dot"></span>
-            AI Native · 三大产品矩阵，重塑人才全链路
-        </div>
-        <h1>让AI成为你的<br><span class="gradient-text">超级招聘大脑</span></h1>
-        <p>从企业招聘管理到简历资产化到职业潜能评估，三大AI产品贯穿人才全生命周期，让每一次人才决策都精准高效。</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
-            <a href="#zhimai" class="btn-primary" style="padding:14px 28px;font-size:15px;">🎯 智脉AI</a>
-            <a href="#zhijue" class="btn-primary" style="padding:14px 28px;font-size:15px;background:linear-gradient(135deg,#00cec9,#55efc4);">📁 职觉AI</a>
-            <a href="#zhimai-career" class="btn-primary" style="padding:14px 28px;font-size:15px;background:linear-gradient(135deg,#fd79a8,#e84393);">🔍 知脉AI</a>
-        </div>
-        <div class="hero-stats">
-            <div class="hero-stat">
-                <div class="number" data-count="6" data-suffix="s" data-decimal="0">0s</div>
-                <div class="label">单份简历AI解析</div>
-            </div>
-            <div class="hero-stat">
-                <div class="number" data-count="0" data-suffix="" data-decimal="0">0</div>
-                <div class="label">存储上限（无限）</div>
-            </div>
-            <div class="hero-stat">
-                <div class="number" data-count="21" data-suffix="个" data-decimal="0">0个</div>
-                <div class="label">标准岗位AI覆盖</div>
-            </div>
-            <div class="hero-stat">
-                <div class="number" data-count="3" data-suffix="款" data-decimal="0">0款</div>
-                <div class="label">AI产品矩阵</div>
-            </div>
-        </div>
-    </section>
+<!-- Hero -->
+<section class="hero">
+  <div class="brain-visual">
+    <div class="brain-ring r1"></div>
+    <div class="brain-ring r2"></div>
+    <div class="brain-ring r3"></div>
+    <div class="brain-core">🧠</div>
+  </div>
+  <div class="hero-badge">
+    <span class="dot"></span>
+    AI Native · 三大产品矩阵，AI贯穿人才全生命周期
+  </div>
+  <h1>让AI成为你的<br><span class="brain grad-text">超级招聘大脑</span></h1>
+  <p>从企业招聘管理到简历资产化到职业潜能评估，三大AI产品贯穿人才全生命周期，让每一次人才决策都精准高效。</p>
+  <div class="hero-btns">
+    <a href="#zhimai" class="btn btn-pri" style="padding:14px 28px;font-size:15px">🎯 智脉AI</a>
+    <a href="#zhijue" class="btn btn-cyan" style="padding:14px 28px;font-size:15px">📁 职觉AI</a>
+    <a href="#zhimai-career" class="btn btn-pink" style="padding:14px 28px;font-size:15px">🔍 知脉AI</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num" data-count="6" data-suffix="s">0s</div><div class="lbl">单份简历AI解析</div></div>
+    <div class="hero-stat"><div class="num" data-count="20" data-suffix="+">0+</div><div class="lbl">字段结构化提取</div></div>
+    <div class="hero-stat"><div class="num" data-count="3" data-suffix="款">0款</div><div class="lbl">AI产品矩阵</div></div>
+    <div class="hero-stat"><div class="num" data-count="100" data-suffix="%">0%</div><div class="lbl">数据安全隔离</div></div>
+  </div>
+</section>
 
-    <!-- ===== 智脉AI ===== -->
-    <section id="zhimai" class="product-section" style="background:var(--bg-tertiary);">
-        <div class="section-header fade-in">
-            <div class="section-tag">ZhiMai AI</div>
-            <h2>🎯 <span class="gradient-text">智脉AI</span></h2>
-            <p style="color:#6c5ce7;font-weight:600;font-size:15px;">企业智能招聘管理系统</p>
-        </div>
-        <div class="product-hero fade-in">
-            <div class="product-hero-text">
-                <p>全链路AI驱动的企业级招聘管理——从简历自动入库到多轮面试协同，从AI评分到面试官独立操作，让企业招聘像流水线一样高效精准。</p>
-                <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                    <a href="http://hr.zhimai-ai.cn" target="_blank" class="btn-primary">进入智脉AI →</a>
-                </div>
-            </div>
-            <div class="product-hero-visual">
-                <div style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">核心工作流</div>
-                <div style="display:flex;flex-direction:column;gap:12px;">
-                    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(108,92,231,0.06);border-radius:10px;">
-                        <span style="font-size:20px;">📧</span>
-                        <div><div style="font-weight:600;font-size:14px;">邮件自动入库</div><div style="font-size:12px;color:var(--text-muted);">BOSS直聘简历邮件自动拉取解析</div></div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(108,92,231,0.06);border-radius:10px;">
-                        <span style="font-size:20px;">🧠</span>
-                        <div><div style="font-weight:600;font-size:14px;">AI智能分析</div><div style="font-size:12px;color:var(--text-muted);">0-100分精准评分 + 优劣势评估</div></div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(108,92,231,0.06);border-radius:10px;">
-                        <span style="font-size:20px;">👥</span>
-                        <div><div style="font-weight:600;font-size:14px;">面试官协同</div><div style="font-size:12px;color:var(--text-muted);">独立面试官面板，初试/复试/淘汰全流程</div></div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(108,92,231,0.06);border-radius:10px;">
-                        <span style="font-size:20px;">📊</span>
-                        <div><div style="font-weight:600;font-size:14px;">招聘漏斗分析</div><div style="font-size:12px;color:var(--text-muted);">按岗位统计初试→复试→OFFER→入职转化</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="kpi-grid fade-in">
-            <div class="kpi-card">
-                <div class="kpi-icon">📧</div>
-                <div class="kpi-value" style="color:#6c5ce7;">全自动</div>
-                <div class="kpi-label">邮件简历入库</div>
-                <div class="kpi-desc">BOSS直聘/脉脉邮件自动拉取，零人工</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">🧠</div>
-                <div class="kpi-value" style="color:#6c5ce7;">6-8s</div>
-                <div class="kpi-label">AI解析出结果</div>
-                <div class="kpi-desc">上传即分析，Qwen大模型直连</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">👥</div>
-                <div class="kpi-value" style="color:#6c5ce7;">多角色</div>
-                <div class="kpi-label">面试官协同</div>
-                <div class="kpi-desc">HR+面试官+猎头多端独立操作</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">🔒</div>
-                <div class="kpi-value" style="color:#6c5ce7;">租户隔离</div>
-                <div class="kpi-label">数据安全</div>
-                <div class="kpi-desc">企业数据完全独立，银行级加密</div>
-            </div>
-        </div>
-    </section>
+<!-- AI Flow -->
+<section style="padding:60px 40px">
+  <div class="section-header fade-in">
+    <div class="tag tag-pri">AI Workflow</div>
+    <h2>AI如何<span class="grad-text">赋能招聘全流程</span></h2>
+    <p>从简历入库到面试协同，每个环节都有AI大脑在运转</p>
+  </div>
+  <div class="ai-flow fade-in">
+    <div class="flow-step"><div class="step-num">1</div><div class="step-ico">📧</div><div class="step-t">邮件自动拉取</div><div class="step-d">BOSS直聘/脉脉邮件零人工入库</div></div>
+    <div class="flow-step"><div class="step-num">2</div><div class="step-ico">📄</div><div class="step-t">PDF智能解析</div><div class="step-d">Qwen大模型20+字段提取</div></div>
+    <div class="flow-step"><div class="step-num">3</div><div class="step-ico">🧠</div><div class="step-t">AI评分匹配</div><div class="step-d">0-100分精准评分+优劣势</div></div>
+    <div class="flow-step"><div class="step-num">4</div><div class="step-ico">👥</div><div class="step-t">面试官协同</div><div class="step-d">初试→复试→OFFER→入职</div></div>
+    <div class="flow-step"><div class="step-num">5</div><div class="step-ico">📊</div><div class="step-t">数据看板</div><div class="step-d">漏斗分析+面试跟踪报表</div></div>
+  </div>
+</section>
 
-    <div class="product-divider"></div>
-
-    <!-- ===== 职觉AI ===== -->
-    <section id="zhijue" class="product-section">
-        <div class="section-header fade-in">
-            <div class="section-tag teal">ZhiJue AI</div>
-            <h2>📁 <span class="gradient-text-teal">职觉AI</span></h2>
-            <p style="color:#00cec9;font-weight:600;font-size:15px;">AI人才云图平台 · 让每一份简历为你工作</p>
-        </div>
-        <div class="product-hero fade-in">
-            <div class="product-hero-text">
-                <p>专为HR和猎头打造的AI简历云图平台——无限存储、极速解析、智能匹配、语义检索。把散落的简历文件变成可搜索、可分析、可变现的人才资产。</p>
-                <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                    <a href="http://47.110.151.230:8080/login-db" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#00cec9,#55efc4);">免费体验职觉AI →</a>
-                </div>
-            </div>
-            <div class="product-hero-visual" style="border-color:rgba(0,206,201,0.15);">
-                <div style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">上传 → 解析 → 匹配，三步搞定</div>
-                <div style="display:flex;flex-direction:column;gap:12px;">
-                    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(0,206,201,0.06);border-radius:10px;">
-                        <span style="font-size:20px;">📤</span>
-                        <div><div style="font-weight:600;font-size:14px;">灵活上传</div><div style="font-size:12px;color:var(--text-muted);">拖拽/点击/邮箱自动拉取，PDF/Word/图片全支持</div></div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(0,206,201,0.06);border-radius:10px;">
-                        <span style="font-size:20px;">🧠</span>
-                        <div><div style="font-weight:600;font-size:14px;">AI精准解析</div><div style="font-size:12px;color:var(--text-muted);">20+字段结构化提取，工作/项目经历分离，985/211/大厂自动标注</div></div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(0,206,201,0.06);border-radius:10px;">
-                        <span style="font-size:20px;">🎯</span>
-                        <div><div style="font-weight:600;font-size:14px;">双向AI匹配</div><div style="font-size:12px;color:var(--text-muted);">人配岗：AI推荐适配岗位 / 岗配人：JD全库扫描Top10</div></div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(0,206,201,0.06);border-radius:10px;">
-                        <span style="font-size:20px;">🔍</span>
-                        <div><div style="font-weight:600;font-size:14px;">语义智能检索</div><div style="font-size:12px;color:var(--text-muted);">"做过高并发的Java专家"→自然语言搜索，比关键词更懂你</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="kpi-grid fade-in">
-            <div class="kpi-card">
-                <div class="kpi-icon">♾️</div>
-                <div class="kpi-value" style="color:#00cec9;">无限</div>
-                <div class="kpi-label">简历存储</div>
-                <div class="kpi-desc">私有加密存储，简历资产永久保存</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">⚡</div>
-                <div class="kpi-value" style="color:#00cec9;">6s</div>
-                <div class="kpi-label">单份AI解析</div>
-                <div class="kpi-desc">Qwen大模型直连，20+字段精准提取</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">📤</div>
-                <div class="kpi-value" style="color:#00cec9;">3种</div>
-                <div class="kpi-label">上传方式</div>
-                <div class="kpi-desc">拖拽上传 / 邮箱自动拉取 / API对接</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">🔐</div>
-                <div class="kpi-value" style="color:#00cec9;">私有加密</div>
-                <div class="kpi-label">数据安全</div>
-                <div class="kpi-desc">SHA256+salt加密，数据绝不用于训练</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">🎓</div>
-                <div class="kpi-value" style="color:#00cec9;">自动标注</div>
-                <div class="kpi-label">院校/公司标签</div>
-                <div class="kpi-desc">985/211/大厂/海外名校AI自动识别</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">📊</div>
-                <div class="kpi-value" style="color:#00cec9;">多维度</div>
-                <div class="kpi-label">智能筛选</div>
-                <div class="kpi-desc">学历/院校/经验/薪资/标签多维组合</div>
-            </div>
-        </div>
-        <div class="feature-list fade-in">
-            <div class="feature-item">
-                <h4>🧠 AI精准解析，工作/项目经历分离</h4>
-                <p>Qwen大模型智能区分工作经历与项目经历，自动标注公司性质（大厂/知名/普通）和院校等级（985/211/海外名校），性别、电话、邮箱精准提取，不再遗漏关键信息。</p>
-            </div>
-            <div class="feature-item">
-                <h4>🎯 双向AI人岗匹配</h4>
-                <p><strong>人配岗</strong>：选一份简历，AI自动推荐3个适配岗位含评分+理由+风险；<strong>岗配人</strong>：输入JD，AI全库扫描推荐Top10候选人，每份带匹配度评分和优劣分析。6-8秒出结果。</p>
-            </div>
-            <div class="feature-item">
-                <h4>📧 邮箱自动拉取，零人工入库</h4>
-                <p>绑定BOSS直聘等招聘平台邮箱，简历PDF邮件自动识别、拉取、解析、入库，全程零人工介入。可配置定时自动拉取频率。</p>
-            </div>
-            <div class="feature-item">
-                <h4>🔍 语义智能检索，告别关键词</h4>
-                <p>输入"找一个做过高并发电商系统的Java专家"，AI理解你的意图而非死板匹配关键词。结合学历、院校、薪资、标签等多维筛选，精准定位目标候选人。</p>
-            </div>
-            <div class="feature-item">
-                <h4>🏷️ AI自动标签体系</h4>
-                <p>自动识别985/211/双一流/海外名校、大厂/知名企业、工作年限、技能关键词等隐性标签。搜索和筛选不再只靠文件名，每个标签都可点击下钻。</p>
-            </div>
-            <div class="feature-item">
-                <h4>📤 灵活导出与分享</h4>
-                <p>一键导出候选人报表（Excel/PDF），生成加密分享链接，支持简历海报长按保存。电脑端深度工作，手机端随时随地查看。</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="product-divider"></div>
-
-    <!-- ===== 知脉AI ===== -->
-    <section id="zhimai-career" class="product-section" style="background:var(--bg-tertiary);">
-        <div class="section-header fade-in">
-            <div class="section-tag pink">ZhiMai Career AI</div>
-            <h2>🔍 <span class="gradient-text-pink">知脉AI</span></h2>
-            <p style="color:#fd79a8;font-weight:600;font-size:15px;">知己知彼 · 职业潜能评估平台</p>
-        </div>
-        <div class="product-hero fade-in">
-            <div class="product-hero-text">
-                <p>面向求职者的AI职业评估平台——上传简历即可获得全方位能力分析、岗位匹配推荐、优劣势诊断和职业发展建议，让每一次求职都更有底气。</p>
-                <div style="display:flex;gap:12px;flex-wrap:wrap;">
-                    <a href="http://47.110.151.230:8080/job-ai/" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#fd79a8,#e84393);">进入知脉AI →</a>
-                </div>
-            </div>
-            <div class="product-hero-visual" style="border-color:rgba(253,121,168,0.15);">
-                <div style="font-size:13px;color:var(--text-muted);margin-bottom:16px;">上传简历 → AI全方位评估</div>
-                <div style="display:flex;flex-direction:column;gap:12px;">
-                    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(253,121,168,0.06);border-radius:10px;">
-                        <span style="font-size:20px;">📊</span>
-                        <div><div style="font-weight:600;font-size:14px;">五维能力评估</div><div style="font-size:12px;color:var(--text-muted);">技术力/领导力/创新力/执行力/适应力</div></div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(253,121,168,0.06);border-radius:10px;">
-                        <span style="font-size:20px;">🎯</span>
-                        <div><div style="font-weight:600;font-size:14px;">精准岗位匹配</div><div style="font-size:12px;color:var(--text-muted);">AI推荐最适合的岗位方向及匹配度</div></div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(253,121,168,0.06);border-radius:10px;">
-                        <span style="font-size:20px;">💡</span>
-                        <div><div style="font-weight:600;font-size:14px;">优劣势诊断</div><div style="font-size:12px;color:var(--text-muted);">明确核心优势与提升方向</div></div>
-                    </div>
-                    <div style="display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(253,121,168,0.06);border-radius:10px;">
-                        <span style="font-size:20px;">🚀</span>
-                        <div><div style="font-weight:600;font-size:14px;">职业发展建议</div><div style="font-size:12px;color:var(--text-muted);">基于能力画像的个性化成长路径</div></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="kpi-grid fade-in">
-            <div class="kpi-card">
-                <div class="kpi-icon">⚡</div>
-                <div class="kpi-value" style="color:#fd79a8;">6-10s</div>
-                <div class="kpi-label">AI深度诊断</div>
-                <div class="kpi-desc">Qwen-Plus大模型，五维诊断+职业评估+优化建议</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">📊</div>
-                <div class="kpi-value" style="color:#fd79a8;">5维</div>
-                <div class="kpi-label">能力评估</div>
-                <div class="kpi-desc">TRIMG五维模型量化能力画像</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">🎯</div>
-                <div class="kpi-value" style="color:#fd79a8;">3个</div>
-                <div class="kpi-label">推荐岗位</div>
-                <div class="kpi-desc">AI智能匹配最适合的岗位方向</div>
-            </div>
-            <div class="kpi-card">
-                <div class="kpi-icon">🆓</div>
-                <div class="kpi-value" style="color:#fd79a8;">免费</div>
-                <div class="kpi-label">基础评估</div>
-                <div class="kpi-desc">上传简历即刻体验完整评估报告</div>
-            </div>
-        </div>
-        
-        <div class="feature-list fade-in">
-            <div class="feature-item">
-                <h4>🤖 AI深度诊断报告，像HR专家一样分析</h4>
-                <p>Qwen-Plus大模型驱动，一键生成专业级简历诊断报告：健康度评分、五维诊断（完整度/质量/关键词/结构/匹配度）、核心问题定位、逐条优化建议（before→after对比）、缺失关键词补全、职业发展建议和薪资参考。</p>
-            </div>
-            <div class="feature-item">
-                <h4>📊 TRIMG五维模型，量化你的竞争力</h4>
-                <p>Trust（人事信任）、Reading（HR阅读体验）、Information（信息传达）、Match（岗位匹配）、Get（求职能量），五大维度精准评估你的简历在HR眼中的真实表现。</p>
-            </div>
-            <div class="feature-item">
-                <h4>🎯 智能岗位匹配，发现你的最佳方向</h4>
-                <p>上传简历即可获得3个AI推荐岗位，每个推荐含匹配度评分、适配理由和潜在风险，帮助你在求职路上精准定位。</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 安全与信任 ===== -->
-    <section id="trust">
-        <div class="section-header fade-in">
-            <div class="section-tag">Security & Trust</div>
-            <h2>安全与信任</h2>
-            <p>你的简历数据，比你自己更在意</p>
-        </div>
-        <div class="trust-grid">
-            <div class="trust-card fade-in">
-                <div class="trust-icon">🔒</div>
-                <h4>数据隐私至上</h4>
-                <p>我们承诺绝不使用您的私有简历数据训练公共模型。您的数据仅属于您自己，SHA256+salt加密存储。</p>
-            </div>
-            <div class="trust-card fade-in">
-                <div class="trust-icon">🏢</div>
-                <h4>租户数据隔离</h4>
-                <p>企业数据完全独立存储，不同租户之间物理隔离，确保信息零泄露。</p>
-            </div>
-            <div class="trust-card fade-in">
-                <div class="trust-icon">📤</div>
-                <h4>导出自由</h4>
-                <p>支持一键导出候选人报表（Excel/PDF），方便向客户或上级汇报。数据主权永远在你手中。</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== 底部CTA ===== -->
-    <div class="cta">
-        <h2>别让人才在你的<span class="gradient-text">硬盘里沉睡</span></h2>
-        <p>选择适合你的AI产品，让人才决策从此精准高效。</p>
-        <div class="cta-buttons">
-            <a href="http://hr.zhimai-ai.cn" class="btn-primary" style="padding:16px 36px;font-size:16px;" target="_blank">🎯 智脉AI</a>
-            <a href="http://47.110.151.230:8080/login-db" class="btn-primary" style="padding:16px 36px;font-size:16px;background:linear-gradient(135deg,#00cec9,#55efc4);" target="_blank">📁 职觉AI</a>
-            <a href="http://47.110.151.230:8080/job-ai/" class="btn-primary" style="padding:16px 36px;font-size:16px;background:linear-gradient(135deg,#fd79a8,#e84393);" target="_blank">🔍 知脉AI</a>
-        </div>
+<!-- 智脉AI -->
+<section id="zhimai" class="product" style="background:linear-gradient(180deg,transparent,rgba(124,92,255,0.03),transparent)">
+  <div class="section-header fade-in">
+    <div class="tag tag-pri">ZhiMai AI</div>
+    <h2>🎯 <span class="grad-text">智脉AI</span></h2>
+    <p style="color:#a78bfa;font-weight:600;font-size:15px">企业智能招聘管理系统</p>
+  </div>
+  <div class="product-hero fade-in">
+    <div class="product-hero-text">
+      <p>全链路AI驱动的企业级招聘管理——从简历自动入库到多轮面试协同，从AI评分到面试官独立操作，让企业招聘像流水线一样高效精准。</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="http://hr.zhimai-ai.cn" target="_blank" class="btn btn-pri">进入智脉AI →</a>
+      </div>
     </div>
+    <div class="product-visual">
+      <div style="font-size:13px;color:var(--text3);margin-bottom:16px">核心工作流</div>
+      <div class="flow-item" style="background:rgba(124,92,255,0.08)"><span class="ico">📧</span><div><div class="t">邮件自动入库</div><div class="d">BOSS直聘简历邮件自动拉取解析</div></div></div>
+      <div class="flow-item" style="background:rgba(124,92,255,0.08)"><span class="ico">🧠</span><div><div class="t">AI智能分析</div><div class="d">0-100分精准评分 + 优劣势评估</div></div></div>
+      <div class="flow-item" style="background:rgba(124,92,255,0.08)"><span class="ico">👥</span><div><div class="t">面试官协同</div><div class="d">独立面试官面板，初试/复试/淘汰全流程</div></div></div>
+      <div class="flow-item" style="background:rgba(124,92,255,0.08)"><span class="ico">📊</span><div><div class="t">招聘漏斗分析</div><div class="d">按岗位统计初试→复试→OFFER→入职转化</div></div></div>
+    </div>
+  </div>
+  <div class="kpi-grid fade-in">
+    <div class="kpi-card"><div class="ico">📧</div><div class="val" style="color:#a78bfa">全自动</div><div class="lbl">邮件简历入库</div><div class="desc">BOSS直聘/脉脉邮件自动拉取，零人工</div></div>
+    <div class="kpi-card"><div class="ico">⚡</div><div class="val" style="color:#a78bfa">6-8s</div><div class="lbl">AI解析出结果</div><div class="desc">上传即分析，Qwen大模型直连</div></div>
+    <div class="kpi-card"><div class="ico">👥</div><div class="val" style="color:#a78bfa">多角色</div><div class="lbl">面试官协同</div><div class="desc">HR+面试官+猎头多端独立操作</div></div>
+    <div class="kpi-card"><div class="ico">🔒</div><div class="val" style="color:#a78bfa">租户隔离</div><div class="lbl">数据安全</div><div class="desc">企业数据完全独立，银行级加密</div></div>
+  </div>
+  <div class="feature-list fade-in">
+    <div class="feature-item"><h4>📊 面试跟踪报表</h4><p>全新面试跟踪系统：候选人/岗位/状态/轮次/面试官/形式/日期/面试结果/评价完整链路。统计卡片可点击筛选，列筛选+日期范围+CSV导出，支持生成无需登录的分享报表链接。</p></div>
+    <div class="feature-item"><h4>🎯 匹配等级统一</h4><p>AI评分映射为极高匹配(≥85分)/匹配(60-84)/一般匹配(<60)，全站统一术语——卡片标签、筛选标签、报表概览、面试结果同步。</p></div>
+    <div class="feature-item"><h4>✏️ 在线新建简历</h4><p>没有简历文件也能创建候选人：在线填写姓名/性别/手机/邮箱/学历/公司/岗位等信息直接入库，支持后续编辑补充。</p></div>
+    <div class="feature-item"><h4>📋 JD详情关联</h4><p>38个岗位的完整职责要求(JD)内置，点击岗位即查看详情。HR端和面试官端都能看到岗位要求，判断匹配更精准。</p></div>
+    <div class="feature-item"><h4>📧 邮箱自动拉取，零人工入库</h4><p>绑定BOSS直聘/脉脉等邮箱，简历PDF邮件自动识别、拉取、解析、入库。工作日午间晚间定时拉取，Qwen大模型7秒/份精准分析。</p></div>
+    <div class="feature-item"><h4>👥 面试官独立系统</h4><p>面试官独立登录面板，按岗位分配简历。初试→复试→OFFER→入职全流程在线操作，结果自动同步HR端。铃铛聚合通知，微信直接查看简历。</p></div>
+    <div class="feature-item"><h4>🤖 AI Native智能助手</h4><p>HR端🤖浮动按钮，5个快捷指令（今日简报/最佳人选/面试建议/漏斗分析/分析候选人）。面试官端3个快捷指令（面试问题/重点考察/评估建议），自动注入简历上下文。</p></div>
+  </div>
+</section>
 
-    <footer>
-        <p>© 2026 智脉AI — 旗下产品：智脉AI · 职觉AI · 知脉AI — <a href="https://zhimai-ai.cn">zhimai-ai.cn</a></p>
-    </footer>
+<div class="divider"></div>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-        window.addEventListener('scroll', () => {
-            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
-        });
-        const countObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                const el = entry.target;
-                if (el.dataset.counted) return;
-                el.dataset.counted = '1';
-                const target = parseFloat(el.dataset.count);
-                const suffix = el.dataset.suffix || '';
-                const decimal = parseInt(el.dataset.decimal) || 0;
-                const duration = 1500;
-                const start = performance.now();
-                function tick(now) {
-                    const p = Math.min((now - start) / duration, 1);
-                    const eased = 1 - Math.pow(1 - p, 3);
-                    const val = (target * eased).toFixed(decimal);
-                    el.textContent = decimal ? val + suffix : Math.round(val) + suffix;
-                    if (p < 1) requestAnimationFrame(tick);
-                }
-                requestAnimationFrame(tick);
-            });
-        }, { threshold: 0.5 });
-        document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
-    </script>
+<!-- 职觉AI -->
+<section id="zhijue" class="product" style="background:linear-gradient(180deg,transparent,rgba(0,212,255,0.03),transparent)">
+  <div class="section-header fade-in">
+    <div class="tag tag-cyan">ZhiJue AI</div>
+    <h2>📁 <span class="grad-cyan">职觉AI</span></h2>
+    <p style="color:var(--cyan);font-weight:600;font-size:15px">AI人才云图平台 · 让每一份简历为你工作</p>
+  </div>
+  <div class="product-hero fade-in">
+    <div class="product-hero-text">
+      <p>专为HR和猎头打造的AI简历云图平台——无限存储、极速解析、智能匹配、人脉Mapping、语义检索。把散落的简历文件变成可搜索、可分析、可变现的人才资产。</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a href="https://zhijueyuntu.com" target="_blank" class="btn btn-cyan">进入职觉AI →</a></div>
+    </div>
+    <div class="product-visual" style="border-color:rgba(0,212,255,0.15)">
+      <div style="font-size:13px;color:var(--text3);margin-bottom:16px">上传 → 解析 → 匹配 → Mapping，四步搞定</div>
+      <div class="flow-item" style="background:rgba(0,212,255,0.08)"><span class="ico">📤</span><div><div class="t">灵活上传</div><div class="d">拖拽/点击/邮箱自动拉取，PDF/Word全支持</div></div></div>
+      <div class="flow-item" style="background:rgba(0,212,255,0.08)"><span class="ico">🧠</span><div><div class="t">AI精准解析</div><div class="d">20+字段结构化提取，工作经历完整还原</div></div></div>
+      <div class="flow-item" style="background:rgba(0,212,255,0.08)"><span class="ico">🌐</span><div><div class="t">人脉云图Mapping</div><div class="d">公司人才池TOP15、部门聚类、大厂分布一图看清</div></div></div>
+      <div class="flow-item" style="background:rgba(0,212,255,0.08)"><span class="ico">🎯</span><div><div class="t">双向AI匹配</div><div class="d">人配岗/岗配人，6秒出结果</div></div></div>
+    </div>
+  </div>
+  <div class="kpi-grid fade-in">
+    <div class="kpi-card"><div class="ico">♾️</div><div class="val" style="color:var(--cyan)">无限</div><div class="lbl">简历存储上限</div><div class="desc">不限容量，简历资产永久保存</div></div>
+    <div class="kpi-card"><div class="ico">📊</div><div class="val" style="color:var(--cyan)" data-count="10000" data-suffix="份+">0</div><div class="lbl">已解析简历</div><div class="desc">每日持续增长中</div></div>
+    <div class="kpi-card"><div class="ico">⚡</div><div class="val" style="color:var(--cyan)" data-count="6" data-suffix="s">0s</div><div class="lbl">AI解析速度</div><div class="desc">Qwen大模型直连，20+字段精准提取</div></div>
+    <div class="kpi-card"><div class="ico">🏷️</div><div class="val" style="color:var(--cyan)" data-count="18" data-suffix="维">0维</div><div class="lbl">智能标签体系</div><div class="desc">大厂/985/211/海归/AI大模型等</div></div>
+  </div>
+  <div class="feature-list fade-in">
+    <div class="feature-item"><h4>🌐 人脉云图Mapping — 一图看清人才分布</h4><p>全新人才Mapping功能：公司人才池TOP15排行、按智能部门聚类（管理/算法/工程/产品/销售等10类）、大厂人才分布占比、人才来源渠道分析。输入一个公司名，立刻看到你库里有多少人来自这家公司、分布在哪些部门。猎头挖人的终极武器。</p></div>
+    <div class="feature-item"><h4>🧠 AI精准解析，20+字段结构化提取</h4><p>Qwen大模型智能提取姓名/性别/年龄/手机/邮箱/学历/学校/专业/工作年限/当前公司/职位/期望薪资/技能/工作经历/教育经历。自动标注公司性质（大厂/知名/普通）和院校等级（985/211/双一流/海外名校）。</p></div>
+    <div class="feature-item"><h4>🎯 双向AI人岗匹配</h4><p><strong>人配岗</strong>：选一份简历，AI自动推荐3个适配岗位含评分+理由+风险；<strong>岗配人</strong>：输入JD，AI全库扫描推荐Top10候选人，每份带匹配度评分和优劣分析。6秒出结果。</p></div>
+    <div class="feature-item"><h4>🔍 语义智能检索 + 全文搜索</h4><p>自然语言搜索："做过高并发电商系统的Java专家"→AI理解意图。全文搜索：搜"百度"找到当前在百度、曾在百度、简历文本提到百度的所有人。搜索范围覆盖姓名/公司/职位/学校/技能/工作经历/教育经历/标签/简历原文。</p></div>
+    <div class="feature-item"><h4>🏷️ 18维AI智能标签体系</h4><p>AI自动生成隐性标签：大厂经历/985院校/211/双一流/海外名校/海归/管理经验/技术管理/AI大模型/机器人/自动驾驶/芯片半导体/ToB经验/ToC经验/英语流利/高学历/年轻高潜/资深/离职状态。每个标签可点击筛选。</p></div>
+    <div class="feature-item"><h4>🏢 多租户开放注册，数据完全隔离</h4><p>每个用户独立租户，数据完全隔离。独立邮箱配置、独立AI配额。新用户注册即送500份私有库+10积分，开箱即用。适合HR团队、猎头机构、个人猎头使用。</p></div>
+    <div class="feature-item"><h4>📤 灵活导出与分享</h4><p>一键导出候选人报表（Excel/CSV），生成加密分享链接，简历海报长按保存。电脑端深度工作，手机端随时随地查看。</p></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 知脉AI -->
+<section id="zhimai-career" class="product" style="background:linear-gradient(180deg,transparent,rgba(255,92,138,0.03),transparent)">
+  <div class="section-header fade-in">
+    <div class="tag tag-pink">ZhiMai Career AI</div>
+    <h2>🔍 <span class="grad-pink">知脉AI</span></h2>
+    <p style="color:var(--pink);font-weight:600;font-size:15px">知己知彼 · AI驱动的求职分析平台</p>
+  </div>
+  <div class="product-hero fade-in">
+    <div class="product-hero-text">
+      <p>面向求职者的AI职业评估平台——上传简历即可获得全方位能力分析、岗位匹配推荐、优劣势诊断和职业发展建议，让每一次求职都更有底气。</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><a href="http://47.110.151.230:8080/job-ai/" target="_blank" class="btn btn-pink">进入知脉AI →</a></div>
+    </div>
+    <div class="product-visual" style="border-color:rgba(255,92,138,0.15)">
+      <div style="font-size:13px;color:var(--text3);margin-bottom:16px">上传简历 → AI全方位评估</div>
+      <div class="flow-item" style="background:rgba(255,92,138,0.08)"><span class="ico">📊</span><div><div class="t">五维能力评估</div><div class="d">技术力/领导力/创新力/执行力/适应力</div></div></div>
+      <div class="flow-item" style="background:rgba(255,92,138,0.08)"><span class="ico">🎯</span><div><div class="t">精准岗位匹配</div><div class="d">AI推荐最适合的岗位方向及匹配度</div></div></div>
+      <div class="flow-item" style="background:rgba(255,92,138,0.08)"><span class="ico">📊</span><div><div class="t">竞争力定位</div><div class="d">跟Top10%标杆对比，百分位定位竞争力</div></div></div>
+      <div class="flow-item" style="background:rgba(255,92,138,0.08)"><span class="ico">✏️</span><div><div class="t">智能改写引擎</div><div class="d">AI生成3版改写建议（保守/标准/激进）</div></div></div>
+      <div class="flow-item" style="background:rgba(255,92,138,0.08)"><span class="ico">⚡</span><div><div class="t">能力雷达图（免费）</div><div class="d">5维雷达+一句话Pitch，可分享朋友圈</div></div></div>
+    </div>
+  </div>
+  <div class="kpi-grid fade-in">
+    <div class="kpi-card"><div class="ico">⚡</div><div class="val" style="color:var(--pink)">6-10s</div><div class="lbl">AI深度诊断</div><div class="desc">Qwen-Plus大模型，五维诊断+优化建议</div></div>
+    <div class="kpi-card"><div class="ico">📊</div><div class="val" style="color:var(--pink)">5维</div><div class="lbl">能力评估</div><div class="desc">TRIMG五维模型量化能力画像</div></div>
+    <div class="kpi-card"><div class="ico">🎯</div><div class="val" style="color:var(--pink)">3个</div><div class="lbl">推荐岗位</div><div class="desc">AI智能匹配最适合的岗位方向</div></div>
+    <div class="kpi-card"><div class="ico">🆓</div><div class="val" style="color:var(--pink)">免费</div><div class="lbl">基础评估</div><div class="desc">上传简历即刻体验完整评估报告</div></div>
+  </div>
+  <div class="feature-list fade-in">
+    <div class="feature-item"><h4>🤖 AI深度诊断报告，像HR专家一样分析</h4><p>Qwen-Plus大模型驱动，一键生成专业级简历诊断报告：健康度评分、五维诊断（完整度/质量/关键词/结构/匹配度）、核心问题定位、逐条优化建议（before→after对比）、缺失关键词补全、职业发展建议和薪资参考。</p></div>
+    <div class="feature-item"><h4>📊 TRIMG五维模型，量化你的竞争力</h4><p>Trust（人事信任）、Reading（HR阅读体验）、Information（信息传达）、Match（岗位匹配）、Get（求职能量），五大维度精准评估你的简历在HR眼中的真实表现。</p></div>
+    <div class="feature-item"><h4>🎯 智能岗位匹配，发现你的最佳方向</h4><p>上传简历即可获得3个AI推荐岗位，每个推荐含匹配度评分、适配理由和潜在风险，帮助你在求职路上精准定位。</p></div>
+  </div>
+</section>
+
+<!-- Trust -->
+<section id="trust">
+  <div class="section-header fade-in">
+    <div class="tag tag-pri">Security & Trust</div>
+    <h2>安全与信任</h2>
+    <p>你的简历数据，比你自己更在意</p>
+  </div>
+  <div class="trust-grid">
+    <div class="trust-card fade-in"><div class="ico">🔒</div><h4>数据隐私至上</h4><p>我们承诺绝不使用您的私有简历数据训练公共模型。您的数据仅属于您自己，SHA256+salt加密存储。</p></div>
+    <div class="trust-card fade-in"><div class="ico">🏢</div><h4>租户数据隔离</h4><p>企业数据完全独立存储，不同租户之间物理隔离，确保信息零泄露。</p></div>
+    <div class="trust-card fade-in"><div class="ico">📤</div><h4>导出自由</h4><p>支持一键导出候选人报表（Excel/PDF），方便向客户或上级汇报。数据主权永远在你手中。</p></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>别让人才在你的<span class="grad-text">硬盘里沉睡</span></h2>
+  <p>选择适合你的AI产品，让人才决策从此精准高效。</p>
+  <div class="cta-btns">
+    <a href="http://hr.zhimai-ai.cn" class="btn btn-pri" style="padding:16px 36px;font-size:16px" target="_blank">🎯 智脉AI</a>
+    <a href="http://47.110.151.230:8080/login-db" class="btn btn-cyan" style="padding:16px 36px;font-size:16px" target="_blank">📁 职觉AI</a>
+    <a href="http://47.110.151.230:8080/job-ai/" class="btn btn-pink" style="padding:16px 36px;font-size:16px" target="_blank">🔍 知脉AI</a>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 智脉AI — 旗下产品：智脉AI · 职觉AI · 知脉AI — <a href="https://zhimai-ai.cn">zhimai-ai.cn</a></p>
+</footer>
+
+<script>
+// Scroll animations
+var observer=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('visible')})
+},{threshold:0.1});
+document.querySelectorAll('.fade-in').forEach(function(el){observer.observe(el)});
+window.addEventListener('scroll',function(){
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)
+});
+
+// Counter animation
+var countObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting)return;
+    var el=e.target;if(el.dataset.counted)return;el.dataset.counted='1';
+    var target=parseFloat(el.dataset.count);var suffix=el.dataset.suffix||'';
+    var start=performance.now();var dur=1500;
+    function tick(now){
+      var p=Math.min((now-start)/dur,1);var eased=1-Math.pow(1-p,3);
+      var val=target*eased;
+      el.textContent=(target%1!==0?val.toFixed(1):Math.round(val))+suffix;
+      if(p<1)requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  })
+},{threshold:0.5});
+document.querySelectorAll('[data-count]').forEach(function(el){countObs.observe(el)});
+
+// Particle network background
+var canvas=document.getElementById('bgCanvas');
+var ctx=canvas.getContext('2d');
+var particles=[];
+var mouse={x:null,y:null};
+function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}
+resize();window.addEventListener('resize',resize);
+window.addEventListener('mousemove',function(e){mouse.x=e.x;mouse.y=e.y});
+
+var particleCount=window.innerWidth<768?30:60;
+for(var i=0;i<particleCount;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    vx:(Math.random()-0.5)*0.4,
+    vy:(Math.random()-0.5)*0.4,
+    r:Math.random()*2+1
+  })
+}
+var colors=['rgba(124,92,255,','rgba(0,212,255,','rgba(255,92,138,'];
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  // Draw connections
+  for(var i=0;i<particles.length;i++){
+    for(var j=i+1;j<particles.length;j++){
+      var dx=particles[i].x-particles[j].x;
+      var dy=particles[i].y-particles[j].y;
+      var dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<150){
+        var alpha=(1-dist/150)*0.15;
+        ctx.strokeStyle='rgba(124,92,255,'+alpha+')';
+        ctx.lineWidth=0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x,particles[i].y);
+        ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.stroke()
+      }
+    }
+  }
+  // Draw particles
+  for(var i=0;i<particles.length;i++){
+    var p=particles[i];
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>canvas.width)p.vx*=-1;
+    if(p.y<0||p.y>canvas.height)p.vy*=-1;
+    // Mouse interaction
+    if(mouse.x){
+      var mdx=p.x-mouse.x;var mdy=p.y-mouse.y;
+      var mdist=Math.sqrt(mdx*mdx+mdy*mdy);
+      if(mdist<120){
+        var force=(120-mdist)/120*0.5;
+        p.x+=mdx/mdist*force;p.y+=mdy/mdist*force
+      }
+    }
+    var colorIdx=i%3;
+    ctx.fillStyle=colors[colorIdx]+'0.5)';
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fill()
+  }
+  requestAnimationFrame(animate)
+}
+animate();
+</script>
 </body>
 </html>
