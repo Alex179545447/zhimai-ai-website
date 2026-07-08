@@ -146,6 +146,9 @@ footer a{color:#a78bfa;text-decoration:none}
 @media(max-width:768px){
   nav{padding:12px 20px}
   .nav-links{display:none}
+  .mobile-talent-btn{position:fixed;bottom:24px;right:24px;z-index:200;background:linear-gradient(135deg,#7C3AED,#06B6D4);color:#fff;padding:12px 20px;border-radius:30px;font-size:14px;font-weight:700;text-decoration:none;box-shadow:0 4px 20px rgba(124,58,237,.4);display:flex;align-items:center;gap:6px;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+  .mobile-talent-btn:active{transform:scale(.95)}
   .hero{padding:100px 20px 60px}
   .hero-stats{flex-direction:column;gap:24px;align-items:center}
   section,.product{padding:60px 20px}
@@ -176,6 +179,7 @@ footer a{color:#a78bfa;text-decoration:none}
     <a href="http://hr.zhimai-ai.cn" class="btn btn-pri" target="_blank">立即体验</a>
   </div>
 </nav>
+<a href="http://hr.zhimai-ai.cn/talents" class="mobile-talent-btn" target="_blank">🎯 重点人才</a>
 
 <!-- Hero -->
 <section class="hero">
