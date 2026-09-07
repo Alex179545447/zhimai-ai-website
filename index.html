@@ -496,6 +496,9 @@
         @media (max-width: 768px) {
             nav { padding: 12px 20px; }
             .partner-wall { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
+            .testi-grid { grid-template-columns: 1fr !important; gap: 14px !important; margin-top: 24px !important; }
+            .testi-grid > div { padding: 20px !important; }
+            .testi-title { font-size: 15px !important; white-space: nowrap !important; }
             .partner-wall > div { padding: 12px 4px !important; font-size: 12px !important; letter-spacing: 0 !important; }
             .nav-links { display: none; }
             .hero { padding: 100px 20px 60px; }
@@ -1005,20 +1008,20 @@
         <div style="display:flex;justify-content:center;align-items:center;gap:40px;flex-wrap:wrap;max-width:800px;margin:0 auto 48px;">
             <div style="padding:12px 28px;border-radius:12px;background:rgba(108,92,231,0.08);border:1px dashed rgba(108,92,231,0.3);font-size:14px;font-weight:600;color:var(--accent-purple);letter-spacing:1px;">你的公司？</div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:40px auto 0;">
+        <div class="testi-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:40px auto 0;">
             <div class="fade-in" style="background:var(--bg-secondary);border-radius:16px;padding:28px;border:1px solid var(--card-border);">
                 <div style="font-size:36px;margin-bottom:12px;">🎯</div>
-                <div style="font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);">AI公司 · CTO招聘</div>
+                <div class="testi-title" style="font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);">AI公司 · CTO招聘</div>
                 <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;">"8秒完成简历分析，AI评分与人工判断高度一致，招聘效率提升3倍"</div>
             </div>
             <div class="fade-in" style="background:var(--bg-secondary);border-radius:16px;padding:28px;border:1px solid var(--card-border);">
                 <div style="font-size:36px;margin-bottom:12px;">🤖</div>
-                <div style="font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);">具身智能 · 多岗位</div>
+                <div class="testi-title" style="font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);">具身智能 · 多岗位</div>
                 <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;">"数十个标准岗位自动匹配，面试官协同零延迟，从投递到面试1天搞定"</div>
             </div>
             <div class="fade-in" style="background:var(--bg-secondary);border-radius:16px;padding:28px;border:1px solid var(--card-border);">
                 <div style="font-size:36px;margin-bottom:12px;">📊</div>
-                <div style="font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);">猎头机构 · 简历管理</div>
+                <div class="testi-title" style="font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);">猎头机构 · 简历管理</div>
                 <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;">"简历库共享+积分体系，人才资产不再沉睡，每份简历都被充分利用"</div>
             </div>
         </div>
