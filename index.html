@@ -497,6 +497,12 @@
             nav { padding: 12px 20px; }
             .partner-wall { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
             .testi-grid { grid-template-columns: 1fr !important; gap: 14px !important; margin-top: 24px !important; }
+            .eco-grid { grid-template-columns: 1fr !important; gap: 14px !important; }
+            .eco-grid > div { padding: 20px !important; }
+            .eco-safety { padding: 10px 12px !important; gap: 6px !important; }
+            .eco-safety > span { font-size: 12px !important; }
+            .eco-flow { gap: 8px !important; margin-top: 16px !important; }
+            .eco-flow > span { font-size: 12px !important; padding: 6px 12px !important; }
             .testi-grid > div { padding: 20px !important; }
             .testi-title { font-size: 15px !important; white-space: nowrap !important; }
             .partner-wall > div { padding: 12px 4px !important; font-size: 12px !important; letter-spacing: 0 !important; }
@@ -723,7 +729,7 @@
             <p>协同只发生在你授权的地方，数据始终归你掌控</p>
         </div>
         <div style="max-width:1050px;margin:0 auto;">
-            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+            <div class="eco-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
                 <div class="fade-in" style="background:var(--card);border-radius:14px;padding:26px 22px;box-shadow:var(--shadow);border-top:3px solid var(--accent-teal);">
                     <div style="font-size:26px;margin-bottom:12px;">🔒</div>
                     <div style="font-weight:700;font-size:15px;margin-bottom:8px;">云端加密，用户独享</div>
@@ -740,7 +746,7 @@
                     <div style="color:var(--text-secondary);font-size:13px;line-height:1.8;">智脉AI招的人，职觉AI帮你留住沉淀；伯乐引荐扩大纳才半径；北京领钱把政策红利变现——每一步协同都由你开启，人才生意全周期闭环。</div>
                 </div>
             </div>
-            <div style="margin-top:26px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;padding:12px 20px;background:rgba(0,206,201,0.06);border:1px solid rgba(0,206,201,0.2);border-radius:12px;" class="fade-in">
+            <div class="eco-safety fade-in" style="margin-top:26px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;padding:12px 20px;background:rgba(0,206,201,0.06);border:1px solid rgba(0,206,201,0.2);border-radius:12px;">
                 <span style="font-size:15px;">🛡️</span>
                 <span style="color:var(--text-primary);font-size:13px;font-weight:600;">数据云端加密存储</span>
                 <span style="color:var(--text-muted);font-size:12px;">·</span>
@@ -748,7 +754,7 @@
                 <span style="color:var(--text-muted);font-size:12px;">·</span>
                 <span style="color:var(--text-primary);font-size:13px;font-weight:600;">跨产品联动需你主动勾选授权</span>
             </div>
-            <div style="margin-top:20px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;" class="fade-in">
+            <div class="eco-flow fade-in" style="margin-top:20px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;">
                 <span style="padding:8px 16px;border-radius:99px;background:rgba(108,92,231,0.1);color:var(--accent-purple);font-size:13px;font-weight:600;">知脉/校脉 求职投递</span>
                 <span style="color:var(--text-muted);font-size:18px;">→</span>
                 <span style="padding:8px 16px;border-radius:99px;background:rgba(0,206,201,0.1);color:var(--accent-teal);font-size:13px;font-weight:600;">职觉AI 简历库沉淀</span>
