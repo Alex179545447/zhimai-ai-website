@@ -267,7 +267,6 @@
         }
 
         /* Feature Cards */
-        .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
             gap: 24px;
@@ -379,41 +378,29 @@
             max-width: 900px;
             margin: 0 auto;
         }
-        .comparison-table {
             width: 100%;
             border-collapse: collapse;
             border-radius: 12px;
             overflow: hidden;
         }
-        .comparison-table th,
-        .comparison-table td {
             padding: 16px 24px;
             text-align: left;
             font-size: 14px;
         }
-        .comparison-table thead th {
             background: var(--bg-card);
             font-weight: 700;
             font-size: 15px;
         }
-        .comparison-table thead th:first-child { color: var(--text-muted); }
-        .comparison-table thead th:nth-child(2) { color: var(--text-muted); }
-        .comparison-table thead th:last-child { color: var(--accent-light); }
-        .comparison-table tbody tr {
             border-bottom: 1px solid rgba(255,255,255,0.04);
         }
-        .comparison-table tbody td:first-child {
             color: var(--text-secondary);
             font-weight: 500;
         }
-        .comparison-table tbody td:nth-child(2) {
             color: var(--text-muted);
         }
-        .comparison-table tbody td:last-child {
             color: var(--text-primary);
             font-weight: 500;
         }
-        .comparison-table tbody tr:last-child { border-bottom: none; }
 
         /* Architecture */
         .arch-box {
@@ -510,19 +497,8 @@
             .hero { padding: 100px 20px 60px; }
             .hero-stats { flex-direction: column; gap: 24px; align-items: center; }
             section { padding: 60px 20px; }
-            .features-grid { grid-template-columns: 1fr; }
             .data-grid { grid-template-columns: repeat(2, 1fr); }
-            .comparison-table { font-size: 12px; }
-            .comparison-table th, .comparison-table td { padding: 10px 12px; }
-            #resumecloud .section-header h2 { font-size: 24px; }
-            #resumecloud .section-header p { font-size: 15px; }
-            #resumecloud > div > div:nth-child(2) { grid-template-columns: 1fr !important; gap: 32px !important; }
-            #resumecloud h3 { font-size: 17px !important; }
-            #resumecloud p { padding-left: 0 !important; font-size: 14px !important; }
             #products > div:nth-child(2) { grid-template-columns: 1fr !important; }
-            #zhimai-job > div > div:nth-child(2) { grid-template-columns: 1fr !important; }
-            #zhimai-job h3 { font-size: 17px !important; }
-            #zhimai-job p { padding-left: 0 !important; font-size: 14px !important; }
         }
 
         /* Animations */
@@ -546,9 +522,7 @@
         <div class="nav-logo">智脉AI</div>
         <div class="nav-links">
             <a href="#products">产品矩阵</a>
-            <a href="#features">核心能力</a>
             <a href="#data">实战数据</a>
-            <a href="#comparison">对比</a>
             <a href="https://hr.zhimai-ai.cn/talents" target="_blank" style="color:var(--accent-purple);font-weight:600">伯乐云图</a>
             <a href="https://hr.zhimai-ai.cn" class="btn-primary" target="_blank">进入系统</a>
         </div>
@@ -768,173 +742,6 @@
         </div>
     </section>
 
-    <!-- Features -->
-    <section id="features">
-        <div class="section-header fade-in">
-            <div class="section-tag">AI Native</div>
-            <h2>十四大核心能力</h2>
-            <p>AI Native全链路驱动，让招聘迈入全新时代</p>
-        </div>
-
-        <div class="features-grid">
-            <div class="feature-card fade-in">
-                <div class="feature-icon purple">🤖</div>
-                <h3>AI智能助手</h3>
-                <p>HR端和面试官端双端AI对话——上下文感知、语义搜索、智能推荐。一句话描述需求，AI即刻匹配最优候选人。</p>
-                <ul>
-                    <li>自然语言搜索：&#34;找一个有具身智能经验的硕士&#34;</li>
-                    <li>对话式推荐，带评分和匹配理由</li>
-                    <li>上下文感知，多轮对话追问细化</li>
-                </ul>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon cyan">🧬</div>
-                <h3>八维能力素质模型</h3>
-                <p>融合行业标杆，自建八维度能力框架——技术硬实力、前沿专业深度、产品商业化、政企资源、硬件耦合、学术产出、创业心态、稀缺度。每项1-5分精细评估，分岗位族权重计算。</p>
-                <ul>
-                    <li>对标行业五大能力词典体系</li>
-                    <li>C1-C8八维度+硬性门槛+加权评分</li>
-                    <li>分岗位族差异化权重配置</li>
-                </ul>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon teal">📊</div>
-                <h3>伯乐云图 · 精英人才图谱</h3>
-                <p>聚焦AI大模型、具身智能、芯片半导体赛道，猎头级人才推荐报告公开展示：亮点标签+职业履历+项目成就+AI岗位匹配评估，看完就想解锁联系方式。</p>
-                <ul>
-                    <li>人才亮点金标速览，不点详情即可横向对比</li>
-                    <li>职业履历+项目量化成果完整呈现</li>
-                    <li>AI岗位匹配评估：八维对标岗位基准，差距可见</li>
-                    <li>联系方式企业验证解锁，人才对接合规安全</li>
-                </ul>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon pink">🎯</div>
-                <h3>胜任力模型系统</h3>
-                <p>五维度30+能力项，对标智库自建+DDI+合麦+光辉国际+北森五大体系。22个标准岗位模型，支持别名映射，增量式管理。</p>
-                <ul>
-                    <li>63项对标词典，行业标准覆盖</li>
-                    <li>岗位模型即查即用</li>
-                    <li>独立数据，不影响现有流程</li>
-                </ul>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon purple">📈</div>
-                <h3>面试跟踪报表</h3>
-                <p>全链路面试跟踪——从初试到offer的全流程可视化。8维统计卡片+自定义日期+按岗位漏斗分析，淘汰人员也能查看。</p>
-                <ul>
-                    <li>卡片筛选：按面试官/阶段/日期</li>
-                    <li>评价列换行展示，不截断</li>
-                    <li>工作量统计：所有参与面试的人总数</li>
-                </ul>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon cyan">🔍</div>
-                <h3>智能混合搜索</h3>
-                <p>OR匹配+AND加权排序，全字段覆盖——姓名/公司/学校/技能/岗位/标签。全匹配+500分加权，避免&#34;搜不到&#34;。</p>
-                <ul>
-                    <li>多词AND/OR混合匹配</li>
-                    <li>字段权重：职位&gt;公司&gt;学校&gt;技能</li>
-                    <li>支持中文词滑窗切分</li>
-                </ul>
-            </div>
-            <div class="feature-card fade-in">
-                <div class="feature-icon purple">🧠</div>
-                <h3>AI简历智能分析</h3>
-                <p>不是关键词匹配，是真正的理解。基于大语言模型深度解析简历内容，像资深猎头一样读懂每一份简历。</p>
-                <ul>
-                    <li>0-100分精准量化评分，每个分数段有明确锚点</li>
-                    <li>数十个标准岗位精准归一化匹配</li>
-                    <li>自动识别方向偏差、经验不足等风险</li>
-                    <li>候选人画像一键结构化输出</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon cyan">📬</div>
-                <h3>邮箱自动入库</h3>
-                <p>简历从邮箱到系统，零人工介入。多个主流招聘平台简历邮件自动识别、自动解析。</p>
-                <ul>
-                    <li>一键同步，增量获取，不浪费算力</li>
-                    <li>智能过滤非简历邮件（安全报告/通知）</li>
-                    <li>扫描件自动识别标记，跳过无效分析</li>
-                    <li>支持PDF/Word，docx自动转HTML预览</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon pink">👥</div>
-                <h3>面试官协同系统</h3>
-                <p>每位面试官专属入口，只看自己负责岗位的简历，一键操作，反馈秒级同步。</p>
-                <ul>
-                    <li>初试/复试分流，通过自动流转</li>
-                    <li>铃铛聚合通知，操作实时同步HR端</li>
-                    <li>微信浏览器完美适配</li>
-                    <li>面试日历按月可视化</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon orange">📊</div>
-                <h3>招聘驾驶舱</h3>
-                <p>实时数据看板，从简历入库到入职全流程可视化，招聘漏斗一目了然。</p>
-                <ul>
-                    <li>推荐→初试→复试→OFFER→入职转化率</li>
-                    <li>按面试官查看操作记录</li>
-                    <li>数十个岗位独立统计</li>
-                    <li>最近动态实时滚动</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon green">📌</div>
-                <h3>多轮面试记录 <span style="font-size:11px;padding:2px 8px;background:rgba(108,92,231,0.15);color:#6c5ce7;border-radius:10px;margin-left:6px">NEW</span></h3>
-                <p>面试反馈从单条升级为完整链路，每轮面试独立记录，HR和面试官操作自动归档。</p>
-                <ul>
-                    <li>初试→复试→OFFER全链路可追溯</li>
-                    <li>每轮记录面试官、结果、时间</li>
-                    <li>OFFER弹窗填写薪资/入职日期</li>
-                    <li>7种状态标签全覆盖，一眼区分阶段</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon blue">☁️</div>
-                <h3>智能人才库 <span style="font-size:11px;padding:2px 8px;background:rgba(108,92,231,0.15);color:#6c5ce7;border-radius:10px;margin-left:6px">NEW</span></h3>
-                <p>智脉AI旗下独立产品，HR和猎头的AI简历利器库。私密云存储+AI智能解析，你的简历资产保险箱。</p>
-                <ul>
-                    <li>私有库加密存储，数据仅你可见</li>
-                    <li>AI智能解析20+字段，8秒提取关键信息</li>
-                    <li>多格式支持：PDF/Word/图片一键入库</li>
-                    <li>企业级数据隔离，银行级隐私保护</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon" style="background:rgba(108,92,231,0.15)">🔗</div>
-                <h3>猎头协作平台</h3>
-                <p>猎头独立入口，简历自动归因。每位猎头专属邀请码，提交的简历自动标记来源。</p>
-                <ul>
-                    <li>猎头通过邀请码登录，只看自己提交的</li>
-                    <li>每份简历标记猎头来源，录用可追溯</li>
-                    <li>猎头实时查看简历处理进度</li>
-                </ul>
-            </div>
-
-            <div class="feature-card fade-in">
-                <div class="feature-icon" style="background:rgba(0,206,201,0.15)">🏗️</div>
-                <h3>多租户架构</h3>
-                <p>一套系统服务多家企业，数据完全隔离。A公司的简历，B公司连影子都看不到。</p>
-                <ul>
-                    <li>独立数据库、独立邮箱配置</li>
-                    <li>独立岗位体系、独立用户体系</li>
-                    <li>API层强制校验，越权访问零可能</li>
-                    <li>按需AI调度，零算力浪费</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
     <!-- Data -->
     <section id="data">
         <div class="section-header fade-in">
@@ -1035,278 +842,9 @@
 
 
 
-    <!-- Comparison -->
-    <section id="comparison">
-        <div class="section-header fade-in">
-            <div class="section-tag">VS</div>
-            <h2>传统招聘 vs 智脉AI</h2>
-            <p>不是渐进式改进，是范式级跃迁</p>
-        </div>
-
-        <div class="comparison fade-in">
-            <table class="comparison-table">
-                <thead>
-                    <tr>
-                        <th>场景</th>
-                        <th>传统招聘</th>
-                        <th>智脉AI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>简历筛选</td>
-                        <td>HR手动下载、逐份阅读</td>
-                        <td>邮箱自动入库，AI 8秒出分析</td>
-                    </tr>
-                    <tr>
-                        <td>候选人评估</td>
-                        <td>凭感觉判断匹配度</td>
-                        <td>0-100分量化评分，有锚点有依据</td>
-                    </tr>
-                    <tr>
-                        <td>面试官反馈</td>
-                        <td>靠微信催，口头反馈</td>
-                        <td>专属入口一键操作，实时同步</td>
-                    </tr>
-                    <tr>
-                        <td>进度统计</td>
-                        <td>Excel手动统计</td>
-                        <td>驾驶舱实时漏斗，岗位维度下钻</td>
-                    </tr>
-                    <tr>
-                        <td>猎头管理</td>
-                        <td>简历无法归因</td>
-                        <td>邀请码自动标记，进度实时可查</td>
-                    </tr>
-                    <tr>
-                        <td>多客户服务</td>
-                        <td>一套系统只能一家用</td>
-                        <td>多租户架构，数据物理隔离</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <!-- Architecture -->
-    <section id="architecture">
-        <div class="section-header fade-in">
-            <div class="section-tag">Architecture</div>
-            <h2>产品架构</h2>
-            <p>分层设计，AI引擎贯穿全流程</p>
-        </div>
-
-        <div class="arch-box fade-in">
-            <div class="arch-layer top">
-                <div class="title">交互层 · 五端协同</div>
-                <div class="desc">HR管理端 · 面试官端 · 猎头端 · 管理后台</div>
-            </div>
-            <div class="arch-layer mid">
-                <div class="title">AI 引擎层 · 大模型驱动</div>
-                <div class="desc">简历深度分析 · 智能评分 · 岗位匹配 · 风险评估 · 候选人画像 · 上下文解析 · AI Native助手 · 自进化引擎</div>
-            </div>
-            <div class="arch-layer bot">
-                <div class="title">数据与集成层 · 安全可靠</div>
-                <div class="desc">邮箱自动拉取 · PDF智能解析 · 多租户数据隔离 · 积分体系 · 按需AI调度</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    
-    <!-- 职觉AI - 智能人才库 -->
-    <section id="resumecloud" style="background:var(--bg-tertiary);padding:100px 40px;">
-        <div style="max-width:1100px;margin:0 auto;">
-            <div class="section-header fade-in" style="text-align:center;margin-bottom:60px;">
-                <div class="section-tag" style="background:rgba(0,206,201,0.1);color:var(--accent-teal);">独立产品</div>
-                <h2 style="margin-top:16px;">职觉AI · 智能人才库</h2>
-                <p style="color:var(--text-secondary);max-width:600px;margin:12px auto 0;font-size:17px;line-height:1.7;">
-                    专为HR和猎头打造的<strong style="color:var(--text-primary)">云端简历库与人脉库</strong>。<br>
-                    人才资产沉淀，人岗智能匹配。
-                </p>
-            </div>
-
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
-                <!-- 左侧：核心卖点 -->
-                <div class="fade-in">
-                    <div style="margin-bottom:32px;">
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <span style="font-size:28px;">🔒</span>
-                            <h3 style="font-size:20px;font-weight:700;margin:0;">云端私有，数据主权归你</h3>
-                        </div>
-                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
-                            云端简历库加密存储，未经授权任何人无法查看——包括我们。<br>
-                            数据完全隔离，只有你能访问自己的库；跨产品协同（如职位发布到伯乐引荐）全部需要你主动勾选，你的简历库就是你的保险箱。
-                        </p>
-                    </div>
-                    <div style="margin-bottom:32px;">
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <span style="font-size:28px;">🤖</span>
-                            <h3 style="font-size:20px;font-weight:700;margin:0;">AI解析，8秒提取20+字段</h3>
-                        </div>
-                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
-                            PDF/Word/图片一键入库，AI自动提取姓名、学历、工作经历等20+关键字段。<br>
-                            告别手动录入，让每一份简历都结构化可检索。
-                        </p>
-                    </div>
-                    <div style="margin-bottom:32px;">
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <span style="font-size:28px;">🛡️</span>
-                            <h3 style="font-size:20px;font-weight:700;margin:0;">安全合规，银行级保护</h3>
-                        </div>
-                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
-                            传输加密 + 存储加密 + 访问鉴权三重保障。<br>
-                            操作日志全程可追溯，符合个人信息保护法要求。
-                        </p>
-                    </div>
-                </div>
-
-                <!-- 右侧：功能卡片 -->
-                <div class="fade-in" style="display:flex;flex-direction:column;gap:16px;">
-                    <div style="background:var(--card);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #6c5ce7;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">📁 云端简历库</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">你的专属简历保险箱，上传即加密，仅你可见可管理</div>
-                    </div>
-                    <div style="background:var(--card);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #00cec9;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">🔍 AI智能检索</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">按岗位、学历、经验、技能多维度筛选，秒级定位目标候选人</div>
-                    </div>
-                    <div style="background:var(--card);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #fd79a8;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">📊 数据看板</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">简历总量、解析状态、来源分布一目了然，数据驱动人才决策</div>
-                    </div>
-                    <div style="background:var(--card);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #ffa502;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">🎯 AI人岗匹配</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">职位库一键调用，AI为岗位匹配库中候选人，推荐理由逐条呈现</div>
-                    </div>
-                    <div style="background:var(--card);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #a29bfe;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">🌐 人才地图</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">赛道人才分布、竞对雷达、沉睡激活，候选人关爱维护，人脉持续增值</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align:center;margin-top:48px;" class="fade-in">
-                <a href="https://www.zhijueyuntu.com" target="_blank" class="btn-primary" style="padding:14px 36px;font-size:16px;background:linear-gradient(135deg,#00cec9,#55efc4);">进入职觉AI</a>
-                <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">职觉AI · 智能人才库 · zhijueyuntu.com</p>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- 知脉AI - 知己知彼 -->
-    <section id="zhimai-job" style="padding:100px 40px;">
-        <div style="max-width:1100px;margin:0 auto;">
-            <div class="section-header fade-in" style="text-align:center;margin-bottom:60px;">
-                <div class="section-tag" style="background:rgba(253,121,168,0.1);color:var(--accent-pink);">独立产品</div>
-                <h2 style="margin-top:16px;">知脉AI · 知己知彼</h2>
-                <p style="color:var(--text-secondary);max-width:600px;margin:12px auto 0;font-size:17px;line-height:1.7;">
-                    七大AI求职技能——岗位探测、能力雷达、竞争力定位、简历定制、ATS扫描、简历构建、智能投递。<br>
-                    <strong style="color:var(--text-primary)">知己知彼，百战百胜。</strong>
-                </p>
-            </div>
-
-            <!-- 七大功能标签 -->
-            <div class="fade-in" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:48px;">
-                <span style="padding:8px 16px;background:linear-gradient(135deg,#fd79a8,#e84393);color:#fff;border-radius:20px;font-size:13px;font-weight:600;">📊 能力雷达图</span>
-                <span style="padding:8px 16px;background:linear-gradient(135deg,#fd79a8,#e84393);color:#fff;border-radius:20px;font-size:13px;font-weight:600;">🎯 岗位探测</span>
-                <span style="padding:8px 16px;background:linear-gradient(135deg,#fd79a8,#e84393);color:#fff;border-radius:20px;font-size:13px;font-weight:600;">⚔️ 竞争力定位</span>
-                <span style="padding:8px 16px;background:linear-gradient(135deg,#fd79a8,#e84393);color:#fff;border-radius:20px;font-size:13px;font-weight:600;">📝 简历定制</span>
-                <span style="padding:8px 16px;background:linear-gradient(135deg,#fd79a8,#e84393);color:#fff;border-radius:20px;font-size:13px;font-weight:600;">🔍 ATS扫描</span>
-                <span style="padding:8px 16px;background:linear-gradient(135deg,#fd79a8,#e84393);color:#fff;border-radius:20px;font-size:13px;font-weight:600;">🏗️ 简历构建</span>
-                <span style="padding:8px 16px;background:linear-gradient(135deg,#fd79a8,#e84393);color:#fff;border-radius:20px;font-size:13px;font-weight:600;">🚀 智能投递</span>
-            </div>
-
-            <!-- 智能投递亮点 -->
-            <div class="fade-in" style="background:linear-gradient(135deg,rgba(253,121,168,0.05),rgba(108,92,231,0.05));border:1px solid rgba(253,121,168,0.15);border-radius:20px;padding:32px;margin-bottom:48px;">
-                <h3 style="font-size:22px;font-weight:800;margin-bottom:16px;color:var(--accent-pink);">🚀 智能职位投递</h3>
-                <p style="color:var(--text-secondary);line-height:1.8;margin-bottom:20px;">
-                    上传简历 → AI提取画像 → 六维匹配所有职位 → 精准/推荐/更多三圈层展示 → 一键多投 → 投递追踪
-                </p>
-                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;">
-                    <div style="background:#fff;border-radius:12px;padding:16px;text-align:center;">
-                        <div style="font-size:32px;margin-bottom:8px;">🎯</div>
-                        <div style="font-size:14px;font-weight:600;color:var(--text-primary);">六维匹配算法</div>
-                        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;">技能+岗位+经验+学历+地点+薪资</div>
-                    </div>
-                    <div style="background:#fff;border-radius:12px;padding:16px;text-align:center;">
-                        <div style="font-size:32px;margin-bottom:8px;">💎</div>
-                        <div style="font-size:14px;font-weight:600;color:var(--text-primary);">三圈层推荐</div>
-                        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;">精准≥80 / 推荐60-79 / 更多</div>
-                    </div>
-                    <div style="background:#fff;border-radius:12px;padding:16px;text-align:center;">
-                        <div style="font-size:32px;margin-bottom:8px;">📋</div>
-                        <div style="font-size:14px;font-weight:600;color:var(--text-primary);">投递追踪</div>
-                        <div style="font-size:12px;color:var(--text-secondary);margin-top:4px;">投递记录+定制建议</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
-                <div class="fade-in">
-                    <div style="margin-bottom:32px;">
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <span style="font-size:28px;">📊</span>
-                            <h3 style="font-size:20px;font-weight:700;margin:0;">TRIMG五维指数体系</h3>
-                        </div>
-                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
-                            T·Trust 信任度 / R·Reading 可读性 / I·Information 信息度<br>
-                            M·Match 匹配度 / G·Get 获取度<br>
-                            五维度全方位量化简历质量，让每一份简历都有据可依。
-                        </p>
-                    </div>
-                    <div style="margin-bottom:32px;">
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <span style="font-size:28px;">🎯</span>
-                            <h3 style="font-size:20px;font-weight:700;margin:0;">智能岗位匹配</h3>
-                        </div>
-                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
-                            上传简历→选择岗位→AI精准匹配，覆盖30+标准岗位。<br>
-                            技能对比、差距分析、提升建议，一目了然。
-                        </p>
-                    </div>
-                    <div style="margin-bottom:32px;">
-                        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
-                            <span style="font-size:28px;">💡</span>
-                            <h3 style="font-size:20px;font-weight:700;margin:0;">个性化职业建议</h3>
-                        </div>
-                        <p style="color:var(--text-secondary);line-height:1.8;padding-left:40px;">
-                            基于简历深度解析，给出针对性优化建议和职业发展方向。<br>
-                            让每一次求职都更有底气。
-                        </p>
-                    </div>
-                </div>
-
-                <div class="fade-in" style="display:flex;flex-direction:column;gap:16px;">
-                    <div style="background:var(--bg-secondary);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #fd79a8;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">📋 简历深度解析</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">AI提取20+字段，工作经历/教育背景/技能标签全结构化</div>
-                    </div>
-                    <div style="background:var(--bg-secondary);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #e84393;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">🔍 优劣势分析</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">智能识别简历亮点与不足，给出可操作的改进建议</div>
-                    </div>
-                    <div style="background:var(--bg-secondary);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #6c5ce7;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">🤝 岗位精准匹配</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">匹配度可视化，技能差距分析，助力精准投递</div>
-                    </div>
-                    <div style="background:var(--bg-secondary);border-radius:12px;padding:24px;box-shadow:var(--shadow);border-left:4px solid #00cec9;">
-                        <div style="font-weight:700;font-size:15px;margin-bottom:8px;">📥 一键收录人才库</div>
-                        <div style="color:var(--text-secondary);font-size:13px;line-height:1.6;">匹配结果直接收录至职觉AI人才库，招聘评估无缝衔接</div>
-                    </div>
-                </div>
-            </div>
-
-            <div style="text-align:center;margin-top:48px;" class="fade-in">
-                <a href="https://hr.zhimai-ai.cn/zhimai-ai/" target="_blank" class="btn-primary" style="padding:14px 36px;font-size:16px;background:linear-gradient(135deg,#fd79a8,#e84393);">进入知脉AI</a>
-                <p style="color:var(--text-muted);font-size:13px;margin-top:12px;">知脉AI · 知己知彼，发现你的职业潜能</p>
-            </div>
-        </div>
-    </section>
-
 <section class="cta">
         <h2 class="fade-in">AI驱动人才全链路<br>从<span class="gradient-text">智能决策</span>开始</h2>
-        <p class="fade-in">智脉AI · 职觉AI · 知脉AI —— 三大产品，一个生态</p>
+        <p class="fade-in">智脉AI · 知脉AI · 校脉AI · 职觉AI · 伯乐引荐 · 北京领钱 —— 六大产品，一个生态</p>
         <div class="cta-buttons fade-in">
             <a href="javascript:showContact()" class="btn-primary" style="padding:16px 40px;font-size:17px;">预约演示</a>
             <a href="javascript:showContact()" class="btn-secondary" style="padding:16px 40px;font-size:17px;">免费试用</a>
@@ -1314,7 +852,7 @@
     </section>
 
     <footer>
-        <p>© 2026 智脉AI · 职觉AI · 知脉AI &nbsp;|&nbsp; <a href="https://zhimai-ai.cn">zhimai-ai.cn</a></p>
+        <p>© 2026 智脉AI · 六大AI产品矩阵 &nbsp;|&nbsp; <a href="https://zhimai-ai.cn">zhimai-ai.cn</a></p>
     </footer>
 
     <script>
