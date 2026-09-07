@@ -495,6 +495,8 @@
         /* Mobile */
         @media (max-width: 768px) {
             nav { padding: 12px 20px; }
+            .partner-wall { grid-template-columns: repeat(3, 1fr) !important; gap: 10px !important; }
+            .partner-wall > div { padding: 12px 4px !important; font-size: 12px !important; letter-spacing: 0 !important; }
             .nav-links { display: none; }
             .hero { padding: 100px 20px 60px; }
             .hero-stats { flex-direction: column; gap: 24px; align-items: center; }
@@ -984,7 +986,7 @@
                 <span style="font-size:13px;font-weight:600;color:var(--accent-purple);letter-spacing:2px;">正在洽谈中的合作伙伴</span>
             </div>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:16px;max-width:1000px;margin:0 auto 12px;">
+        <div class="partner-wall" style="display:grid;grid-template-columns:repeat(7,1fr);gap:16px;max-width:1000px;margin:0 auto 12px;">
             <div style="padding:14px 8px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px dashed var(--card-border);font-size:14px;font-weight:600;color:var(--text-secondary);text-align:center;letter-spacing:1px;opacity:0.85;">字节跳动</div>
             <div style="padding:14px 8px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px dashed var(--card-border);font-size:14px;font-weight:600;color:var(--text-secondary);text-align:center;letter-spacing:1px;opacity:0.85;">华为</div>
             <div style="padding:14px 8px;border-radius:10px;background:rgba(255,255,255,0.02);border:1px dashed var(--card-border);font-size:14px;font-weight:600;color:var(--text-secondary);text-align:center;letter-spacing:1px;opacity:0.85;">腾讯</div>
