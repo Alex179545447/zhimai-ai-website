@@ -524,6 +524,26 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
 #nav { backdrop-filter:blur(18px) saturate(160%) !important; -webkit-backdrop-filter:blur(18px) saturate(160%) !important; }
 .reveal-up { opacity:0; transform:translateY(32px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
 .reveal-up.on { opacity:1; transform:none; }
+</style><style id="hmUp2">
+/* ===== 视差+动效增强层 ===== */
+/* 背景层fixed：滚动时背景不动，内容滚过=深度错位 */
+.bg-glow, #bgCanvas { position:fixed !important; }
+.bg-glow.glow-1 { top:-10% !important; left:-5% !important; }
+.bg-glow.glow-2 { top:30% !important; right:-8% !important; left:auto !important; }
+.bg-glow.glow-3 { bottom:-12% !important; left:22% !important; top:auto !important; }
+/* 图标badge呼吸浮动 */
+.step-ico, [class*="ico"], [class*="icon"] { animation:icoFloat 3.2s ease-in-out infinite !important; }
+.step-ico:nth-child(2n), [class*="ico"]:nth-child(2n) { animation-delay:-1.6s !important; }
+@keyframes icoFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-5px)} }
+/* 数字呼吸（count-up完成后持续微动） */
+.number { display:inline-block; animation:numPulse 2.8s ease-in-out infinite; text-shadow:0 0 24px rgba(99,102,241,.25); }
+@keyframes numPulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.035)} }
+/* 产品卡3D倾斜容器 */
+.tilt-wrap { perspective:900px; }
+.tilt3d { transition:transform .18s ease-out; will-change:transform; }
+/* 顶栏滚动压缩 */
+#nav { transition:padding .3s, box-shadow .3s !important; }
+#nav.nav-compact { padding-top:10px !important; padding-bottom:10px !important; box-shadow:0 6px 24px rgba(15,23,42,.08) !important; }
 </style></head>
 <body>
     <div class="bg-grid"></div>
@@ -1016,6 +1036,36 @@ function showContact(){document.getElementById('contactOverlay').classList.add('
   }, { threshold: .12 });
   var n = 0;
   tg.forEach(function(t){ if (n < 70) { t.classList.add('reveal-up'); io.observe(t); n++; } });
+})();
+</script><script>
+/* 视差+倾斜+导航压缩 */
+(function(){
+  var glows = document.querySelectorAll('.bg-glow');
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var y = window.scrollY;
+      glows.forEach(function(g, i){
+        var sp = 0.12 + i * 0.06;
+        g.style.translate = '0 ' + (y * sp) + 'px';
+      });
+      var nav = document.getElementById('nav');
+      if (nav) { if (y > 60) nav.classList.add('nav-compact'); else nav.classList.remove('nav-compact'); }
+      ticking = false;
+    });
+  }, { passive:true });
+  /* 产品卡3D倾斜 */
+  document.querySelectorAll('.product, [class*="prod-card"]').forEach(function(card){
+    card.classList.add('tilt3d');
+    card.addEventListener('mousemove', function(e){
+      var r = card.getBoundingClientRect();
+      var rx = ((e.clientY - r.top) / r.height - .5) * -7;
+      var ry = ((e.clientX - r.left) / r.width - .5) * 7;
+      card.style.transform = 'perspective(900px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-4px)';
+    });
+    card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
+  });
 })();
 </script></body>
 </html>
