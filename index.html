@@ -1056,7 +1056,7 @@ function showContact(){document.getElementById('contactOverlay').classList.add('
     });
   }, { passive:true });
   /* 产品卡3D倾斜 */
-  document.querySelectorAll('.product, [class*="prod-card"]').forEach(function(card){
+  document.querySelectorAll('.product, [class*="prod-card"], [class*="feature"], [class*="card-"]').forEach(function(card){
     card.classList.add('tilt3d');
     card.addEventListener('mousemove', function(e){
       var r = card.getBoundingClientRect();
