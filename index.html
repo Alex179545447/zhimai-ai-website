@@ -1067,5 +1067,20 @@ function showContact(){document.getElementById('contactOverlay').classList.add('
     card.addEventListener('mouseleave', function(){ card.style.transform = ''; });
   });
 })();
+</script><script src="/brand-core.js"></script>
+<script>
+(function(){
+  function applyCore(){
+    if (!window.BRAND_CORE) return;
+    var st = window.BRAND_CORE.stats;
+    document.querySelectorAll('.number[data-count]').forEach(function(el){
+      var n = parseInt(el.getAttribute('data-count'),10);
+      var map = {8: st.aiSpeed.value, 70: st.matchRate.value, 5000: st.resumeTotal.value, 40: st.jobs.value};
+      if (map[n] !== undefined) el.setAttribute('data-count', map[n]);
+    });
+  }
+  applyCore();
+  window.addEventListener('load', applyCore);
+})();
 </script></body>
 </html>
