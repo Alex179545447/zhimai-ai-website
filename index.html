@@ -587,11 +587,11 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
                 <div class="label">高匹配率 (≥80分)</div>
             </div>
             <div class="hero-stat">
-                <div class="number" data-count="5000" data-suffix="+" data-decimal="0">0+</div>
+                <div class="number" data-count="5000" data-suffix="" data-decimal="0">0+</div>
                 <div class="label">简历处理总量</div>
             </div>
             <div class="hero-stat">
-                <div class="number" data-count="40" data-suffix="+" data-decimal="0">0+</div>
+                <div class="number" data-count="40" data-suffix="" data-decimal="0">0+</div>
                 <div class="label">标准岗位覆盖</div>
             </div>
         </div>
@@ -789,7 +789,7 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
 
         <div class="data-grid fade-in">
             <div class="data-card">
-                <div class="number" data-count="5000" data-suffix="+" data-decimal="0">0<span class="unit">份</span></div>
+                <div class="number" data-count="5000" data-suffix="" data-decimal="0">0<span class="unit">份</span></div>
                 <div class="label">简历处理总量</div>
             </div>
             <div class="data-card">
@@ -805,11 +805,11 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
                 <div class="label">单份AI分析耗时</div>
             </div>
             <div class="data-card">
-                <div class="number" data-count="40" data-suffix="+" data-decimal="0">0<span class="unit">个</span></div>
+                <div class="number" data-count="40" data-suffix="" data-decimal="0">0<span class="unit">个</span></div>
                 <div class="label">标准岗位覆盖</div>
             </div>
             <div class="data-card">
-                <div class="number" data-count="3000" data-suffix="+" data-decimal="0">0<span class="unit">份</span></div>
+                <div class="number" data-count="3000" data-suffix="" data-decimal="0">0<span class="unit">份</span></div>
                 <div class="label">面试官反馈覆盖</div>
             </div>
             <div class="data-card">
@@ -1057,7 +1057,7 @@ function showContact(){document.getElementById('contactOverlay').classList.add('
     });
   }, { passive:true });
   /* 产品卡3D倾斜 */
-  document.querySelectorAll('.product, [class*="prod-card"], [class*="feature"], [class*="card-"]').forEach(function(card){
+  document.querySelectorAll('#products div[style*="repeat(3"] > div').forEach(function(card){
     card.classList.add('tilt3d');
     card.addEventListener('mousemove', function(e){
       var r = card.getBoundingClientRect();
