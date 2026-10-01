@@ -512,19 +512,7 @@
             transform: translateY(0);
         }
     </style>
-<style id="hmUp">
-/* ===== hellomonday式升级: 渐变大字+玻璃卡+滚动叙事 ===== */
-@keyframes hmShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120deg,#6366F1,#8B5CF6,#06B6D4,#EC4899,#6366F1) !important; background-size:280% 100% !important; -webkit-background-clip:text !important; background-clip:text !important; color:transparent !important; animation:hmShift 9s ease infinite !important; }
-.bg-glow { animation:hmGlow 18s ease-in-out infinite alternate !important; }
-@keyframes hmGlow { from{transform:translate(0,0) scale(1)} to{transform:translate(50px,-35px) scale(1.14)} }
-[class*="card"], [class*="prod"], .product { transition:transform .35s cubic-bezier(.22,1,.36,1), box-shadow .35s !important; }
-[class*="card"]:hover, .product:hover { transform:translateY(-5px) !important; box-shadow:0 22px 54px rgba(99,102,241,.15) !important; }
-.step-ico, [class*="ico"], [class*="icon"] { background:linear-gradient(135deg,#6366F1,#8B5CF6) !important; color:#fff !important; font-weight:800 !important; }
-#nav { backdrop-filter:blur(18px) saturate(160%) !important; -webkit-backdrop-filter:blur(18px) saturate(160%) !important; }
-.reveal-up { opacity:0; transform:translateY(32px); transition:opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1); }
-.reveal-up.on { opacity:1; transform:none; }
-</style></head>
+</head>
 <body>
     <div class="bg-grid"></div>
     <div class="bg-glow bg-glow-1"></div>
@@ -593,7 +581,7 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
 
             <div class="fade-in" style="background:var(--bg-secondary);border:1px solid rgba(108,92,231,0.15);border-radius:20px;padding:40px 32px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:all 0.3s;">
                 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#6c5ce7,#a29bfe);"></div>
-                <div style="width:56px;height:56px;border-radius:16px;background:rgba(108,92,231,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">智</div>
+                <div style="width:56px;height:56px;border-radius:16px;background:rgba(108,92,231,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">🎯</div>
                 <h3 style="font-size:24px;font-weight:800;margin-bottom:4px;">智脉AI</h3>
                 <div style="font-size:13px;color:var(--accent-purple);font-weight:600;margin-bottom:16px;">往届人才 · 企业智能招聘</div>
                 <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
@@ -610,7 +598,7 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
 
             <div class="fade-in" style="background:var(--bg-secondary);border:1px solid rgba(253,121,168,0.15);border-radius:20px;padding:40px 32px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:all 0.3s;">
                 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#fd79a8,#e84393);"></div>
-                <div style="width:56px;height:56px;border-radius:16px;background:rgba(253,121,168,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">知</div>
+                <div style="width:56px;height:56px;border-radius:16px;background:rgba(253,121,168,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">🔍</div>
                 <h3 style="font-size:24px;font-weight:800;margin-bottom:4px;">知脉AI</h3>
                 <div style="font-size:13px;color:var(--accent-pink);font-weight:600;margin-bottom:16px;">C端求职 · 知己知彼</div>
                 <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
@@ -633,7 +621,7 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
 
             <div class="fade-in" style="background:var(--bg-secondary);border:1px solid rgba(162,155,254,0.2);border-radius:20px;padding:40px 32px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:all 0.3s;">
                 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#a29bfe,#6c5ce7);"></div>
-                <div style="width:56px;height:56px;border-radius:16px;background:rgba(162,155,254,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">校</div>
+                <div style="width:56px;height:56px;border-radius:16px;background:rgba(162,155,254,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">🎓</div>
                 <h3 style="font-size:24px;font-weight:800;margin-bottom:4px;">校脉AI</h3>
                 <div style="font-size:13px;color:#a29bfe;font-weight:600;margin-bottom:16px;">应届实习 · 校招三方网络平台</div>
                 <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
@@ -656,7 +644,7 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
 
             <!-- 职觉AI --><div class="fade-in" style="background:var(--bg-secondary);border:1px solid rgba(0,206,201,0.15);border-radius:20px;padding:40px 32px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:all 0.3s;">
                 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#00cec9,#55efc4);"></div>
-                <div style="width:56px;height:56px;border-radius:16px;background:rgba(0,206,201,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">职</div>
+                <div style="width:56px;height:56px;border-radius:16px;background:rgba(0,206,201,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">📁</div>
                 <h3 style="font-size:24px;font-weight:800;margin-bottom:4px;">职觉AI</h3>
                 <div style="font-size:13px;color:var(--accent-teal);font-weight:600;margin-bottom:16px;">智能人才库</div>
                 <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
@@ -677,7 +665,7 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
 
             <div class="fade-in" style="background:var(--bg-secondary);border:1px solid rgba(9,132,227,0.15);border-radius:20px;padding:40px 32px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:all 0.3s;">
                 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#0984e3,#74b9ff);"></div>
-                <div style="width:56px;height:56px;border-radius:16px;background:rgba(9,132,227,0.1);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">伯</div>
+                <div style="width:56px;height:56px;border-radius:16px;background:rgba(9,132,227,0.1);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">🤝</div>
                 <h3 style="font-size:24px;font-weight:800;margin-bottom:4px;">伯乐引荐</h3>
                 <div style="font-size:13px;color:#0984e3;font-weight:600;margin-bottom:16px;">悬赏招聘</div>
                 <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
@@ -694,7 +682,7 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
 
             <div class="fade-in" style="background:var(--bg-secondary);border:1px solid rgba(253,203,110,0.2);border-radius:20px;padding:40px 32px;display:flex;flex-direction:column;position:relative;overflow:hidden;transition:all 0.3s;">
                 <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(135deg,#fdcb6e,#e17055);"></div>
-                <div style="width:56px;height:56px;border-radius:16px;background:rgba(253,203,110,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">京</div>
+                <div style="width:56px;height:56px;border-radius:16px;background:rgba(253,203,110,0.12);display:flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:24px;">💰</div>
                 <h3 style="font-size:24px;font-weight:800;margin-bottom:4px;">北京领钱</h3>
                 <div style="font-size:13px;color:#e17055;font-weight:600;margin-bottom:16px;">企业政策智能助手</div>
                 <p style="font-size:14px;color:var(--text-secondary);line-height:1.8;margin-bottom:24px;">
@@ -721,23 +709,23 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
         <div style="max-width:1050px;margin:0 auto;">
             <div class="eco-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
                 <div class="fade-in" style="background:var(--card);border-radius:14px;padding:26px 22px;box-shadow:var(--shadow);border-top:3px solid var(--accent-teal);">
-                    <div style="font-size:26px;margin-bottom:12px;">安</div>
+                    <div style="font-size:26px;margin-bottom:12px;">🔒</div>
                     <div style="font-weight:700;font-size:15px;margin-bottom:8px;">云端加密，用户独享</div>
                     <div style="color:var(--text-secondary);font-size:13px;line-height:1.8;">每个产品的数据独立云端加密存储，只有你自己能访问自己的数据。想让职位发布到伯乐引荐、简历跨产品协同？全部需要你主动勾选授权——不勾选，就完全隔离。</div>
                 </div>
                 <div class="fade-in" style="background:var(--card);border-radius:14px;padding:26px 22px;box-shadow:var(--shadow);">
-                    <div style="font-size:26px;margin-bottom:12px;">脉</div>
+                    <div style="font-size:26px;margin-bottom:12px;">🤖</div>
                     <div style="font-weight:700;font-size:15px;margin-bottom:8px;">共享的是AI引擎，不是数据</div>
                     <div style="color:var(--text-secondary);font-size:13px;line-height:1.8;">同一套AI大模型底座：八维能力模型、AI解析、智能匹配、悬赏追踪，在六大产品中协同工作。共享的始终是能力，你的数据只属于你，越用越懂你的业务。</div>
                 </div>
                 <div class="fade-in" style="background:var(--card);border-radius:14px;padding:26px 22px;box-shadow:var(--shadow);">
-                    <div style="font-size:26px;margin-bottom:12px;">京</div>
+                    <div style="font-size:26px;margin-bottom:12px;">💰</div>
                     <div style="font-weight:700;font-size:15px;margin-bottom:8px;">从招人到省钱</div>
                     <div style="color:var(--text-secondary);font-size:13px;line-height:1.8;">智脉AI招的人，职觉AI帮你留住沉淀；伯乐引荐扩大纳才半径；北京领钱把政策红利变现——每一步协同都由你开启，人才生意全周期闭环。</div>
                 </div>
             </div>
             <div class="eco-safety fade-in" style="margin-top:26px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;padding:12px 20px;background:rgba(0,206,201,0.06);border:1px solid rgba(0,206,201,0.2);border-radius:12px;">
-                <span style="font-size:15px;">盾️</span>
+                <span style="font-size:15px;">🛡️</span>
                 <span style="color:var(--text-primary);font-size:13px;font-weight:600;">数据云端加密存储</span>
                 <span style="color:var(--text-muted);font-size:12px;">·</span>
                 <span style="color:var(--text-primary);font-size:13px;font-weight:600;">仅本人可访问自己的数据</span>
@@ -839,17 +827,17 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
         </div>
         <div class="testi-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:40px auto 0;">
             <div class="fade-in" style="background:var(--bg-secondary);border-radius:16px;padding:28px;border:1px solid var(--card-border);">
-                <div style="font-size:36px;margin-bottom:12px;">智</div>
+                <div style="font-size:36px;margin-bottom:12px;">🎯</div>
                 <div class="testi-title" style="font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);">AI公司 · CTO招聘</div>
                 <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;">"8秒完成简历分析，AI评分与人工判断高度一致，招聘效率提升3倍"</div>
             </div>
             <div class="fade-in" style="background:var(--bg-secondary);border-radius:16px;padding:28px;border:1px solid var(--card-border);">
-                <div style="font-size:36px;margin-bottom:12px;">脉</div>
+                <div style="font-size:36px;margin-bottom:12px;">🤖</div>
                 <div class="testi-title" style="font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);">具身智能 · 多岗位</div>
                 <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;">"数十个标准岗位自动匹配，面试官协同零延迟，从投递到面试1天搞定"</div>
             </div>
             <div class="fade-in" style="background:var(--bg-secondary);border-radius:16px;padding:28px;border:1px solid var(--card-border);">
-                <div style="font-size:36px;margin-bottom:12px;">数</div>
+                <div style="font-size:36px;margin-bottom:12px;">📊</div>
                 <div class="testi-title" style="font-size:15px;font-weight:700;margin-bottom:8px;color:var(--text-primary);">猎头机构 · 简历管理</div>
                 <div style="font-size:13px;color:var(--text-secondary);line-height:1.7;">"简历库共享+积分体系，人才资产不再沉睡，每份简历都被充分利用"</div>
             </div>
@@ -991,10 +979,10 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
 </style>
 <div class="contact-overlay" id="contactOverlay" onclick="if(event.target===this)this.classList.remove('show')">
   <div class="contact-card">
-    <h3>联 联系我们</h3>
+    <h3>📞 联系我们</h3>
     <p>扫码或搜索微信，即刻开启智能招聘</p>
     <div class="contact-item">
-      <div class="icon wx">客</div>
+      <div class="icon wx">💬</div>
       <div class="info">
         <div class="label">微信号</div>
         <div class="value">179545447</div>
@@ -1007,15 +995,6 @@ h1 span, h2 span, .grad-text, [class*="grad"] { background:linear-gradient(120de
 function showContact(){document.getElementById('contactOverlay').classList.add('show')}
 </script>
 
-<a href="https://hr.zhimai-ai.cn/talents" target="_blank" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 15px rgba(108,92,231,0.4);text-decoration:none;@media(min-width:769px){display:none}" title="伯乐云图">智</a>
-<script>
-(function(){
-  var tg = document.querySelectorAll('section, [class*="card"], [class*="prod"], .stat, [class*="stat"]');
-  var io = new IntersectionObserver(function(es){
-    es.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
-  }, { threshold: .12 });
-  var n = 0;
-  tg.forEach(function(t){ if (n < 70) { t.classList.add('reveal-up'); io.observe(t); n++; } });
-})();
-</script></body>
+<a href="https://hr.zhimai-ai.cn/talents" target="_blank" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:linear-gradient(135deg,#6c5ce7,#a29bfe);color:#fff;width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 15px rgba(108,92,231,0.4);text-decoration:none;@media(min-width:769px){display:none}" title="伯乐云图">🎯</a>
+</body>
 </html>
